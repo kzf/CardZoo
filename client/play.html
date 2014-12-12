@@ -1,0 +1,44 @@
+<template name='play'>
+	{{> signupLogin}}
+	{{#if currentUser}}
+		{{> status}}
+		{{#if inProgress}}
+			{{> table}}
+			{{> hand}}
+		{{else}}
+			Game is not in progress
+		{{/if}}
+	{{/if}}
+</template>
+
+<template name="status">
+	<p>
+		<a href="/">&larr; Home</a>
+		<h2> Game between you and {{otherPlayer.username}} {{#if inProgress}} {{#if yourTurn}} (Your Turn) {{/if}} {{/if}} </h2>
+		
+	</p>
+</template>
+
+<template name="table">
+	<div id="board-side">
+		<ul class="cards">
+			{{#each player.hand}}
+				<li class="card">
+					{{this}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="hand">
+	<div id="hand">
+		<h2>Hand</h2>
+		{{#each player.hand}}
+			<div class="card {{suit}}">
+				<div>{{name}}</div>
+				<div>{{suit}}</div>
+			</div>
+		{{/each}}
+	</div>
+</template>
