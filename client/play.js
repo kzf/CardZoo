@@ -12,8 +12,7 @@ Template.play.helpers({
 		
 		game.otherPlayer = {
 			player: game.players[otherId],
-			username: otherUser.username,
-			score: game.players[otherId].score
+			username: otherUser.username
 		};
 		
 		return game;
@@ -28,3 +27,15 @@ var cardHelper = {
 };
 Template.handCard.helpers(cardHelper);
 Template.boardCard.helpers(cardHelper);
+
+Template.play.events({
+	'click .card': function (e, template) {
+		var id = Meteor.userId();
+		var game = Games.findOne(template.data._id);
+		console.log(e, template, this);
+		if (game.currentTurn[0] === id) {
+			console.log("taking turn");
+			Meteor.call('takeTurn', template.data._id, id, this);
+		}
+	}
+});

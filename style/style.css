@@ -46,6 +46,7 @@ ul {
 
 .board-side {
   text-align: center;
+  height: 150px;
 }
 
 .card-art {
@@ -256,6 +257,7 @@ ul {
 .hidden-hand {
   width: 90%;
   margin: 0 auto;
+  height: 170px;
   text-align: center;
 }
 
@@ -377,6 +379,7 @@ ul {
 .board-side {
   position: relative;
   margin-left: 60px;
+  margin-right: 60px;
 }
 
 .top-menu {

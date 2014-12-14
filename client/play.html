@@ -14,20 +14,10 @@
 		<div class="game">
 		<section id="opponent_hand" class="hidden-hand">
 	    <ul class="cards">
-	      <li class="card">
-	      </li>
-	      <li class="card">
-	      </li>
-	      <li class="card">
-	      </li>
-	      <li class="card">
-	      </li>
-	      <li class="card">
-	      </li>
-	      <li class="card">
-	      </li>
-	      <li class="card">
-	      </li>
+	    	{{#each game.otherPlayer.player.hand}}
+	      	<li class="card">
+	      	</li>
+	      {{/each}}
 	    </ul>
 	  </section>
 	  
@@ -44,19 +34,13 @@
 	    </section>
 	    <section id="opponent_board" class="board-side">
 	      <div class="deck opponent-deck">
-	        15
+	        {{game.otherPlayer.player.deck.length}}
 	      </div>
-	      <ul class="cards">
-	        <li class="card">
-	          <img class="card-art" src="http://i.imgur.com/O2Ia6heb.jpg">
-	          <span class="health">9</span>
-	          <span class="attack">1</span>
-	        </li>
-	      </ul>
+	      {{> table game.otherPlayer.player}}
 	    </section>
 	    <section id="my_board" class="board-side">
 	    	<div class="deck my-deck">
-	        17
+	        {{game.player.deck.length}}
 	      </div>
 				{{> table game.player}}
 			</section>
@@ -85,6 +69,7 @@
 </template>
 
 <template name="status">
+	<a href="/">Home</a>
 	<span class="status">
 		Currently Playing {{otherPlayer.username}} {{#if inProgress}} {{#if yourTurn}} (Your Turn) {{/if}} {{/if}}
 	</span>
@@ -92,7 +77,7 @@
 
 <template name="table">
 	<ul class="cards">
-		{{#each hand}}
+		{{#each board}}
 			{{> boardCard}}
 		{{/each}}
 	</ul>
@@ -108,19 +93,19 @@
 
 <template name="boardCard">
 	<li class="card">
-    <img class="card-art" src="{{ card.art }}">
-		<span class="health">{{ card.health }}</span>
-		<span class="attack">{{ card.attack }}</span>
+    <img class="card-art" src="{{ art }}">
+		<span class="health">{{ health }}</span>
+		<span class="attack">{{ attack }}</span>
   </li>
 </template>
 
 <template name="handCard">
 	<li class="card">
-    <img class="card-art" src="{{ card.art }}">
-		<span class="health">{{ card.health }}</span>
-		<span class="attack">{{ card.attack }}</span>
-    <span class="name">Wedding Cake</span>
-    <span class="cost">5</span>
-    <span class="description">Cake</span>
+    <img class="card-art" src="{{ art }}">
+		<span class="health">{{ health }}</span>
+		<span class="attack">{{ attack }}</span>
+    <span class="name">{{ name }}</span>
+    <span class="cost">{{ cost }}</span>
+    <span class="description">{{ description }}</span>
   </li>
 </template>
