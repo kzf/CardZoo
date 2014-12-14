@@ -92,20 +92,24 @@
 </template>
 
 <template name="boardCard">
-	<li class="card">
-    <img class="card-art" src="{{ art }}">
-		<span class="health">{{ health }}</span>
-		<span class="attack">{{ attack }}</span>
-  </li>
+	{{#Animate}}
+		<li class="card animate">
+	    <img class="card-art" src="{{ art }}">
+			<span class="health">{{ health }}</span>
+			<span class="attack">{{ attack }}</span>
+	  </li>
+  {{/Animate}}
 </template>
 
 <template name="handCard">
-	<li class="card">
-    <img class="card-art" src="{{ art }}">
-		<span class="health">{{ health }}</span>
-		<span class="attack">{{ attack }}</span>
-    <span class="name">{{ name }}</span>
-    <span class="cost">{{ cost }}</span>
-    <span class="description">{{ description }}</span>
-  </li>
+	{{#Animate}}
+		<li class="card animate">
+	    <img class="card-art" src="{{ art }}">
+			<span class="health">{{ health }}</span>
+			<span class="attack">{{ attack }}</span>
+	    <span class="name">{{ name }}</span>
+	    <span class="cost">{{ cost }}</span>
+	    <span class="description">{{ description }}</span>
+	  </li>
+  {{/Animate}}
 </template>

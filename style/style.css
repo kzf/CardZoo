@@ -65,7 +65,15 @@ ul {
   border: 3px solid #fff;
   display:inline-block;
   margin: 0 10px;
-  transition: transform .3s ease;
+  transition: all .3s ease, transform 1s cubic-bezier(1,0,.71,.24);
+}
+
+.board-side .card.animate {
+  transform: translateY(-40px) scale(1.2) 
+}
+
+.board-side .card.animate {
+  opacity: 0;
 }
 
 #my_board .card {
@@ -180,7 +188,14 @@ ul {
     0px 2px 1px rgba(0,0,0,0.3);
   border: 3px solid #fff;
   display:inline-block;
-  transition: all .5s ease;
+  transition: 
+    all .5s ease, 
+    transform 1s cubic-bezier(1,0,.71,.24);
+  
+}
+
+.visible-hand .card.animate {
+  transform: translateY(-200px) translateX(80px) rotate(30deg) scale(1.2) 
 }
 
 .visible-hand .card:hover + .card {

@@ -6,3 +6,5 @@
 meteor-platform
 iron:router
 accounts-password
+frozeman:animation-helper
+
