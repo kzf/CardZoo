@@ -1,11 +1,83 @@
 <template name='play'>
-	{{game.inProgress}}
-	{{> signupLogin}}
+	<header class="top-menu">
+    Play a Game
+    {{#if currentUser}}
+			{{> status game}}
+		{{/if}}
+    <span class="user-info">
+      {{> signupLogin}}
+    </span>
+  </header>
+
 	{{#if currentUser}}
-		{{> status game}}
 		{{#if game.inProgress}}
-			{{> table game.player}}
-			{{> hand}}
+		<div class="game">
+		<section id="opponent_hand" class="hidden-hand">
+	    <ul class="cards">
+	      <li class="card">
+	      </li>
+	      <li class="card">
+	      </li>
+	      <li class="card">
+	      </li>
+	      <li class="card">
+	      </li>
+	      <li class="card">
+	      </li>
+	      <li class="card">
+	      </li>
+	      <li class="card">
+	      </li>
+	    </ul>
+	  </section>
+	  
+	  <section class="board">
+	    <section id="opponent_spells" class="opponent-spells">
+	      <div class="spell">
+	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <span class="cost">2</span>
+	      </div>
+	      <div class="spell">
+	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <span class="cost">1</span>
+	      </div>
+	    </section>
+	    <section id="opponent_board" class="board-side">
+	      <div class="deck opponent-deck">
+	        15
+	      </div>
+	      <ul class="cards">
+	        <li class="card">
+	          <img class="card-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	          <span class="health">9</span>
+	          <span class="attack">1</span>
+	        </li>
+	      </ul>
+	    </section>
+	    <section id="my_board" class="board-side">
+	    	<div class="deck my-deck">
+	        17
+	      </div>
+				{{> table game.player}}
+			</section>
+			<section id="my_spells" class="my-spells">
+	      <div class="spell">
+	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <span class="cost">2</span>
+	      </div>
+	      <div class="spell">
+	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <span class="cost">1</span>
+	      </div>
+		  </section>
+		</section>
+		  
+	  
+	  
+	  <section id="my_hand" class="visible-hand">
+	    {{> hand game.player}}
+	  </section>
+		</div>
 		{{else}}
 			Game is not in progress
 		{{/if}}
@@ -13,32 +85,42 @@
 </template>
 
 <template name="status">
-	<p>
-		<a href="/">&larr; Home</a>
-		<h2> Game between you and {{otherPlayer.username}} {{#if inProgress}} {{#if yourTurn}} (Your Turn) {{/if}} {{/if}} </h2>
-	</p>
+	<span class="status">
+		Currently Playing {{otherPlayer.username}} {{#if inProgress}} {{#if yourTurn}} (Your Turn) {{/if}} {{/if}}
+	</span>
 </template>
 
 <template name="table">
-	<div id="board-side">
-		<ul class="cards">
-			{{#each hand}}
-				<li class="card">
-					{{this}}
-				</li>
-			{{/each}}
-		</ul>
-	</div>
+	<ul class="cards">
+		{{#each hand}}
+			{{> boardCard}}
+		{{/each}}
+	</ul>
 </template>
 
 <template name="hand">
-	<div id="hand">
-		<h2>Hand</h2>
-		{{#each game.player.hand}}
-			<div class="card {{suit}}">
-				<div>{{name}}</div>
-				<div>{{suit}}</div>
-			</div>
+	<ul class="cards">
+		{{#each hand}}
+			{{> handCard}}
 		{{/each}}
-	</div>
+	</ul>
+</template>
+
+<template name="boardCard">
+	<li class="card">
+    <img class="card-art" src="{{ card.art }}">
+		<span class="health">{{ card.health }}</span>
+		<span class="attack">{{ card.attack }}</span>
+  </li>
+</template>
+
+<template name="handCard">
+	<li class="card">
+    <img class="card-art" src="{{ card.art }}">
+		<span class="health">{{ card.health }}</span>
+		<span class="attack">{{ card.attack }}</span>
+    <span class="name">Wedding Cake</span>
+    <span class="cost">5</span>
+    <span class="description">Cake</span>
+  </li>
 </template>

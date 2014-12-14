@@ -19,3 +19,12 @@ Template.play.helpers({
 		return game;
 	}
 });
+
+
+var cardHelper = {
+	card: function() {
+		return Cards[this];
+	}
+};
+Template.handCard.helpers(cardHelper);
+Template.boardCard.helpers(cardHelper);
