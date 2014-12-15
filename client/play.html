@@ -19,6 +19,11 @@
 	      	</li>
 	      {{/each}}
 	    </ul>
+      {{#if game.yourTurn}}
+        <div class="end-turn">
+          <button class="end-turn-button">End Turn</button>
+        </div>
+      {{/if}}
 	  </section>
 	  
 	  <section class="board">
@@ -84,7 +89,7 @@
 </template>
 
 <template name="hand">
-	<ul class="cards">
+	<ul class="cards cards-{{hand.length}}">
 		{{#each hand}}
 			{{> handCard}}
 		{{/each}}
