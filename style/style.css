@@ -65,7 +65,7 @@ ul {
   border: 3px solid #fff;
   display:inline-block;
   margin: 0 10px;
-  transition: all .3s ease, transform 1s cubic-bezier(1,0,.71,.24);
+  transition: all .3s ease;
 }
 
 .board-side .card.animate {
@@ -429,4 +429,44 @@ ul {
   padding: 10px 20px;
   border-radius: 6px;
   box-shadow: 0 0 10px 10px white;
+}
+
+.start-attack {
+  transform: translateY(-20px);
+}
+
+.arrow-body {
+  z-index: 9999;
+  background: 
+    linear-gradient(to right, transparent, rgba(0, 30, 90, 0.8) 50%),
+    linear-gradient(to right, transparent, transparent 40%, rgba(0, 30, 90, 0.8) 40%, rgba(0, 30, 90, 0.8));
+  background-size: 20px 100%, 50px 100%;
+  background-position: 0 0, 0 0;
+  background-repeat: no-repeat, repeat-x;
+  width: 1px;
+  height: 18px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform-origin: 0% 50%;
+}
+
+.arrow-body:after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 48px;
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-top-width: 24px;
+  border-bottom-width: 24px;
+  border-left-width: 24px;
+  border-right-width: 0px;
+  border-left-color: rgba(0, 30, 90, 0.8);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
 }
