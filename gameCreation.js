@@ -9,6 +9,7 @@ GameFactory.createGame = function (playerIds) {
 	for (i = 0; i < 4; i++) { this.dealPlayer(players[playerIds[1]]); }
 
 	players[playerIds[0]].turn = true;
+	players[playerIds[1]].maxflour = 0;
 
 	return {
 		players: players,
@@ -33,6 +34,7 @@ function createPlayers(ids) {
 			board: [],
 			hand: [],
 			health: 30,
+			maxflour: 1,
 			flour: 1,
 			turn: false
 		}

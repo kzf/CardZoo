@@ -24,6 +24,15 @@ Template.play.helpers({
 	}
 });
 
+Template.flourBar.helpers({
+  maxBarHeight: function() {
+    return Math.max(this.maxflour*20 - 1, 0);
+  },
+  currentBarHeight: function() {
+    return Math.max(this.flour*20 - 1, 0);
+  }
+});
+
 
 var cardHelper = {
 	card: function() {

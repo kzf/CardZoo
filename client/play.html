@@ -65,13 +65,7 @@
 	  
 	  <section id="my_hand" class="visible-hand">
 	    {{> hand game.player}}
-	    <section class="flour-bar-container">
-	      <div class="icon">
-	        <img src="/images/fertilizer.svg">
-	      </div>
-	      <div class="flour-bar">
-	      </div>
-	    </section>
+	    {{> flourBar game.player}}
 	  </section>
 		</div>
 		{{else}}
@@ -126,4 +120,16 @@
       </div>
 	  </li>
   {{/Animate}}
+</template>
+
+<template name="flourBar">
+	<section class="flour-bar-container">
+    <div class="flour-bar" style="height: {{maxBarHeight}}px;">
+    	<div class="flour-bar-level" style="height: {{currentBarHeight}}px"></div>
+    	<div class="flour-bar-glass"></div>
+    </div>
+    <div class="icon">
+      <img src="/images/fertilizer.svg">
+    </div>
+  </section>
 </template>

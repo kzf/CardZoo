@@ -56,6 +56,8 @@ Meteor.methods({
 		game.players[otherId].turn = true;
 
 		GameFactory.dealPlayer(game.players[otherId]);
+		game.players[otherId].maxflour++;
+		game.players[otherId].flour = game.players[otherId].maxflour;
     
     Games.update(gameId, game);
   }

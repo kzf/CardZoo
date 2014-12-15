@@ -19,7 +19,9 @@ Turns.onBoard = function (set, card) {
 }
 
 Turns.playCard = function (game, id, card) {
-	game.players[id].board.push(card);
+	var player = game.players[id];
+	player.board.push(card);
+	player.flour -= card.cost;
 	var hand = game.players[id].hand;
 	for (var i = hand.length - 1; i >= 0; i--) {
 		if (hand[i].id === card.id) {
