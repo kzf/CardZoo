@@ -2,13 +2,18 @@ Template.play.helpers({
 	game: function() {
 		var game = Games.findOne(this._id);
 		if (!game) {
-      return { otherPlayer: { username: 'not loaded yet' }};
+      console.log("Sending back a dodgy temporary template");
+      return { 
+        otherPlayer: 
+        { username: 'not loaded yet' }
+      };
 		}
 
 		game.player = game.players[Meteor.userId()];
 		game.yourTurn = game.currentTurn[0] === Meteor.userId();
 		var otherId = game.currentTurn[game.yourTurn ? 1 : 0];
 		var otherUser = Meteor.users.findOne(otherId);
+    console.log(otherUser);
 		
 		game.otherPlayer = {
 			player: game.players[otherId],
@@ -31,6 +36,7 @@ Template.boardCard.helpers(cardHelper);
 Template.play.events({
 	'click #my_hand .card': function (e, template) {
 		var id = Meteor.userId();
+    var game = Games.findOne(template.data._id);
 		if (game.currentTurn[0] === id) {
 			Meteor.call('playCard', template.data._id, id, this);
 		}
@@ -46,8 +52,11 @@ Template.play.events({
   /* Finishing an attack */
   'mouseup': function (e, template) {
     if (Targeting.isDuringAttack()) {
-      console.log(e, e.target);
-      Targeting.endAttack();
+      if ($(e.target.parentElement.parentElement).attr("id") === "opponent_board") {
+        Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target));
+      } else {
+        Targeting.failAttack();
+      }      
     }
   },
   /* Hovering over a card while attacking */

@@ -108,13 +108,15 @@
 
 <template name="handCard">
 	{{#Animate}}
-		<li class="card animate">
-	    <img class="card-art" src="{{ art }}">
-			<span class="health">{{ health }}</span>
-			<span class="attack">{{ attack }}</span>
-	    <span class="name">{{ name }}</span>
-	    <span class="cost">{{ cost }}</span>
-	    <span class="description">{{ description }}</span>
+		<li class="card-container animate">
+      <div class="card">
+        <img class="card-art" src="{{ art }}">
+        <span class="health">{{ health }}</span>
+        <span class="attack">{{ attack }}</span>
+        <span class="name">{{ name }}</span>
+        <span class="cost">{{ cost }}</span>
+        <span class="description">{{ description }}</span>
+      </div>
 	  </li>
   {{/Animate}}
 </template>

@@ -30,15 +30,18 @@ Meteor.methods({
 
 		Games.update(gameId, game);
 	},
-  attackWithCard: function (gameId, id, card) {
+  attackWithCard: function (gameId, id, myCard, enemyCard) {
 		var game = Games.findOne(gameId);
 		var board = game.players[id].board;
 
-		if (game.currentTurn[0] !== id || !Turns.onBoard(board, card)) return;
+		if (game.currentTurn[0] !== id) return;
     
 		var otherId = game.currentTurn[1];
+    var otherBoard = game.players[otherId].board;
     
-		Turns.makeAttack(game, id, otherId, card);
+    if (!Turns.onBoard(board, myCard) || !Turns.onBoard(otherBoard, enemyCard)) return;
+    
+		Turns.makeAttack(game, id, otherId, myCard, enemyCard);
 
 		Games.update(gameId, game);
 	},

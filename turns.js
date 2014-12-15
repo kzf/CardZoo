@@ -29,9 +29,18 @@ Turns.playCard = function (game, id, card) {
 	}
 }
 
-Turns.makeAttack = function (game, id, otherId, card) {
-  var enemyBoard = game.players[otherId].board;
-  var enemyCard = enemyBoard[0];
-  enemyCard.health -= card.attack;
-  card.health -= enemyCard.attack;
+Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
+  var card = Turns.findCard(game.players[id].board, myCard);
+  var otherCard = Turns.findCard(game.players[otherId].board, enemyCard);
+  otherCard.health -= card.attack;
+  card.health -= otherCard.attack;
+}
+
+Turns.findCard = function (set, card) {
+  for (var i = 0; i < set.length; i++) {
+		if (set[i].id === card.id) {
+			return set[i];
+		}
+	}
+	return false;
 }

@@ -3,6 +3,11 @@ Targeting = {  };
 Targeting.startAttack = function (game, id, card, el) {
   this.duringAttack = true;
   
+  this.start = {
+    el: el,
+    card: card
+  };
+  
   el.addClass("start-attack");
   
   var offset = el.offset();
@@ -32,7 +37,16 @@ Targeting.startAttack = function (game, id, card, el) {
   addEventListener("mousemove", mousemove);
 }
 
-Targeting.endAttack = function() {
+Targeting.completeAttack = function(gameId, id, card, el) {
+  this.end = {
+    el: el,
+    card: card
+  };
+  this.cleanup();
+  Meteor.call('attackWithCard', gameId, id, this.start.card, this.end.card);
+}
+
+Targeting.failAttack = function() {
   this.duringAttack = false;
   this.cleanup();
 }

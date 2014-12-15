@@ -5,6 +5,7 @@
      -moz-user-select: -moz-none;
       -ms-user-select: none;
           user-select: none;
+  cursor: default;
 }
 
 body {
@@ -74,6 +75,12 @@ ul {
 
 .board-side .card.animate {
   opacity: 0;
+}
+
+.board-side .card.targeting {
+  box-shadow:
+    0px 0px 6px 8px rgba(0,30,210,0.5);
+  cursor: crosshair;
 }
 
 #my_board .card {
@@ -177,6 +184,15 @@ ul {
   margin-left: -100px;
 }
 
+.visible-hand .card-container {
+  display:inline-block;
+  transition: transform 1s cubic-bezier(1,0,.71,.24);
+}
+
+.visible-hand .card-container.animate {
+  transform: translateY(-200px) translateX(80px) rotate(30deg) scale(1.2) 
+}
+
 .visible-hand .card {
   width:140px; height:204px;
   border-radius:60px 60px 0 0;
@@ -187,15 +203,8 @@ ul {
   box-shadow:
     0px 2px 1px rgba(0,0,0,0.3);
   border: 3px solid #fff;
-  display:inline-block;
   transition: 
-    all .5s ease, 
-    transform 1s cubic-bezier(1,0,.71,.24);
-  
-}
-
-.visible-hand .card.animate {
-  transform: translateY(-200px) translateX(80px) rotate(30deg) scale(1.2) 
+    all .25s ease;
 }
 
 .visible-hand .card:hover + .card {
@@ -438,8 +447,8 @@ ul {
 .arrow-body {
   z-index: 9999;
   background: 
-    linear-gradient(to right, transparent, rgba(0, 30, 90, 0.8) 50%),
-    linear-gradient(to right, transparent, transparent 40%, rgba(0, 30, 90, 0.8) 40%, rgba(0, 30, 90, 0.8));
+    linear-gradient(to right, transparent, rgba(0,30,210, 0.8) 50%),
+    linear-gradient(to right, transparent, transparent 40%, rgba(0,30,210, 0.8) 40%, rgba(0,30,210, 0.8));
   background-size: 20px 100%, 50px 100%;
   background-position: 0 0, 0 0;
   background-repeat: no-repeat, repeat-x;
@@ -466,7 +475,7 @@ ul {
   border-bottom-width: 24px;
   border-left-width: 24px;
   border-right-width: 0px;
-  border-left-color: rgba(0, 30, 90, 0.8);
+  border-left-color: rgba(0,30,210, 0.8);
   border-top-color: transparent;
   border-bottom-color: transparent;
 }
