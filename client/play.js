@@ -33,6 +33,12 @@ Template.flourBar.helpers({
   }
 });
 
+Template.handCard.helpers({
+  playableClass: function() {
+    return this.playable ? "playable" : "";
+  }
+});
+
 
 var cardHelper = {
 	card: function() {

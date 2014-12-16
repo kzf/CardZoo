@@ -26,6 +26,7 @@ ul {
 }
 
 .board {
+  border-radius: 5px 5px 0 0;
   width: 90%;
   position: relative;
   margin: 0 auto;
@@ -81,6 +82,12 @@ ul {
   box-shadow:
     0px 0px 6px 8px rgba(0,30,210,0.5);
   cursor: crosshair;
+}
+
+.visible-hand .card.playable,
+.board-side .card.playable {
+  box-shadow:
+    0px 0px 9px 7px rgba(0,30,210,0.7);
 }
 
 #my_board .card {
@@ -250,7 +257,7 @@ ul {
 .cost {
   top: 4px;
   left: 0px;
-  transition: all .5s ease;
+  transition: all .25s ease;
 }
 
 .visible-hand .name {

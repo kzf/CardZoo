@@ -27,6 +27,7 @@ Meteor.methods({
 		if (game.currentTurn[0] !== id || !Turns.inHand(hand, card)) return;
 		
 		Turns.playCard(game, id, card);
+		Turns.updatePlayable(game.players, game.currentTurn);
 
 		Games.update(gameId, game);
 	},
@@ -52,12 +53,12 @@ Meteor.methods({
     var otherId = game.currentTurn[1];
     
     game.currentTurn.unshift(game.currentTurn.pop());
-		game.players[id].turn = false;
-		game.players[otherId].turn = true;
 
 		GameFactory.dealPlayer(game.players[otherId]);
 		game.players[otherId].maxflour++;
 		game.players[otherId].flour = game.players[otherId].maxflour;
+
+		Turns.updatePlayable(game.players, game.currentTurn);
     
     Games.update(gameId, game);
   }

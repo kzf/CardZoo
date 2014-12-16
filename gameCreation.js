@@ -10,6 +10,9 @@ GameFactory.createGame = function (playerIds) {
 
 	players[playerIds[0]].turn = true;
 	players[playerIds[1]].maxflour = 0;
+	players[playerIds[1]].flour = 0;
+
+	Turns.updatePlayable(players, playerIds);
 
 	return {
 		players: players,
@@ -21,7 +24,8 @@ GameFactory.createGame = function (playerIds) {
 
 GameFactory.dealPlayer = function(player) {
 	if (player.deck.length > 0) {
-		player.hand.push(Cards[player.deck.shift()]);
+		var newCard = Cards[player.deck.shift()];
+		player.hand.push(newCard);
 	}
 }
 

@@ -46,3 +46,16 @@ Turns.findCard = function (set, card) {
 	}
 	return false;
 }
+
+Turns.updatePlayable = function (players, currentTurn) {
+	var turn = currentTurn[0];
+	for (var id in players) {
+		if (players.hasOwnProperty(id)) {
+			for (var i = 0; i < players[id].hand.length; i++) {
+				var card = players[id].hand[i];
+				card.playable = id === turn && card.cost <= players[id].flour;
+			}
+		}
+	}
+	
+}
