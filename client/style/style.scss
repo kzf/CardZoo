@@ -1,0 +1,132 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu|Lobster);
+
+@import 'board';
+@import 'boardSides';
+@import 'cardStats';
+@import 'visibleHand';
+@import 'hiddenHand';
+@import 'spells';
+@import 'decks';
+@import 'arrow';
+
+.game {
+  -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: default;
+}
+
+body {
+  background-color:#5dac5c;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 90%;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.visible-hand .card.playable,
+.board-side .card.playable {
+  box-shadow:
+    0px 0px 9px 7px rgba(0,30,210,0.7);
+}
+
+#my_board .card {
+  cursor:pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+.top-menu {
+  background-color: #0f2b47;
+  padding: 10px;
+  color: white;
+  box-shadow:
+    0px 2px 2px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+
+.top-menu .user-info {
+  float: right;
+}
+
+.top-menu a {
+  color: #649dd6;
+}
+
+.top-menu a:hover {
+  text-decoration: none;
+}
+
+.end-turn {
+  position: absolute;
+  top: 100px;
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+}
+.end-turn-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 10px white;
+}
+
+.start-attack {
+  transform: translateY(-20px);
+}
+
+
+
+.flour-bar-container {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  text-align: center;
+}
+
+.flour-bar {
+  position: relative;
+  margin-left: 16px;
+  border-radius: 5px;
+  border: 2px solid #8e683a;
+  width: 25px;
+}
+
+.flour-bar-level {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 5px;
+  width: 100%;
+  background: #b7894d;
+  transition: height .3s ease;
+}
+
+.flour-bar-glass{
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.3) 19px, #333 19px, #333);
+  background-size: 1px 20px;
+}

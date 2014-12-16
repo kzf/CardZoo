@@ -15,11 +15,13 @@ Targeting.startAttack = function (game, id, card, el) {
   var sx = offset.left + w/2;
   var sy = offset.top + el.height()/2 - 20;
   var arrowBody = $("<div>").addClass("arrow-body").hide();
-  $("body").append(arrowBody);
+
+  var body = $("body");
+  body.append(arrowBody);
   
   var mousemove = function(e) {
     var mx = e.clientX;
-    var my = e.clientY;
+    var my = e.clientY + body.scrollTop();
     var length = Math.sqrt((mx-sx)*(mx-sx) + (my-sy)*(my-sy)) - 30;
     var ang = Math.atan2(mx - sx, my - sy) - Math.PI/2;
     var transform =  'translate(' + sx + 'px,' + sy + 'px) ' + 

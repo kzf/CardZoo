@@ -1,0 +1,47 @@
+.health, .attack, .cost {
+  position: absolute;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.health {
+  background-image: url('/images/health_bg.png');
+  background-size: 40px 39px;
+  width: 40px;
+  height: 39px;
+  color: rgb(60,0,0);
+}
+
+.cost {
+  background: rgba(242,220,162,1);
+  color: rgb(150,66,0);
+  border: 3px solid #fff;
+  box-shadow:
+        inset 0px 0px 10px rgba(242,40,150,0.4);
+}
+
+.attack {
+  background-image: url('/images/attack_bg.png');
+  background-size: 47px 44px;
+  width: 45px;
+  height: 42px;
+  color: #333;
+  padding-bottom: 2px;
+  padding-right: 2px;
+}
+
+.board-side .attack {
+  bottom: -2px;
+  left: 0px;
+}
+
+.board-side .health {
+  bottom: 0px;
+  right: 5px;
+}

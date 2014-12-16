@@ -1,0 +1,35 @@
+.deck {
+  width: 60px;
+  position: absolute;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.opponent-deck {
+  left: -50px;
+  bottom: 6px;
+  width:40px; height:60px;
+  border-radius:15px 15px 0 0;
+  text-align:center;
+  background: darkred;
+  box-shadow:
+    -2px 2px 1px rgba(0,0,0,0.3);
+  border: 3px solid #fff;
+}
+
+.my-deck {
+  left: -50px;
+  top: 6px;
+  width:40px; height:60px;
+  border-radius:0 0 15px 15px;
+  text-align:center;
+  background: darkblue;
+  box-shadow:
+    -2px 2px 1px rgba(0,0,0,0.3);
+  border: 3px solid #fff;
+}

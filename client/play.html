@@ -38,15 +38,9 @@
 	      </div>
 	    </section>
 	    <section id="opponent_board" class="board-side">
-	      <div class="deck opponent-deck">
-	        {{game.otherPlayer.player.deck.length}}
-	      </div>
 	      {{> table game.otherPlayer.player}}
 	    </section>
 	    <section id="my_board" class="board-side">
-	    	<div class="deck my-deck">
-	        {{game.player.deck.length}}
-	      </div>
 				{{> table game.player}}
 			</section>
 			<section id="my_spells" class="my-spells">
@@ -61,7 +55,13 @@
 		  </section>
 		</section>
 		  
-	  
+	  <div class="deck my-deck">
+      {{game.player.deck.length}}
+    </div>
+
+    <div class="deck opponent-deck">
+      {{game.otherPlayer.player.deck.length}}
+    </div>
 	  
 	  <section id="my_hand" class="visible-hand">
 	    {{> hand game.player}}
@@ -101,6 +101,7 @@
 	{{#Animate}}
 		<li class="card animate">
 	    <img class="card-art" src="{{ art }}">
+	    <div class="card-border"></div>
 			<span class="health">{{ health }}</span>
 			<span class="attack">{{ attack }}</span>
 	  </li>

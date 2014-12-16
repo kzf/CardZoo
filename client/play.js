@@ -61,14 +61,14 @@ Template.play.events({
     var id = Meteor.userId();
 		var game = Games.findOne(template.data._id);
     if (game.currentTurn[0] === id) {
-      Targeting.startAttack(game, id, this, $(e.target));
+      Targeting.startAttack(game, id, this, $(e.target.parentElement));
     }
   },
   /* Finishing an attack */
   'mouseup': function (e, template) {
     if (Targeting.isDuringAttack()) {
       if ($(e.target.parentElement.parentElement).attr("id") === "opponent_board") {
-        Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target));
+        Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement));
       } else {
         Targeting.failAttack();
       }      
@@ -77,13 +77,13 @@ Template.play.events({
   /* Hovering over a card while attacking */
   'mouseover #opponent_board .card': function (e, template) {
     if (Targeting.isDuringAttack()) {
-      $(e.target).addClass("targeting");
+      $(e.target.parentElement).addClass("targeting");
     }
   },
   /* Hovering out of a card while attacking */
   'mouseout #opponent_board .card': function (e, template) {
     if (Targeting.isDuringAttack()) {
-      $(e.target).removeClass("targeting");
+      $(e.target.parentElement).removeClass("targeting");
     }
   },
   'click .end-turn-button': function(e, template) {
