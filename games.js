@@ -22,9 +22,11 @@ Meteor.methods({
 	},
 	playCard: function (gameId, id, card) {
 		var game = Games.findOne(gameId);
-		var hand = game.players[id].hand;
+		var player = game.players[id];
+		var hand = player.hand;
 
 		if (game.currentTurn[0] !== id || !Turns.inHand(hand, card)) return;
+		if (!card.playable) return;
 		
 		Turns.playCard(game, id, card);
 		Turns.updatePlayable(game.players, game.currentTurn);
@@ -41,6 +43,7 @@ Meteor.methods({
     var otherBoard = game.players[otherId].board;
     
     if (!Turns.onBoard(board, myCard) || !Turns.onBoard(otherBoard, enemyCard)) return;
+    if (!myCard.canAttack) return;
     
 		Turns.makeAttack(game, id, otherId, myCard, enemyCard);
 
@@ -59,6 +62,8 @@ Meteor.methods({
 		game.players[otherId].flour = game.players[otherId].maxflour;
 
 		Turns.updatePlayable(game.players, game.currentTurn);
+		Turns.minionsCanAttack(game.players[otherId]);
+		Turns.minionsCanAttack(game.players[id], false);
     
     Games.update(gameId, game);
   }

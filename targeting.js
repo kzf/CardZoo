@@ -44,7 +44,9 @@ Targeting.completeAttack = function(gameId, id, card, el) {
     el: el,
     card: card
   };
+  el.removeClass("targeting");
   this.cleanup();
+  this.duringAttack = false;
   Meteor.call('attackWithCard', gameId, id, this.start.card, this.end.card);
 }
 

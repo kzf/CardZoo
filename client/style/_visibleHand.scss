@@ -29,6 +29,24 @@
 .visible-hand .cards-7 .card {
   margin-left: -100px;
 }
+.visible-hand .cards-8 {
+  margin-left: 100px;
+}
+.visible-hand .cards-8 .card {
+  margin-left: -100px;
+}
+.visible-hand .cards-9 {
+  margin-left: 100px;
+}
+.visible-hand .cards-9 .card {
+  margin-left: -100px;
+}
+.visible-hand .cards-10 {
+  margin-left: 100px;
+}
+.visible-hand .cards-10 .card {
+  margin-left: -100px;
+}
 
 .visible-hand .card-container {
   display:inline-block;
@@ -36,7 +54,7 @@
 }
 
 .visible-hand .card-container.animate {
-  transform: translateY(-200px) translateX(80px) rotate(30deg) scale(1.2) 
+  transform: translateY(-200px) translateX(80px) rotate(30deg) scale(1.2);
 }
 
 .visible-hand .card {
@@ -51,17 +69,19 @@
     all .25s ease;
 }
 
-.visible-hand .card:hover + .card {
+.visible-hand .card-container:hover + .card-container .card {
   margin-left: 10px;
 }
 .visible-hand .card:hover {
-  border-color: rgb(93,93,160);
-  background: rgb(93,93,160);
+  /*border-color: rgb(93,93,160);
+  background: rgb(93,93,160);*/
   transform: translateY(-10px);
+  border-color: rgb(210,0,210);
+  cursor: pointer;
 }
-.visible-hand .card:hover .cost {
+/*.visible-hand .card:hover .cost {
   border-color: rgb(93,93,160);
-}
+}*/
 
 .visible-hand .card::before {
   content: "";
@@ -100,18 +120,6 @@
   width: 30px;
   height: 30px;
   border-radius: 4px;
-}
-
-.visible-hand .cost {
-  top: -2px;
-  left: -4px;
-  border: 5px solid #926f4d;
-  background: #e0dec9;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  transition: all .25s ease;
-  box-shadow: none;
 }
 
 .visible-hand .name {

@@ -13,7 +13,6 @@ Template.play.helpers({
 		game.yourTurn = game.currentTurn[0] === Meteor.userId();
 		var otherId = game.currentTurn[game.yourTurn ? 1 : 0];
 		var otherUser = Meteor.users.findOne(otherId);
-    console.log(otherUser);
 		
 		game.otherPlayer = {
 			player: game.players[otherId],
@@ -39,6 +38,12 @@ Template.handCard.helpers({
   }
 });
 
+Template.boardCard.helpers({
+  canAttackClass: function() {
+    return this.canAttack ? "playable" : "";
+  }
+});
+
 
 var cardHelper = {
 	card: function() {
@@ -60,14 +65,14 @@ Template.play.events({
   'mousedown #my_board .card': function (e, template) {
     var id = Meteor.userId();
 		var game = Games.findOne(template.data._id);
-    if (game.currentTurn[0] === id) {
+    if (game.currentTurn[0] === id && this.canAttack) {
       Targeting.startAttack(game, id, this, $(e.target.parentElement));
     }
   },
   /* Finishing an attack */
   'mouseup': function (e, template) {
     if (Targeting.isDuringAttack()) {
-      if ($(e.target.parentElement.parentElement).attr("id") === "opponent_board") {
+      if ($(e.target.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
         Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement));
       } else {
         Targeting.failAttack();

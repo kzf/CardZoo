@@ -3,6 +3,8 @@
   margin: 0 auto;
   height: 170px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hidden-hand .cards {
@@ -31,4 +33,16 @@
   box-shadow:
      inset 0px 0px 50px rgba(0,0,0,0.4);
   display:inline-block;
+}
+
+.end-turn {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  text-align: center;
+}
+.end-turn-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 10px white;
 }

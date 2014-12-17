@@ -29,11 +29,13 @@
 	  <section class="board">
 	    <section id="opponent_spells" class="opponent-spells">
 	      <div class="spell">
-	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <div class="spell-border"></div>
 	        <span class="cost">2</span>
 	      </div>
 	      <div class="spell">
-	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <div class="spell-border"></div>
 	        <span class="cost">1</span>
 	      </div>
 	    </section>
@@ -45,11 +47,13 @@
 			</section>
 			<section id="my_spells" class="my-spells">
 	      <div class="spell">
-	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <div class="spell-border"></div>
 	        <span class="cost">2</span>
 	      </div>
 	      <div class="spell">
-	         <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
+	        <div class="spell-border"></div>
 	        <span class="cost">1</span>
 	      </div>
 		  </section>
@@ -98,14 +102,12 @@
 </template>
 
 <template name="boardCard">
-	{{#Animate}}
-		<li class="card animate">
-	    <img class="card-art" src="{{ art }}">
-	    <div class="card-border"></div>
-			<span class="health">{{ health }}</span>
-			<span class="attack">{{ attack }}</span>
-	  </li>
-  {{/Animate}}
+	<li class="card {{canAttackClass}}">
+    <img class="card-art" src="{{ art }}">
+    <div class="card-border"></div>
+		<span class="health">{{ health }}</span>
+		<span class="attack">{{ attack }}</span>
+  </li>
 </template>
 
 <template name="handCard">

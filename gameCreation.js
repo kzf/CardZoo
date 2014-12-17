@@ -26,6 +26,19 @@ GameFactory.dealPlayer = function(player) {
 	if (player.deck.length > 0) {
 		var newCard = Cards[player.deck.shift()];
 		player.hand.push(newCard);
+		GameFactory.updateHandIndexes(player.hand);
+	}
+}
+
+GameFactory.updateHandIndexes = function(hand) {
+	for (var i = 0; i < hand.length; i++) {
+		hand[i].handIndex = i;
+	}
+}
+
+GameFactory.updateBoardIndexes = function(board) {
+	for (var i = 0; i < board.length; i++) {
+		board[i].boardIndex = i;
 	}
 }
 

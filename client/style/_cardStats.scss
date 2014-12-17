@@ -19,11 +19,15 @@
 }
 
 .cost {
-  background: rgba(242,220,162,1);
-  color: rgb(150,66,0);
-  border: 3px solid #fff;
-  box-shadow:
-        inset 0px 0px 10px rgba(242,40,150,0.4);
+  top: -2px;
+  left: -4px;
+  border: 5px solid #926f4d;
+  background: #e0dec9;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: all .25s ease;
+  box-shadow: none;
 }
 
 .attack {
