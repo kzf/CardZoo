@@ -41,6 +41,9 @@ Template.handCard.helpers({
 Template.boardCard.helpers({
   canAttackClass: function() {
     return this.canAttack ? "playable" : "";
+  },
+  championClass: function() {
+    return this.champion ? "champion" : "";
   }
 });
 

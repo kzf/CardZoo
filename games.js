@@ -58,7 +58,9 @@ Meteor.methods({
     game.currentTurn.unshift(game.currentTurn.pop());
 
 		GameFactory.dealPlayer(game.players[otherId]);
-		game.players[otherId].maxflour++;
+		if (game.players[otherId].maxflour < Config.maxBananas) {
+			game.players[otherId].maxflour++;
+		}
 		game.players[otherId].flour = game.players[otherId].maxflour;
 
 		Turns.updatePlayable(game.players, game.currentTurn);

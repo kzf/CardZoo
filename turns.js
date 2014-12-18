@@ -71,6 +71,22 @@ Turns.updatePlayable = function (players, currentTurn) {
 
 Turns.minionsCanAttack = function (player, can) {
 	player.board.forEach(function (c) {
-		c.canAttack = (typeof can !== 'undefined' ? can : true);
+		if (typeof can !== 'undefined') {
+			c.canAttack = can;
+		} else {
+			c.canAttack = c.attack != 0; // 0 attack creatures can not attack
+		}
 	});
+}
+
+Turns.spawnChampions = function (players) {
+	for (var id in players) {
+		if (players.hasOwnProperty(id)) {
+			var champ = Champions[0];
+			champ.champion = true;
+			players[id].board.push(champ);
+			GameFactory.updateBoardIndexes(players[id].board);
+		}
+	}
+
 }

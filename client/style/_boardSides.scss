@@ -43,11 +43,25 @@
   transition: transform .3s ease;
 }
 
+.board-side .card.champion {
+  border-radius: 50% 50% 0 0;
+}
+
 .board-side .card-art {
   border-radius: 50%;
 }
 
 .board-side .card-border {
+  position: absolute;
+  top: -4px;
+  left: -7px;
+  width: 133px;
+  height: 128px;
+  background-image: url('/images/card_border.png');
+  background-size: 133px 128px;
+}
+
+.board-side .champion .card-border {
   position: absolute;
   top: -4px;
   left: -7px;
