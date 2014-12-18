@@ -83,10 +83,7 @@ ul {
 
 .flour-bar {
   position: relative;
-  margin-left: 16px;
-  border-radius: 5px;
-  border: 2px solid #8e683a;
-  width: 25px;
+  width: 76px;
 }
 
 .flour-bar-level {
@@ -94,21 +91,33 @@ ul {
   position: absolute;
   left: 0;
   bottom: 0;
-  border-radius: 5px;
-  width: 100%;
-  background: #b7894d;
-  transition: height .3s ease;
+  width: 38px;
+  margin-left: 21px;
+  background: #fdd603;
+  transition: height .6s ease;
 }
 
 .flour-bar-glass{
   display: block;
+  margin-left: 9px;
+  width: 63px;
   position: absolute;
-  left: 0;
   top: 0;
-  border-radius: 5px;
-  width: 100%;
+  left: 0;
   height: 100%;
-  background: 
-    linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.3) 19px, #333 19px, #333);
-  background-size: 1px 20px;
+  background-image: url('/images/bananas_bubble.png');
+  background-repeat: repeat-y;
+  background-size: 63px 28px;
+}
+
+.flour-bar-bottom {
+  width: 76px;
+  height: 70px;
+  background-image: url('/images/bananas_bottom.png');
+}
+.flour-bar-top {
+  width: 63px;
+  height: 52px;
+  margin-left: 4px;
+  background-image: url('/images/bananas_top.png');
 }

@@ -76,8 +76,10 @@
   /*border-color: rgb(93,93,160);
   background: rgb(93,93,160);*/
   transform: translateY(-10px);
-  border-color: #fff3b2;
   cursor: pointer;
+}
+.visible-hand .card.playable:hover {
+  border-color: #ECC81A;
 }
 /*.visible-hand .card:hover .cost {
   border-color: rgb(93,93,160);

@@ -25,10 +25,10 @@ Template.play.helpers({
 
 Template.flourBar.helpers({
   maxBarHeight: function() {
-    return Math.max(this.maxflour*20 - 1, 0);
+    return Math.max(this.maxflour*28, 0);
   },
   currentBarHeight: function() {
-    return Math.max(this.flour*20 - 1, 0);
+    return Math.max(this.flour*28, 0);
   }
 });
 
