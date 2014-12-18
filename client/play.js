@@ -66,16 +66,25 @@ Template.play.events({
 	'click #my_hand .card': function (e, template) {
 		var id = Meteor.userId();
     var game = Games.findOne(template.data._id);
-		if (game.currentTurn[0] === id) {
+		if (game.currentTurn[0] === id && this.playable) {
 			Meteor.call('playCard', template.data._id, id, this);
 		}
 	},
+
   /* Starting to attack with a minion */
   'mousedown #my_board .card': function (e, template) {
     var id = Meteor.userId();
 		var game = Games.findOne(template.data._id);
     if (game.currentTurn[0] === id && this.canAttack) {
       Targeting.startAttack(game, id, this, $(e.target.parentElement));
+    }
+  },
+  /* Starting to cast a spell */
+  'mousedown #my_spells .spell': function (e, template) {
+    var id = Meteor.userId();
+    var game = Games.findOne(template.data._id);
+    if (game.currentTurn[0] === id && this.playable) {
+      Targeting.startSpell(game, id, this, $(e.target.parentElement));
     }
   },
   /* Finishing an attack */
@@ -86,17 +95,23 @@ Template.play.events({
       } else {
         Targeting.failAttack();
       }      
+    } else if (Targeting.isDuringSpell()) {
+      if ($(e.target.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
+        Targeting.completeSpell(template.data._id, Meteor.userId(), this, $(e.target.parentElement));
+      } else {
+        Targeting.failSpell();
+      }
     }
   },
   /* Hovering over a card while attacking */
   'mouseover #opponent_board .card': function (e, template) {
-    if (Targeting.isDuringAttack()) {
+    if (Targeting.isDuringAttack() || Targeting.isDuringSpell()) {
       $(e.target.parentElement).addClass("targeting");
     }
   },
   /* Hovering out of a card while attacking */
   'mouseout #opponent_board .card': function (e, template) {
-    if (Targeting.isDuringAttack()) {
+    if (Targeting.isDuringAttack() || Targeting.isDuringSpell()) {
       $(e.target.parentElement).removeClass("targeting");
     }
   },

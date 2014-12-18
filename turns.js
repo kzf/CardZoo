@@ -18,6 +18,15 @@ Turns.onBoard = function (set, card) {
 	return false;
 }
 
+Turns.haveSpell = function (set, spell) {
+	for (var i = 0; i < set.length; i++) {
+		if (set[i].id === spell.id) {
+			return true;
+		}
+	}
+	return false;
+}
+
 Turns.playCard = function (game, id, card) {
 	var player = game.players[id];
 	card.canAttack = false;
@@ -46,6 +55,16 @@ Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
 		Turns.removeFromBoard(game, id, card);
   }
   card.canAttack = false;
+}
+
+Turns.castSpell = function (game, id, otherId, spell, enemyCard) {
+  var card = game.players[otherId].board[enemyCard.boardIndex];
+  var cast = Spells[spell.id].cast;
+  cast(card);
+  game.players[id].flour -= spell.cost;
+  if (card.health <= 0) {
+  	Turns.removeFromBoard(game, otherId, card);
+  }
 }
 
 Turns.findCard = function (set, card) {
