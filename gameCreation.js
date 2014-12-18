@@ -12,6 +12,8 @@ GameFactory.createGame = function (playerIds) {
 	players[playerIds[1]].maxflour = 0;
 	players[playerIds[1]].flour = 0;
 
+	Turns.spawnChampions(players);
+
 	Turns.updatePlayable(players, playerIds);
 
 	return {

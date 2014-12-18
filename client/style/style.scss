@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu|Lobster);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu|Lobster|Luckiest+Guy);
 
 @import 'board';
 @import 'boardSides';
@@ -30,26 +30,19 @@ ul {
   padding: 0;
 }
 
+.visible-hand .card.playable{
+  box-shadow:
+    0px 0px 9px 7px rgba(255,216,0,0.7);
+}
 
-
-.visible-hand .card.playable,
 .board-side .card.playable {
   box-shadow:
-    0px 0px 9px 7px rgba(0,30,210,0.7);
+    0px 0px 9px 14px rgba(255,216,0,0.7);
 }
 
 #my_board .card {
   cursor:pointer;
 }
-
-
-
-
-
-
-
-
-
 
 
 .top-menu {
