@@ -57,7 +57,7 @@ Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
   card.canAttack = false;
 }
 
-Turns.castSpell = function (game, id, otherId, spell, enemyCard, own) {
+Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {
   var card = game.players[own ? id : otherId].board[enemyCard.boardIndex];
   var cast = Spells[spell.id].cast;
   cast(card);
@@ -65,6 +65,12 @@ Turns.castSpell = function (game, id, otherId, spell, enemyCard, own) {
   if (card.health <= 0) {
   	Turns.removeFromBoard(game, own ? id : otherId, card);
   }
+}
+
+Turns.castSpell = function (game, id, otherId, spell) {
+  var cast = Spells[spell.id].cast;
+  cast(game, id, otherId);
+  game.players[id].flour -= spell.cost;
 }
 
 Turns.findCard = function (set, card) {

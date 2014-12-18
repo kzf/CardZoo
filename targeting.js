@@ -110,7 +110,7 @@ Targeting.completeSpell = function(gameId, id, card, el, own) {
   el.removeClass("targeting");
   this.cleanup();
   this.duringSpell = false;
-  Meteor.call('castSpell', gameId, id, this.start.spell, this.end.card, own);
+  Meteor.call('castTargetedSpell', gameId, id, this.start.spell, this.end.card, own);
 }
 
 Targeting.failSpell = function() {

@@ -79,7 +79,7 @@ ul {
 .opponent-flour-bar {
   position: absolute;
   left: 5px;
-  top: -73px;
+  top: -43px;
   text-align: center;
   transform: rotate(180deg);
 }
@@ -117,7 +117,26 @@ ul {
   width: 76px;
   height: 70px;
   background-image: url('/images/bananas_bottom.png');
+  position: absolute;
 }
+.flour-bar-bottom div {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 200%;
+  color: #9C6340;
+  text-shadow: 1px 1px 0px #D9BA36;
+}
+.opponent-flour-bar .flour-bar-bottom div {
+  transform: rotate(180deg);
+}
+
+
 .flour-bar-top {
   width: 63px;
   height: 52px;

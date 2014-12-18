@@ -14,8 +14,8 @@ GameFactory.createGame = function (playerIds) {
 
 	Turns.spawnChampions(players);
 
-	players[playerIds[0]].spells = [Spells[0], Spells[1]];
-	players[playerIds[1]].spells = [Spells[0], Spells[1]];
+	players[playerIds[0]].spells = [_.extend({}, Spells[0]), _.extend({}, Spells[1])];
+	players[playerIds[1]].spells = [_.extend({}, Spells[0]), _.extend({}, Spells[1])];
 
 	Turns.updatePlayable(players, playerIds);
 

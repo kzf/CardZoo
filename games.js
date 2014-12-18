@@ -45,11 +45,12 @@ Meteor.methods({
     if (!Turns.onBoard(board, myCard) || !Turns.onBoard(otherBoard, enemyCard)) return;
     if (!myCard.canAttack) return;
     
+    console.log(myCard, enemyCard);
 		Turns.makeAttack(game, id, otherId, myCard, enemyCard);
 
 		Games.update(gameId, game);
 	},
-  castSpell: function (gameId, id, spell, enemyCard, own) {
+  castTargetedSpell: function (gameId, id, spell, enemyCard, own) {
 		var game = Games.findOne(gameId);
 		var spells = game.players[id].spells;
 
@@ -61,7 +62,23 @@ Meteor.methods({
     if (!Turns.haveSpell(spells, spell) || !Turns.onBoard(otherBoard, enemyCard)) return;
     if (!spell.playable) return;
     
-		Turns.castSpell(game, id, otherId, spell, enemyCard, own);
+		Turns.castTargetedSpell(game, id, otherId, spell, enemyCard, own);
+		Turns.updatePlayable(game.players, game.currentTurn);
+
+		Games.update(gameId, game);
+	},
+  castSpell: function (gameId, id,spell) {
+		var game = Games.findOne(gameId);
+		var spells = game.players[id].spells;
+
+		if (game.currentTurn[0] !== id) return;
+
+		var otherId = game.currentTurn[1];
+
+    if (!Turns.haveSpell(spells, spell)) return;
+    if (!spell.playable) return;
+    
+		Turns.castSpell(game, id, otherId, spell);
 		Turns.updatePlayable(game.players, game.currentTurn);
 
 		Games.update(gameId, game);
