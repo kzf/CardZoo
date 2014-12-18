@@ -27,17 +27,11 @@
 	  </section>
 	  
 	  <section class="board">
+	  	<section class="opponent-flour-bar">
+	  		{{> flourBar game.otherPlayer.player}}
+	  	</section>
 	    <section id="opponent_spells" class="opponent-spells">
-	      <div class="spell">
-	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
-	        <div class="spell-border"></div>
-	        <span class="cost">2</span>
-	      </div>
-	      <div class="spell">
-	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
-	        <div class="spell-border"></div>
-	        <span class="cost">1</span>
-	      </div>
+	    	{{> spells game.otherPlayer.player}}
 	    </section>
 	    <section id="opponent_board" class="board-side">
 	      {{> table game.otherPlayer.player}}
@@ -46,16 +40,10 @@
 				{{> table game.player}}
 			</section>
 			<section id="my_spells" class="my-spells">
-	      <div class="spell">
-	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
-	        <div class="spell-border"></div>
-	        <span class="cost">2</span>
-	      </div>
-	      <div class="spell">
-	        <img class="spell-art" src="http://i.imgur.com/O2Ia6heb.jpg">
-	        <div class="spell-border"></div>
-	        <span class="cost">1</span>
-	      </div>
+				{{> spells game.player}}
+		  </section>
+		  <section class="my-flour-bar">
+		  	{{> flourBar game.player}}
 		  </section>
 		</section>
 		  
@@ -69,13 +57,23 @@
 	  
 	  <section id="my_hand" class="visible-hand">
 	    {{> hand game.player}}
-	    {{> flourBar game.player}}
+	    
 	  </section>
 		</div>
 		{{else}}
 			Game is not in progress
 		{{/if}}
 	{{/if}}
+</template>
+
+<template name="spells">
+	{{#each spells}}
+		<div class="spell {{playableClass}}">
+	    <img class="spell-art" src="{{art}}">
+	    <div class="spell-border"></div>
+	    <span class="cost">{{cost}}</span>
+	  </div>
+	{{/each}}
 </template>
 
 <template name="status">
@@ -126,12 +124,10 @@
 </template>
 
 <template name="flourBar">
-	<section class="flour-bar-container">
-		<div class="flour-bar-top"></div>
-    <div class="flour-bar" style="height: {{maxBarHeight}}px;">
-    	<div class="flour-bar-level" style="height: {{currentBarHeight}}px"></div>
-    	<div class="flour-bar-glass"></div>
-    </div>
-    <div class="flour-bar-bottom"></div>
-  </section>
+	<div class="flour-bar-top"></div>
+  <div class="flour-bar" style="height: {{maxBarHeight}}px;">
+  	<div class="flour-bar-level" style="height: {{currentBarHeight}}px"></div>
+  	<div class="flour-bar-glass"></div>
+  </div>
+  <div class="flour-bar-bottom"></div>
 </template>

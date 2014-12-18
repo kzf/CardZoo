@@ -35,7 +35,8 @@ ul {
     0px 0px 9px 7px rgba(255,216,0,0.7);
 }
 
-.board-side .card.playable {
+#my_board .card.playable,
+#my_spells .spell.playable {
   box-shadow:
     0px 0px 9px 14px rgba(255,216,0,0.7);
 }
@@ -74,11 +75,19 @@ ul {
 
 
 
-.flour-bar-container {
+.my-flour-bar {
   position: absolute;
   right: 5px;
-  bottom: 5px;
+  bottom: -73px;
   text-align: center;
+}
+
+.opponent-flour-bar {
+  position: absolute;
+  left: 5px;
+  top: -73px;
+  text-align: center;
+  transform: rotate(180deg);
 }
 
 .flour-bar {

@@ -1,14 +1,13 @@
 .my-spells {
   position: absolute;
-  bottom: 16px;
-  left: 114px;
+  bottom: 72px;
+  left: 7px;
 }
 
 .opponent-spells {
   position: absolute;
-  top: -10px;
-  right: 90px;
-  z-index: 1;
+  top: 68px;
+  right: 0px;
 }
 
 .spell {
@@ -16,8 +15,7 @@
   border-radius:50%;
   text-align:center;
   position:relative;
-  display:inline-block;
-  margin: 0 5px;
+  margin-top: 11px;
   transition: transform .3s ease;
 }
 

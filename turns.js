@@ -65,6 +65,10 @@ Turns.updatePlayable = function (players, currentTurn) {
 				var card = players[id].hand[i];
 				card.playable = id === turn && players[id].board.length < Config.maxMinionsOnBoard && card.cost <= players[id].flour;
 			}
+			for (var i = 0; i < players[id].spells.length; i++) {
+				var spell = players[id].spells[i];
+				spell.playable = id === turn && spell.cost <= players[id].flour;
+			}
 		}
 	}
 }

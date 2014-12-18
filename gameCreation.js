@@ -14,6 +14,9 @@ GameFactory.createGame = function (playerIds) {
 
 	Turns.spawnChampions(players);
 
+	players[playerIds[0]].spells = [Spells[0], Spells[1]];
+	players[playerIds[1]].spells = [Spells[0], Spells[1]];
+
 	Turns.updatePlayable(players, playerIds);
 
 	return {
@@ -25,7 +28,7 @@ GameFactory.createGame = function (playerIds) {
 };
 
 GameFactory.dealPlayer = function(player) {
-	if (player.deck.length > 0) {
+	if (player.deck.length > 0 && player.hand.length < Config.maxCardsInHand) {
 		var newCard = Cards[player.deck.shift()];
 		player.hand.push(newCard);
 		GameFactory.updateHandIndexes(player.hand);
@@ -55,7 +58,8 @@ function createPlayers(ids) {
 			health: 30,
 			maxflour: 1,
 			flour: 1,
-			turn: false
+			turn: false,
+			spells: []
 		}
 	});
 

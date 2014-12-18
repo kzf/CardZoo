@@ -38,6 +38,12 @@ Template.handCard.helpers({
   }
 });
 
+Template.spells.helpers({
+  playableClass: function() {
+    return this.playable ? "playable" : "";
+  }
+});
+
 Template.boardCard.helpers({
   canAttackClass: function() {
     return this.canAttack ? "playable" : "";

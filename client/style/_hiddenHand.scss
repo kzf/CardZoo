@@ -8,11 +8,11 @@
 }
 
 .hidden-hand .cards {
-  margin-left: 80px;
+  margin-left: 70px;
 }
 
 .hidden-hand .card {
-  width:120px; height:164px;
+  width:106px; height:145px;
   border-top-left-radius: 41.6% 30.5%;
   border-top-right-radius: 41.6% 30.5%;
   text-align:center;
@@ -22,7 +22,7 @@
     -2px 2px 1px rgba(0,0,0,0.3);
   border: 3px solid #ECC81A;
   display:inline-block;
-  margin-left: -80px;
+  margin-left: -70px;
 }
 
 .hidden-hand .card::before {
