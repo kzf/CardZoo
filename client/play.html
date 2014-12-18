@@ -30,6 +30,10 @@
 	  	<section class="opponent-flour-bar">
 	  		{{> flourBar game.otherPlayer.player}}
 	  	</section>
+	  	<div class="deck opponent-deck">
+	    	<div class="card"></div>
+	      <span>{{game.otherPlayer.player.deck.length}}</span>
+	    </div>
 	    <section id="opponent_spells" class="opponent-spells">
 	    	{{> spells game.otherPlayer.player}}
 	    </section>
@@ -42,18 +46,16 @@
 			<section id="my_spells" class="my-spells">
 				{{> spells game.player}}
 		  </section>
+		  <div class="deck my-deck">
+	      <div class="card"></div>
+	      <span>{{game.player.deck.length}}</span>
+	    </div>
 		  <section class="my-flour-bar">
 		  	{{> flourBar game.player}}
 		  </section>
 		</section>
 		  
-	  <div class="deck my-deck">
-      {{game.player.deck.length}}
-    </div>
-
-    <div class="deck opponent-deck">
-      {{game.otherPlayer.player.deck.length}}
-    </div>
+	  
 	  
 	  <section id="my_hand" class="visible-hand">
 	    {{> hand game.player}}

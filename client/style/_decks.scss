@@ -1,35 +1,34 @@
 .deck {
-  width: 60px;
   position: absolute;
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+}
+
+.deck .card {
+  width: 73px; height: 100px;
+  margin-left: 0px;
 }
 
 .opponent-deck {
-  left: -50px;
-  bottom: 6px;
-  width:40px; height:60px;
-  border-radius:15px 15px 0 0;
-  text-align:center;
-  background: darkred;
-  box-shadow:
-    -2px 2px 1px rgba(0,0,0,0.3);
-  border: 3px solid #fff;
+  left: 90px;
+  top: -30px;
 }
 
 .my-deck {
-  left: -50px;
-  top: 6px;
-  width:40px; height:60px;
-  border-radius:0 0 15px 15px;
-  text-align:center;
-  background: darkblue;
-  box-shadow:
-    -2px 2px 1px rgba(0,0,0,0.3);
-  border: 3px solid #fff;
+  right: 90px;
+  bottom: -30px;
+}
+
+.deck span {
+  display: block;
+  width: 65px;
+  height: 40px;
+  background-image: url('/images/button_bg.png');
+  background-size: 65px 40px;
+  line-height: 40px;
+  font-family: 'Luckiest Guy', cursive;
+  color: white;
+  font-size: 140%;
+  text-align: center;
+  position: absolute;
+  left: 7px;
+  top: 59px;
 }
