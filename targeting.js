@@ -102,7 +102,7 @@ Targeting.startSpell = function (game, id, card, el) {
   addEventListener("mousemove", mousemove);
 }
 
-Targeting.completeSpell = function(gameId, id, card, el) {
+Targeting.completeSpell = function(gameId, id, card, el, own) {
   this.end = {
     el: el,
     card: card
@@ -110,7 +110,7 @@ Targeting.completeSpell = function(gameId, id, card, el) {
   el.removeClass("targeting");
   this.cleanup();
   this.duringSpell = false;
-  Meteor.call('castSpell', gameId, id, this.start.spell, this.end.card);
+  Meteor.call('castSpell', gameId, id, this.start.spell, this.end.card, own);
 }
 
 Targeting.failSpell = function() {

@@ -96,22 +96,29 @@ Template.play.events({
         Targeting.failAttack();
       }      
     } else if (Targeting.isDuringSpell()) {
-      if ($(e.target.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
-        Targeting.completeSpell(template.data._id, Meteor.userId(), this, $(e.target.parentElement));
+      var target_el = $(e.target.parentElement.parentElement.parentElement).attr("id");
+      if (target_el === "opponent_board") {
+        Targeting.completeSpell(template.data._id, Meteor.userId(), this, $(e.target.parentElement), false);
+      } else if (target_el === "my_board") {
+        Targeting.completeSpell(template.data._id, Meteor.userId(), this, $(e.target.parentElement), true);
       } else {
         Targeting.failSpell();
       }
     }
   },
   /* Hovering over a card while attacking */
-  'mouseover #opponent_board .card': function (e, template) {
-    if (Targeting.isDuringAttack() || Targeting.isDuringSpell()) {
+  'mouseover .board-side .card': function (e, template) {
+    var target_el = $(e.target.parentElement.parentElement.parentElement).attr("id");
+    if ((Targeting.isDuringAttack() && target_el === "opponent_board")
+         || Targeting.isDuringSpell()) {
       $(e.target.parentElement).addClass("targeting");
     }
   },
   /* Hovering out of a card while attacking */
-  'mouseout #opponent_board .card': function (e, template) {
-    if (Targeting.isDuringAttack() || Targeting.isDuringSpell()) {
+  'mouseout .board-side .card': function (e, template) {
+    var target_el = $(e.target.parentElement.parentElement.parentElement).attr("id");
+    if ((Targeting.isDuringAttack() && target_el === "opponent_board")
+         || Targeting.isDuringSpell()) {
       $(e.target.parentElement).removeClass("targeting");
     }
   },

@@ -24,7 +24,12 @@
   opacity: 0;
 }
 
-.board-side .card.targeting {
+#my_board .card.playable {
+  box-shadow:
+    0px 0px 9px 14px rgba(255,216,0,0.7);
+}
+.board-side .card.targeting,
+#my_board .card.targeting { // Needed for specificity rules
   box-shadow:
     0px 0px 9px 14px rgba(0,30,210, 0.8);
   cursor: crosshair;
