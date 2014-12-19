@@ -23,12 +23,12 @@ Template.play.helpers({
 	}
 });
 
-Template.flourBar.helpers({
+Template.bananasBar.helpers({
   maxBarHeight: function() {
-    return Math.max(this.maxflour*28, 0);
+    return Math.max(this.maxbananas*28, 0);
   },
   currentBarHeight: function() {
-    return Math.max(this.flour*28, 0);
+    return Math.max(this.bananas*28, 0);
   }
 });
 
@@ -63,11 +63,12 @@ Template.handCard.helpers(cardHelper);
 Template.boardCard.helpers(cardHelper);
 
 Template.play.events({
-	'click #my_hand .card': function (e, template) {
+	'mousedown #my_hand .card': function (e, template) {
+    console.log(e);
 		var id = Meteor.userId();
     var game = Games.findOne(template.data._id);
 		if (game.currentTurn[0] === id && this.playable) {
-			Meteor.call('playCard', template.data._id, id, this);
+			CardDrag.startDrag(game, id, this, $(e.target.parentElement));
 		}
 	},
   'click #my_spells .spell': function (e, template) {
@@ -100,7 +101,7 @@ Template.play.events({
         Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement));
       } else {
         Targeting.failAttack();
-      }      
+      }
     } else if (Targeting.isDuringSpell()) {
       var target_el = $(e.target.parentElement.parentElement.parentElement).attr("id");
       if (target_el === "opponent_board") {
@@ -110,6 +111,8 @@ Template.play.events({
       } else {
         Targeting.failSpell();
       }
+    } else if (CardDrag.isDuringDrag()) {
+      CardDrag.endDrag(e, template.data._id, Meteor.userId());
     }
   },
   /* Hovering over a card while attacking */

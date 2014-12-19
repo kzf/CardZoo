@@ -8,6 +8,7 @@
 @import 'spells';
 @import 'decks';
 @import 'arrow';
+@import 'bananas';
 
 .game {
   -webkit-user-select: none;
@@ -69,77 +70,3 @@ ul {
 
 
 
-.my-flour-bar {
-  position: absolute;
-  right: 5px;
-  bottom: -73px;
-  text-align: center;
-}
-
-.opponent-flour-bar {
-  position: absolute;
-  left: 5px;
-  top: -43px;
-  text-align: center;
-  transform: rotate(180deg);
-}
-
-.flour-bar {
-  position: relative;
-  width: 76px;
-}
-
-.flour-bar-level {
-  display: block;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 38px;
-  margin-left: 21px;
-  background: #fdd603;
-  transition: height .6s ease;
-}
-
-.flour-bar-glass{
-  display: block;
-  margin-left: 9px;
-  width: 63px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-image: url('/images/bananas_bubble.png');
-  background-repeat: repeat-y;
-  background-size: 63px 28px;
-}
-
-.flour-bar-bottom {
-  width: 76px;
-  height: 70px;
-  background-image: url('/images/bananas_bottom.png');
-  position: absolute;
-}
-.flour-bar-bottom div {
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  font-family: 'Luckiest Guy', cursive;
-  font-size: 200%;
-  color: #9C6340;
-  text-shadow: 1px 1px 0px #D9BA36;
-}
-.opponent-flour-bar .flour-bar-bottom div {
-  transform: rotate(180deg);
-}
-
-
-.flour-bar-top {
-  width: 63px;
-  height: 52px;
-  margin-left: 4px;
-  background-image: url('/images/bananas_top.png');
-}

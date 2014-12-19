@@ -32,7 +32,7 @@ Turns.playCard = function (game, id, card) {
 	card.canAttack = false;
 	player.board.push(card);
 	GameFactory.updateBoardIndexes(player.board);
-	player.flour -= card.cost;
+	player.bananas -= card.cost;
 	/* Remove it from the hand */
 	player.hand.splice(card.handIndex, 1);
 	GameFactory.updateHandIndexes(player.hand);
@@ -61,7 +61,7 @@ Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {
   var card = game.players[own ? id : otherId].board[enemyCard.boardIndex];
   var cast = Spells[spell.id].cast;
   cast(card);
-  game.players[id].flour -= spell.cost;
+  game.players[id].bananas -= spell.cost;
   if (card.health <= 0) {
   	Turns.removeFromBoard(game, own ? id : otherId, card);
   }
@@ -70,7 +70,7 @@ Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {
 Turns.castSpell = function (game, id, otherId, spell) {
   var cast = Spells[spell.id].cast;
   cast(game, id, otherId);
-  game.players[id].flour -= spell.cost;
+  game.players[id].bananas -= spell.cost;
 }
 
 Turns.findCard = function (set, card) {
@@ -88,11 +88,11 @@ Turns.updatePlayable = function (players, currentTurn) {
 		if (players.hasOwnProperty(id)) {
 			for (var i = 0; i < players[id].hand.length; i++) {
 				var card = players[id].hand[i];
-				card.playable = id === turn && players[id].board.length < Config.maxMinionsOnBoard && card.cost <= players[id].flour;
+				card.playable = id === turn && players[id].board.length < Config.maxMinionsOnBoard && card.cost <= players[id].bananas;
 			}
 			for (var i = 0; i < players[id].spells.length; i++) {
 				var spell = players[id].spells[i];
-				spell.playable = id === turn && spell.cost <= players[id].flour;
+				spell.playable = id === turn && spell.cost <= players[id].bananas;
 			}
 		}
 	}

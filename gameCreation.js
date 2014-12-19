@@ -9,8 +9,8 @@ GameFactory.createGame = function (playerIds) {
 	for (i = 0; i < 4; i++) { this.dealPlayer(players[playerIds[1]]); }
 
 	players[playerIds[0]].turn = true;
-	players[playerIds[1]].maxflour = 0;
-	players[playerIds[1]].flour = 0;
+	players[playerIds[1]].maxbananas = 0;
+	players[playerIds[1]].bananas = 0;
 
 	Turns.spawnChampions(players);
 
@@ -56,8 +56,8 @@ function createPlayers(ids) {
 			board: [],
 			hand: [],
 			health: 30,
-			maxflour: 1,
-			flour: 1,
+			maxbananas: 1,
+			bananas: 1,
 			turn: false,
 			spells: []
 		}

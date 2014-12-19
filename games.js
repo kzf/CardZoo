@@ -45,7 +45,6 @@ Meteor.methods({
     if (!Turns.onBoard(board, myCard) || !Turns.onBoard(otherBoard, enemyCard)) return;
     if (!myCard.canAttack) return;
     
-    console.log(myCard, enemyCard);
 		Turns.makeAttack(game, id, otherId, myCard, enemyCard);
 
 		Games.update(gameId, game);
@@ -92,10 +91,10 @@ Meteor.methods({
     game.currentTurn.unshift(game.currentTurn.pop());
 
 		GameFactory.dealPlayer(game.players[otherId]);
-		if (game.players[otherId].maxflour < Config.maxBananas) {
-			game.players[otherId].maxflour++;
+		if (game.players[otherId].maxbananas < Config.maxBananas) {
+			game.players[otherId].maxbananas++;
 		}
-		game.players[otherId].flour = game.players[otherId].maxflour;
+		game.players[otherId].bananas = game.players[otherId].maxbananas;
 
 		Turns.updatePlayable(game.players, game.currentTurn);
 		Turns.minionsCanAttack(game.players[otherId]);
