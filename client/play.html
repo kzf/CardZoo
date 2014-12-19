@@ -12,21 +12,21 @@
 	{{#if currentUser}}
 		{{#if game.inProgress}}
 		<div class="game">
-		<section id="opponent_hand" class="hidden-hand">
-	    <ul class="cards">
-	    	{{#each game.otherPlayer.player.hand}}
-	      	<li class="card">
-	      	</li>
-	      {{/each}}
-	    </ul>
-      {{#if game.yourTurn}}
-        <div class="end-turn">
-          <button class="end-turn-button">END TURN</button>
-        </div>
-      {{/if}}
-	  </section>
 	  
 	  <section class="board">
+	  	<section id="opponent_hand" class="hidden-hand">
+		    <ul class="cards">
+		    	{{#each game.otherPlayer.player.hand}}
+		      	<li class="card">
+		      	</li>
+		      {{/each}}
+		    </ul>
+	      {{#if game.yourTurn}}
+	        <div class="end-turn">
+	          <button class="end-turn-button">END TURN</button>
+	        </div>
+	      {{/if}}
+		  </section>
 	  	<section class="opponent-bananas-bar">
 	  		{{> bananasBar game.otherPlayer.player}}
 	  	</section>
@@ -61,6 +61,8 @@
 	    {{> hand game.player}}
 	    
 	  </section>
+
+	  
 		</div>
 		{{else}}
 			Game is not in progress

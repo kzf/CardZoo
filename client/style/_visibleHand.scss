@@ -4,6 +4,7 @@
   margin: 0 auto;
   margin-top: -105px;
   text-align: center;
+  pointer-events: none;
 }
 .visible-hand .cards-4 {
   margin-left: 40px;
@@ -51,6 +52,7 @@
 .visible-hand .card-container {
   display:inline-block;
   transition: transform 1s cubic-bezier(1,0,.71,.24);
+  z-index: 2;
 }
 
 .visible-hand .card-container.animate {
@@ -67,6 +69,7 @@
   border-top-right-radius: 60px 60px;
   transition: 
     all .25s ease;
+  pointer-events: auto;
 }
 
 .visible-hand .card-container:hover + .card-container .card {

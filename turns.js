@@ -27,10 +27,14 @@ Turns.haveSpell = function (set, spell) {
 	return false;
 }
 
-Turns.playCard = function (game, id, card) {
+Turns.playCard = function (game, id, card, insertAt) {
 	var player = game.players[id];
 	card.canAttack = false;
-	player.board.push(card);
+	if (typeof insertAt === 'undefined') {
+		player.board.push(card);
+	} else {
+		player.board.splice(insertAt, 0, card);
+	}
 	GameFactory.updateBoardIndexes(player.board);
 	player.bananas -= card.cost;
 	/* Remove it from the hand */

@@ -20,7 +20,7 @@ Meteor.methods({
 		var game = GameFactory.createGame([Meteor.userId(), otherPlayerId]);
 		Games.insert(game);
 	},
-	playCard: function (gameId, id, card) {
+	playCard: function (gameId, id, card, insertAt) {
 		var game = Games.findOne(gameId);
 		var player = game.players[id];
 		var hand = player.hand;
@@ -28,7 +28,7 @@ Meteor.methods({
 		if (game.currentTurn[0] !== id || !Turns.inHand(hand, card)) return;
 		if (!card.playable) return;
 		
-		Turns.playCard(game, id, card);
+		Turns.playCard(game, id, card, insertAt);
 		Turns.updatePlayable(game.players, game.currentTurn);
 
 		Games.update(gameId, game);
