@@ -54,10 +54,6 @@
   transition: transform 1s cubic-bezier(1,0,.71,.24);
 }
 
-.visible-hand .card-container.animate {
-  transform: translateY(-200px) translateX(80px) rotate(30deg) scale(1.2);
-}
-
 .visible-hand .card {
   position: relative;
   list-style-type: none;
