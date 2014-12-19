@@ -76,12 +76,6 @@ CardDrag.endDrag = function(e, gameId, id) {
   var startEl = this.startEl;
   var mx = e.clientX;
   var my = e.clientY + $("body").scrollTop();
-  $("#my_board .card-container").each(function(i, el) {
-    $(el).css("transition", "none");
-		$(el).css("transform", "none");
-    $(el).width();
-    $(el).css("transition", "all .3s");
-	});
   if (mx > this.boardstops[0] && mx < this.boardstops[this.boardstops.length-1] &&
       my > this.boardtop && my < this.boardbottom) {
   	var index = 1;
@@ -98,6 +92,19 @@ CardDrag.endDrag = function(e, gameId, id) {
       startEl.width(); // force render (bleh)
       startEl.attr("style", "");
       Meteor.call('playCard', gameId, id, card, index);
+      // Animate in the element
+      var cel = $($("#my_board .card-container")[index]);
+      cel.css("transition", "none");
+      cel.css("opacity", "0");
+      cel.width();
+      cel.css("transition", "all .3s");
+      cel.css("opacity", 1);
+      $("#my_board .card-container").each(function(i, el) {
+        $(el).css("transition", "none");
+        $(el).css("transform", "none");
+        $(el).width();
+        $(el).css("transition", "all .3s");
+      });
     }, 300);
   	
   } else {

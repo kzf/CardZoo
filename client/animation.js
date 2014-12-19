@@ -1,7 +1,6 @@
 Template.cardAnimate.rendered = function(){
   var template = this;
 
-  // add the parentNode te the instance, so we can access it in the destroyed function
   template._animation_helper_parentNode = this.firstNode.parentNode;
 
   template._animation_helper_parentNode._uihooks = {
@@ -16,18 +15,8 @@ Template.cardAnimate.rendered = function(){
       Meteor.setTimeout(function() {
         $node.css("transition", "all .3s");
         $node.css("transform", "none");
-      }, 1000);
+      }, 300);
 
     }
   };
-};
-
-Template.Animate.destroyed = function(){
-  var template = this;
-
-  if(Meteor.isClient && template._animation_helper_parentNode) {
-    Tracker.afterFlush(function(){
-        template._animation_helper_parentNode._uihooks = null;
-    });
-  }
 };
