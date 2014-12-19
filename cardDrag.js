@@ -44,8 +44,10 @@ CardDrag.endDrag = function(e, gameId, id) {
   var my = e.clientY + $("body").scrollTop();
   if (mx > this.boardoffset.left && mx < this.boardlimit.x &&
       my > this.boardoffset.top && my < this.boardlimit.y) {
+  	this.startEl.attr("transition", "none");
+	  this.startEl.css("transform", "translate(0px, 0px)");
+	  this.startEl.width();
   	Meteor.call('playCard', gameId, id, this.card);
-  	this.startEl.attr("style", "");
   } else {
     this.startEl.css("transition", "all .3s ease");
     this.startEl.css("transform", "translate(0px, 0px)");
