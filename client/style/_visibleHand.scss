@@ -52,7 +52,6 @@
 .visible-hand .card-container {
   display:inline-block;
   transition: transform 1s cubic-bezier(1,0,.71,.24);
-  z-index: 2;
 }
 
 .visible-hand .card-container.animate {
@@ -70,6 +69,8 @@
   transition: 
     all .25s ease;
   pointer-events: auto;
+  box-shadow:
+    -2px 2px 1px rgba(0,0,0,0.3);
 }
 
 .visible-hand .card-container:hover + .card-container .card {
@@ -80,9 +81,6 @@
   background: rgb(93,93,160);*/
   transform: translateY(-10px);
   cursor: pointer;
-}
-.visible-hand .card.playable:hover {
-  border-color: #ECC81A;
 }
 /*.visible-hand .card:hover .cost {
   border-color: rgb(93,93,160);

@@ -9,6 +9,10 @@
   height: 120px;
 }
 
+.board-side .card-container {
+  display:inline-block;
+}
+
 .board-side .card {
   width:120px; height:120px;
   border-radius:50%;
@@ -22,17 +26,6 @@
 .board-side .card.animate {
   transform: translateY(-40px) scale(1.2);
   opacity: 0;
-}
-
-#my_board .card.playable {
-  box-shadow:
-    0px 0px 9px 14px rgba(255,216,0,0.7);
-}
-.board-side .card.targeting,
-#my_board .card.targeting { // Needed for specificity rules
-  box-shadow:
-    0px 0px 9px 14px rgba(0,30,210, 0.8);
-  cursor: crosshair;
 }
 
 .board-side .card::before {

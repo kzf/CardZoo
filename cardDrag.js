@@ -47,7 +47,7 @@ CardDrag.startDrag = function(game, id, card, el) {
 				index++;
 			}
 			index--;
-			$("#my_board .card").each(function(i, el) {
+			$("#my_board .card-container").each(function(i, el) {
 				if (i < index) {
 					$(el).css("transform", "translateX(-65px)");
 				} else {
@@ -55,7 +55,7 @@ CardDrag.startDrag = function(game, id, card, el) {
 				}
 			});
 	  } else {
-	  	$("#my_board .card").each(function(i, el) {
+	  	$("#my_board .card-container").each(function(i, el) {
 				$(el).css("transform", "none");
 			});
 	  }
@@ -71,7 +71,7 @@ CardDrag.startDrag = function(game, id, card, el) {
 CardDrag.endDrag = function(e, gameId, id) {
   var mx = e.clientX;
   var my = e.clientY + $("body").scrollTop();
-  $("#my_board .card").each(function(i, el) {
+  $("#my_board .card-container").each(function(i, el) {
     $(el).css("transition", "none");
 		$(el).css("transform", "none");
     $(el).width();

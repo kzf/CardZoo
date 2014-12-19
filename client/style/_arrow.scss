@@ -1,8 +1,10 @@
+@import 'colours';
+
 .arrow-body {
   z-index: 9999;
   background: 
-    linear-gradient(to right, transparent, rgba(0,30,210, 0.8) 50%),
-    linear-gradient(to right, transparent, transparent 40%, rgba(0,30,210, 0.8) 40%, rgba(0,30,210, 0.8));
+    linear-gradient(to right, transparent, $action-aura 50%),
+    linear-gradient(to right, transparent, transparent 40%, $action-aura 40%, $action-aura);
   background-size: 20px 100%, 50px 100%;
   background-position: 0 0, 0 0;
   background-repeat: no-repeat, repeat-x;
@@ -29,7 +31,7 @@
   border-bottom-width: 24px;
   border-left-width: 24px;
   border-right-width: 0px;
-  border-left-color: rgba(0,30,210, 0.8);
+  border-left-color: $action-aura;
   border-top-color: transparent;
   border-bottom-color: transparent;
 }

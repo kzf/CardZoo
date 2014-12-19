@@ -16,7 +16,7 @@
   text-align:center;
   position:relative;
   margin-top: 11px;
-  transition: transform .3s ease;
+  transition: all .3s ease;
 }
 
 .spell .cost {
@@ -40,14 +40,4 @@
 .spell-art {
   width:100px; height:100px;
   border-radius:50%;
-}
-
-#my_spells .spell.playable {
-  box-shadow:
-    0px 0px 9px 14px rgba(255,216,0,0.7);
-}
-
-#my_spells .spell.start-spell {
-  box-shadow:
-    0px 0px 9px 14px rgba(0,30,210, 0.8);
 }

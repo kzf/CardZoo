@@ -1,0 +1,14 @@
+/***
+	Aura
+	***/
+
+$playable-aura-color: rgb(255,216,0);
+
+$playable-aura-highlight-color: lighten($playable-aura-color, 30);
+
+$playable-aura: transparentize($playable-aura-color, 0.25);
+$playable-aura-highlight: transparentize($playable-aura-highlight-color, 0.25);
+
+$action-aura-color: rgb(255,153,0);//rgb(0,30,210);
+
+$action-aura: transparentize($action-aura-color, 0.25);

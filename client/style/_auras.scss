@@ -1,0 +1,70 @@
+@import 'colours';
+
+/***
+	Cards in hand
+	***/
+.visible-hand .card.playable{
+  box-shadow:
+    0px 0px 9px 9px $playable-aura;
+}
+.visible-hand .card.playable:hover {
+	box-shadow:
+    0px 0px 9px 9px $playable-aura-highlight;
+  
+}
+
+/***
+	My board
+	***/
+#my_board .card.playable {
+  box-shadow:
+    0px 9px 9px 5px $playable-aura,
+    0px -9px 9px 5px $playable-aura;
+}
+#my_board .card.playable:hover {
+  box-shadow:
+    0px 9px 9px 5px $playable-aura-highlight,
+    0px -9px 9px 5px $playable-aura-highlight;
+}
+.board-side .card.targeting,
+#my_board .card.targeting,
+#my_board .card.start-attack { // Needed for specificity rules
+  box-shadow:
+    0px 9px 9px 5px $action-aura,
+    0px -9px 9px 5px $action-aura;
+  cursor: crosshair;
+}
+
+/***
+	End Turn Button
+	***/
+.end-turn-button {
+	background-color: $playable-aura;
+	box-shadow:
+    0px 0px 9px 7px $playable-aura;
+}
+.end-turn-button:hover {
+  background-color: $playable-aura-highlight;
+  box-shadow:
+    0px 0px 9px 7px $playable-aura-highlight;
+  cursor: pointer;
+}
+
+/***
+	Spells
+	***/
+#my_spells .spell.playable {
+  box-shadow:
+    8px 0px 9px 5px $playable-aura,
+    -9px 0px 9px 5px $playable-aura;
+}
+#my_spells .spell.playable:hover {
+  box-shadow:
+    8px 0px 9px 5px $playable-aura-highlight,
+    -9px 0px 9px 5px $playable-aura-highlight;
+}
+#my_spells .spell.start-spell {
+  box-shadow:
+    8px 0px 9px 5px $action-aura,
+    -9px 0px 9px 5px $action-aura;
+}

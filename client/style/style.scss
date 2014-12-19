@@ -9,6 +9,8 @@
 @import 'decks';
 @import 'arrow';
 @import 'bananas';
+@import 'auras';
+@import 'colours';
 
 .game {
   -webkit-user-select: none;
@@ -31,15 +33,11 @@ ul {
   padding: 0;
 }
 
-.visible-hand .card.playable{
-  box-shadow:
-    0px 0px 9px 7px rgba(255,216,0,0.7);
-}
+
 
 #my_board .card {
   cursor:pointer;
 }
-
 
 .top-menu {
   background-color: #0f2b47;
@@ -63,10 +61,7 @@ ul {
 }
 
 
-
 .start-attack {
   transform: translateY(-20px);
 }
-
-
 

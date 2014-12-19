@@ -96,13 +96,14 @@ Template.play.events({
   /* Finishing an attack */
   'mouseup': function (e, template) {
     if (Targeting.isDuringAttack()) {
-      if ($(e.target.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
+      console.log($(e.target.parentElement.parentElement.parentElement.parentElement));
+      if ($(e.target.parentElement.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
         Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement));
       } else {
         Targeting.failAttack();
       }
     } else if (Targeting.isDuringSpell()) {
-      var target_el = $(e.target.parentElement.parentElement.parentElement).attr("id");
+      var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
       if (target_el === "opponent_board") {
         Targeting.completeSpell(template.data._id, Meteor.userId(), this, $(e.target.parentElement), false);
       } else if (target_el === "my_board") {
@@ -116,7 +117,7 @@ Template.play.events({
   },
   /* Hovering over a card while attacking */
   'mouseover .board-side .card': function (e, template) {
-    var target_el = $(e.target.parentElement.parentElement.parentElement).attr("id");
+    var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
     if ((Targeting.isDuringAttack() && target_el === "opponent_board")
          || Targeting.isDuringSpell()) {
       $(e.target.parentElement).addClass("targeting");
@@ -124,7 +125,7 @@ Template.play.events({
   },
   /* Hovering out of a card while attacking */
   'mouseout .board-side .card': function (e, template) {
-    var target_el = $(e.target.parentElement.parentElement.parentElement).attr("id");
+    var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
     if ((Targeting.isDuringAttack() && target_el === "opponent_board")
          || Targeting.isDuringSpell()) {
       $(e.target.parentElement).removeClass("targeting");
