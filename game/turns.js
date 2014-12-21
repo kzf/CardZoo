@@ -35,16 +35,16 @@ Turns.playCard = function (game, id, card, insertAt) {
 	} else {
 		player.board.splice(insertAt, 0, card);
 	}
-	GameFactory.updateBoardIndexes(player.board);
+	Game.updateBoardIndexes(player.board);
 	player.bananas -= card.cost;
 	/* Remove it from the hand */
 	player.hand.splice(card.handIndex, 1);
-	GameFactory.updateHandIndexes(player.hand);
+	Game.updateHandIndexes(player.hand);
 }
 
 Turns.removeFromBoard = function(game, id, card) {
 	game.players[id].board.splice(card.boardIndex, 1);
-	GameFactory.updateBoardIndexes(game.players[id].board);
+	Game.updateBoardIndexes(game.players[id].board);
 }
 
 Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
@@ -118,7 +118,7 @@ Turns.spawnChampions = function (players) {
 			var champ = Champions[0];
 			champ.champion = true;
 			players[id].board.push(champ);
-			GameFactory.updateBoardIndexes(players[id].board);
+			Game.updateBoardIndexes(players[id].board);
 		}
 	}
 

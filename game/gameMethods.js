@@ -1,23 +1,6 @@
-Games = new Meteor.Collection('games');
-
-if (Meteor.isServer) {
-	Meteor.publish('games', function() {
-		return Games.find({ currentTurn: this.userId });
-	});
-
-	Meteor.publish('users', function() {
-		return Meteor.users.find();
-	});
-}
-
-if (Meteor.isClient) {
-	Meteor.subscribe('games');
-	Meteor.subscribe('users');
-}
-
 Meteor.methods({
 	createGame: function (otherPlayerId) {
-		var game = GameFactory.createGame([Meteor.userId(), otherPlayerId]);
+		var game = Game.createGame([Meteor.userId(), otherPlayerId]);
 		Games.insert(game);
 	},
 	playCard: function (gameId, id, card, insertAt) {
@@ -90,7 +73,7 @@ Meteor.methods({
     
     game.currentTurn.unshift(game.currentTurn.pop());
 
-		GameFactory.dealPlayer(game.players[otherId]);
+		Game.dealPlayer(game.players[otherId]);
 		if (game.players[otherId].maxbananas < Config.maxBananas) {
 			game.players[otherId].maxbananas++;
 		}

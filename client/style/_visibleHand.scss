@@ -5,8 +5,12 @@
   margin-top: -105px;
   text-align: center;
   pointer-events: none;
+  margin-left: 40px;
 }
-.visible-hand .cards-4 {
+.visible-hand .card {
+  margin-left: -40px;
+}
+/*.visible-hand .cards-4 {
   margin-left: 40px;
 }
 .visible-hand .cards-4 .card {
@@ -47,7 +51,7 @@
 }
 .visible-hand .cards-10 .card {
   margin-left: -100px;
-}
+}*/
 
 .visible-hand .card-container {
   display:inline-block;
@@ -63,7 +67,7 @@
   border-top-left-radius: 60px 60px;
   border-top-right-radius: 60px 60px;
   transition: 
-    all .25s ease;
+    all .15s ease;
   pointer-events: auto;
   box-shadow:
     -2px 2px 1px rgba(0,0,0,0.3);
@@ -75,7 +79,6 @@
 .visible-hand .card:hover {
   /*border-color: rgb(93,93,160);
   background: rgb(93,93,160);*/
-  transform: translateY(-10px);
   cursor: pointer;
 }
 /*.visible-hand .card:hover .cost {

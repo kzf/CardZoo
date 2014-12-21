@@ -33,10 +33,6 @@ CardDrag.startDrag = function(game, id, card, el) {
   console.log(this.boardstops);
   
   var body = $("body");
-
-  $("#my_board .card-container").each(function(i, el) {
-    $(el).css("transition", "all .3s");
-  });
   
   var mousemove = function (e) {
   	var mx = e.clientX;
@@ -51,7 +47,7 @@ CardDrag.startDrag = function(game, id, card, el) {
 				index++;
 			}
 			index--;
-			$("#my_board .card-container").each(function(i, el) {
+			$("#my_board .card").each(function(i, el) {
 				if (i < index) {
 					$(el).css("transform", "translateX(-65px)");
 				} else {
@@ -59,7 +55,7 @@ CardDrag.startDrag = function(game, id, card, el) {
 				}
 			});
 	  } else {
-	  	$("#my_board .card-container").each(function(i, el) {
+	  	$("#my_board .card").each(function(i, el) {
 				$(el).css("transform", "none");
 			});
 	  }
@@ -74,6 +70,7 @@ CardDrag.startDrag = function(game, id, card, el) {
 
 CardDrag.endDrag = function(e, gameId, id) {
   var startEl = this.startEl;
+  var $el = startEl.find(".card");
   var mx = e.clientX;
   var my = e.clientY + $("body").scrollTop();
   if (mx > this.boardstops[0] && mx < this.boardstops[this.boardstops.length-1] &&
@@ -83,29 +80,25 @@ CardDrag.endDrag = function(e, gameId, id) {
 			index++;
 		}
 		index--;
-    startEl.css("transition", "all .3s");
-    startEl.css("opacity", "0");
+    $el.css("opacity", "0");
     var card = this.card;
-    setTimeout(function() {
-      startEl.css("transition", "none");
+    $el.on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd transitionEnd msTransitionEnd animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd animationEnd msAnimationEnd', function(e) {
+      var handIndex = card.handIndex;
       startEl.css("transform", "none");
-      startEl.width(); // force render (bleh)
-      startEl.attr("style", "");
+      CardAnimator.justRemovedFromHand = handIndex;
+      CardAnimator.playedOnBoardIndex = index;
       Meteor.call('playCard', gameId, id, card, index);
       // Animate in the element
-      var cel = $($("#my_board .card-container")[index]);
-      cel.css("transition", "none");
-      cel.css("opacity", "0");
-      cel.width();
-      cel.css("transition", "all .3s");
-      cel.css("opacity", 1);
-      $("#my_board .card-container").each(function(i, el) {
-        $(el).css("transition", "none");
-        $(el).css("transform", "none");
-        $(el).width();
-        $(el).css("transition", "all .3s");
-      });
-    }, 300);
+      /*var cel = $($("#my_board .card-container")[handIndex]);
+      cel.hide().fadeIn(3000);
+      cel.css("transform", "none");*/
+      /*$("#my_board .card-container").each(function(i, el) {
+        //if (i !== index) {
+          $(el).css("transform", "none");
+        //}
+      });*/
+      $el.off('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd transitionEnd msTransitionEnd animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd animationEnd msAnimationEnd');
+    });
   	
   } else {
     this.startEl.css("transition", "all .3s ease");

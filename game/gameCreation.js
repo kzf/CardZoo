@@ -1,6 +1,4 @@
-GameFactory = {};
-
-GameFactory.createGame = function (playerIds) {
+Game.createGame = function (playerIds) {
 	var players = createPlayers(playerIds);
 
 	//First player gets 4 cards, other player gets 3
@@ -26,26 +24,6 @@ GameFactory.createGame = function (playerIds) {
 		started: new Date()
 	};
 };
-
-GameFactory.dealPlayer = function(player) {
-	if (player.deck.length > 0 && player.hand.length < Config.maxCardsInHand) {
-		var newCard = Cards[player.deck.shift()];
-		player.hand.push(newCard);
-		GameFactory.updateHandIndexes(player.hand);
-	}
-}
-
-GameFactory.updateHandIndexes = function(hand) {
-	for (var i = 0; i < hand.length; i++) {
-		hand[i].handIndex = i;
-	}
-}
-
-GameFactory.updateBoardIndexes = function(board) {
-	for (var i = 0; i < board.length; i++) {
-		board[i].boardIndex = i;
-	}
-}
 
 function createPlayers(ids) {
 	var o = {};

@@ -103,15 +103,18 @@
 	</ul>
 </template>
 
+
 <template name="boardCard">
-	<li class="card-container">
-		<div class="card {{championClass}} {{canAttackClass}}">
-	    <img class="card-art" src="{{ art }}">
-	    <div class="card-border"></div>
-			<span class="health">{{ health }}</span>
-			<span class="attack">{{ attack }}</span>
-	  </div>
-	</li>
+	{{#boardAnimate}}
+		<li class="card-container">
+			<div class="card {{championClass}} {{canAttackClass}}">
+		    <img class="card-art" src="{{ art }}">
+		    <div class="card-border"></div>
+				<span class="health">{{ health }}</span>
+				<span class="attack">{{ attack }}</span>
+		  </div>
+		</li>
+	{{/boardAnimate}}
 </template>
 
 <template name="handCard">
