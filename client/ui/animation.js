@@ -28,25 +28,23 @@ Template.cardAnimate.rendered = function(){
       var cards = $("#my_hand .card");
 
       var next;
-      console.log(index, cards.length);
+
       if (index < cards.length - 1) {
-        console.log("NOT AT END");
         // fix its properties (opacity, transform)
         next = $(cards[index]);
 
         // adjust properties of neighbours
         next.addClass("notransition");
         next.css("opacity", 1);
-        next.css("margin-left", "120px");
+        next.css("margin-left", "80px");
       } else {
-        console.log("AT END");
         // fix its properties (opacity, transform)
         next = $(cards[index-1]);
 
         // adjust properties of neighbours
         next.addClass("notransition");
         next.css("opacity", 1);
-        next.css("margin-right", "120px");
+        next.css("margin-right", "80px");
       }
 
       // remove end one
@@ -59,12 +57,10 @@ Template.cardAnimate.rendered = function(){
       next.removeClass("notransition");
 
       if (index < cards.length - 1) {
-        next.css("margin-left", "-40px");
+        next.css("margin-left", "-80px");
       } else {
         next.css("margin-right", "0px");
       }
-      console.log(
-      next);
 
     }
   };
@@ -100,8 +96,6 @@ Template.boardAnimate.rendered = function(){
         $card.css("opacity", "0.5");
       }
 
-      console.log(index, cards.length);
-
       // insert
       $node.insertBefore(next);
 
@@ -119,7 +113,6 @@ Template.boardAnimate.rendered = function(){
         $card.css("transform", "none");
         $card.css("opacity", "1");
       }
-      console.log(index, cards.length);
 
     }
   };

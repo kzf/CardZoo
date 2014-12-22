@@ -48,15 +48,22 @@ Targeting.completeAttack = function(gameId, id, card, el) {
     el: el,
     card: card
   };
+  var start = this.start.card;
+  var end = this.end.card;
+
+  AttackAnimation.start(this.start.el, this.end.el);
   el.removeClass("targeting");
   this.cleanup();
   this.duringAttack = false;
-  Meteor.call('attackWithCard', gameId, id, this.start.card, this.end.card);
+  this.start.el.on('postAttack', function(e) {
+    Meteor.call('attackWithCard', gameId, id, start, end);
+  });
 }
 
 Targeting.failAttack = function() {
   this.duringAttack = false;
   this.cleanup();
+  
 }
 
 

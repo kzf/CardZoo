@@ -98,7 +98,7 @@ Template.play.events({
     if (Targeting.isDuringAttack()) {
       console.log($(e.target.parentElement.parentElement.parentElement.parentElement));
       if ($(e.target.parentElement.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
-        Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement));
+        Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement)); 
       } else {
         Targeting.failAttack();
       }
