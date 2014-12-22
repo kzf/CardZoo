@@ -15,7 +15,10 @@ Game.createGame = function (playerIds) {
 	players[playerIds[0]].spells = [_.extend({index: 0}, Spells[0]), _.extend({index: 1}, Spells[1])];
 	players[playerIds[1]].spells = [_.extend({index: 0}, Spells[0]), _.extend({index: 1}, Spells[1])];
 
-	Game.updatePlayable(players, playerIds[0]);
+	Game.updatePlayable(players, playerIds);
+	console.log(players[playerIds[0]].hand[0].playable);
+	console.log(players[playerIds[0]].hand[1].playable);
+	console.log(players[playerIds[0]].hand[2].playable);
 
 	return {
 		players: players,

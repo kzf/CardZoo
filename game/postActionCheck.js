@@ -7,13 +7,14 @@ Game.postActionCheck = function (game, id) {
 
 
 Game.updatePlayable = function (players, currentTurn) {
-	console.log(currentTurn);
 	var turn = currentTurn[0];
 	for (var id in players) {
 		if (players.hasOwnProperty(id)) {
 			for (var i = 0; i < players[id].hand.length; i++) {
 				var card = players[id].hand[i];
-				card.playable = id === turn && players[id].board.length < Config.maxMinionsOnBoard && card.cost <= players[id].bananas;
+				players[id].hand[i].playable = id === turn && players[id].board.length < Config.maxMinionsOnBoard && card.cost <= players[id].bananas;
+				console.log(id, turn, id === turn)
+				console.log(card.playable);
 			}
 			for (var i = 0; i < players[id].spells.length; i++) {
 				var spell = players[id].spells[i];
