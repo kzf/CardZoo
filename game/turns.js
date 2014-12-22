@@ -46,8 +46,8 @@ Turns.playCard = function (game, id, card, insertAt) {
 Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
   var card = game.players[id].board[myCard.boardIndex];
   var otherCard = game.players[otherId].board[enemyCard.boardIndex];
-  Turns.dealDamage(otherCard, card.attack);
-  Turns.dealDamage(card, otherCard.attack);
+  Turns.dealDamage(false, otherCard, card.attack);
+  Turns.dealDamage(true, card, otherCard.attack);
   card.canAttack = false;
 }
 
@@ -74,7 +74,11 @@ Turns.removeFromBoard = function(game, id, card) {
 	Game.updateBoardIndexes(game.players[id].board);
 }
 
-Turns.dealDamage = function(card, amount) {
+Turns.dealDamage = function(me, card, amount) {
 	card.health -= amount;
+	if (Meteor.isClient && amount > 0) {
+		var board = me ? "#my_board" : "#opponent_board";
+		Animation.Damage($($(board + " .card")[card.boardIndex]), amount);
+	}
 }
 

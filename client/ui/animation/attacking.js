@@ -26,7 +26,7 @@ Animation.Attack = function(startEl, endEl, damageCallback, endCallback) {
       endCallback();
     }
     startEl.css("z-index", "initial");
-  }, 400);
+  }, 800);
 }
 
 function dist(x,y) {

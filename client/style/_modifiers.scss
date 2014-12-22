@@ -1,0 +1,75 @@
+@import 'colours';
+
+.damage-bg {
+	position: absolute;
+	bottom: 1px;
+  right: -8px;
+  background-image: url('/images/damage_bg.png');
+  width: 69px;
+  height: 42px;
+  animation: grow-fade-out 0.4s forwards;
+  -webkit-animation: grow-fade-out 0.4s forwards;
+}
+
+.damage-amount {
+	display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	position: absolute;
+	width: 40px;
+	bottom: 32px;
+  right: 7px;
+	font-family: 'Luckiest Guy', cursive;
+  font-size: 160%;
+  color: $damage-color;
+  text-shadow: 1px 1px 0px rgb(121, 0, 0);
+  animation: amount-fade-up .4 forwards;
+  -webkit-animation: amount-fade-up .4s forwards;
+}
+
+@keyframes amount-fade-up {
+	40% {
+		transform: translateY(-5px);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-30px);
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes amount-fade-up {
+	40% {
+		transform: translateY(-5px);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-30px);
+		opacity: 0;
+	}
+}
+
+@keyframes grow-fade-out {
+	from {
+		transform: none;
+		opacity: 1;
+	}
+	to {
+		transform: scale(1.2px);
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes grow-fade-out {
+	from {
+		transform: none;
+		opacity: 1;
+	}
+	to {
+		transform: scale(1.2px);
+		opacity: 0;
+	}
+}
