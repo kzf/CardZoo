@@ -55,10 +55,10 @@ Targeting.completeAttack = function(gameId, id, card, el) {
 
   GameStream.emit('attack', {from: this.start.card.boardIndex, to: this.end.card.boardIndex});
 
+  self.duringAttack = false;
+  el.removeClass("targeting");
+  self.cleanup();
   Animation.Attack(this.start.el, this.end.el, function() {
-    self.duringAttack = false;
-    el.removeClass("targeting");
-    self.cleanup();
     Meteor.call('attackWithCard', gameId, id, start, end);
   }, function() {
     console.log("Doing post-attack check");

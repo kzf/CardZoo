@@ -49,9 +49,6 @@ Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
   Turns.dealDamage(otherCard, card.attack);
   Turns.dealDamage(card, otherCard.attack);
   card.canAttack = false;
-  Meteor.setTimeout(function() {
-  Game.postActionCheck(game, id);
-}, 200);
 }
 
 Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {

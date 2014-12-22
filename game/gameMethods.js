@@ -85,5 +85,10 @@ Meteor.methods({
 		Game.minionsCanAttack(game.players[id], false);
     
     Games.update(gameId, game);
+  },
+  postActionCheck: function(gameId, id) {
+  	var game = Games.findOne(gameId);
+  	Game.postActionCheck(game, id);
+  	Games.update(gameId, game);
   }
 });

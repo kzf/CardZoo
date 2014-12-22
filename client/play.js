@@ -66,7 +66,6 @@ Template.play.events({
   /* Finishing an attack */
   'mouseup': function (e, template) {
     if (Targeting.isDuringAttack()) {
-      console.log($(e.target.parentElement.parentElement.parentElement.parentElement));
       if ($(e.target.parentElement.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
         Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement)); 
       } else {

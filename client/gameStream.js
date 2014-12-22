@@ -5,6 +5,8 @@ GameStream.init = function(id) {
 	this.stream = new Meteor.Stream('game' + id);
 	console.log(id);
 
+	var self = this;
+
 	this.user = Meteor.userId();
 
 	this.stream.on('opponentBoardOver', function(i) {
@@ -37,14 +39,25 @@ GameStream.init = function(id) {
 		$el.removeClass('opponent-hover');
 	});
 
+	this.stream.on('attack', function(data) {
+		self.attackHandler(data);
+	});
+
 	this.stream.on('playCard', function(data) {
 		console.log("Got playCard data: " + data);
 		CardAnimator.playedFromHandIndex = data.from;
 		CardAnimator.playedOnBoardIndex = data.to;
 	});
-}
+};
 
 GameStream.emit = function(event, message) {
 	//console.log("EMITTING");
 	this.stream.emit(event, message);
-}
+};
+
+GameStream.attackHandler = function(data) {
+	console.log("GOt attack message");
+	var $from = $($("#opponent_board .card")[data.from]);
+	var $to = $($("#my_board .card")[data.to]);
+	Animation.Attack($from, $to);
+};
