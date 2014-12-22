@@ -1,3 +1,11 @@
+
+Template.play.rendered = function() {
+  if (!this._rendered) {
+    this._rendered = true;
+    GameStream.init(this.data._id);
+  }
+}
+
 Template.play.helpers({
 	game: function() {
 		var game = Games.findOne(this._id);
@@ -23,44 +31,6 @@ Template.play.helpers({
 	}
 });
 
-Template.bananasBar.helpers({
-  maxBarHeight: function() {
-    return Math.max(this.maxbananas*28, 0);
-  },
-  currentBarHeight: function() {
-    return Math.max(this.bananas*28, 0);
-  }
-});
-
-Template.handCard.helpers({
-  playableClass: function() {
-    return this.playable ? "playable" : "";
-  }
-});
-
-Template.spells.helpers({
-  playableClass: function() {
-    return this.playable ? "playable" : "";
-  }
-});
-
-Template.boardCard.helpers({
-  canAttackClass: function() {
-    return this.canAttack ? "playable" : "";
-  },
-  championClass: function() {
-    return this.champion ? "champion" : "";
-  }
-});
-
-
-var cardHelper = {
-	card: function() {
-		return Cards[this];
-	}
-};
-Template.handCard.helpers(cardHelper);
-Template.boardCard.helpers(cardHelper);
 
 Template.play.events({
 	'mousedown #my_hand .card': function (e, template) {
@@ -117,6 +87,7 @@ Template.play.events({
   },
   /* Hovering over a card while attacking */
   'mouseover .board-side .card': function (e, template) {
+    GameStream.emit('hover', $(e.target.parentElement).attr("class"));
     var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
     if ((Targeting.isDuringAttack() && target_el === "opponent_board")
          || Targeting.isDuringSpell()) {

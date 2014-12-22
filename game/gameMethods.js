@@ -1,7 +1,11 @@
 Meteor.methods({
 	createGame: function (otherPlayerId) {
 		var game = Game.createGame([Meteor.userId(), otherPlayerId]);
-		Games.insert(game);
+		Games.insert(game, function(err, id) {
+			if (Meteor.isServer) {
+				GameStreams.start(id);
+			}
+		});
 	},
 	playCard: function (gameId, id, card, insertAt) {
 		var game = Games.findOne(gameId);
