@@ -12,6 +12,13 @@
   margin-left: 70px;
 }
 
+.hidden-hand .card {
+  transition: all .3s ease;
+}
+.hidden-hand .card.opponent-hover {
+  transform: translateY(-10px);
+}
+
 .hidden-hand .card,
 .deck .card {
   width:106px; height:145px;

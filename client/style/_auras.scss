@@ -10,7 +10,14 @@
 .visible-hand .card.playable:hover {
 	box-shadow:
     0px 0px 9px 9px $playable-aura-highlight;
-  
+}
+
+/****
+  Opponent Hand
+  ****/
+.hidden-hand .card.opponent-hover {
+  box-shadow:
+    0px 0px 9px 9px $playable-aura-highlight;
 }
 
 /***
@@ -33,6 +40,12 @@
     0px 9px 9px 5px $action-aura,
     0px -9px 9px 5px $action-aura;
   cursor: crosshair;
+}
+
+#opponent_board .card.opponent-hover {
+  box-shadow:
+    0px 9px 9px 5px $playable-aura-highlight,
+    0px -9px 9px 5px $playable-aura-highlight;
 }
 
 /***
@@ -67,4 +80,9 @@
   box-shadow:
     8px 0px 9px 5px $action-aura,
     -9px 0px 9px 5px $action-aura;
+}
+#opponent_spells .spell.opponent-hover {
+  box-shadow:
+    8px 0px 9px 5px $playable-aura-highlight,
+    -9px 0px 9px 5px $playable-aura-highlight;
 }

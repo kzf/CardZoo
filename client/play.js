@@ -87,7 +87,6 @@ Template.play.events({
   },
   /* Hovering over a card while attacking */
   'mouseover .board-side .card': function (e, template) {
-    GameStream.emit('hover', $(e.target.parentElement).attr("class"));
     var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
     if ((Targeting.isDuringAttack() && target_el === "opponent_board")
          || Targeting.isDuringSpell()) {
@@ -108,5 +107,32 @@ Template.play.events({
 		if (game.currentTurn[0] === id) {
 			Meteor.call('endTurn', template.data._id, id);
 		}
+  },
+  /*****
+    Hovering actions for opponent
+  *****/
+  /* Hovering over a spell */
+  'mouseover #my_spells .spell': function (e, template) {
+    GameStream.emit('opponentSpellOver', $(e.target.parentElement).data("index"));
+  },
+  /* Hovering out of a spell */
+  'mouseout #my_spells .spell': function (e, template) {
+    GameStream.emit('opponentSpellOut', $(e.target.parentElement).data("index"));
+  },
+  /* Hovering over a board card */
+  'mouseover #my_board .card': function (e, template) {
+    GameStream.emit('opponentBoardOver', $(e.target.parentElement).data("index"));
+  },
+  /* Hovering out of a board card */
+  'mouseout #my_board .card': function (e, template) {
+    GameStream.emit('opponentBoardOut', $(e.target.parentElement).data("index"));
+  },
+  /* Hovering over a card */
+  'mouseover #my_hand .card': function (e, template) {
+    GameStream.emit('opponentCardOver', $(e.target).data("index"));
+  },
+  /* Hovering out of a card */
+  'mouseout #my_hand .card': function (e, template) {
+    GameStream.emit('opponentCardOut', $(e.target).data("index"));
   }
 });

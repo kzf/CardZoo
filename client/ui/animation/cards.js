@@ -15,8 +15,7 @@ Template.cardAnimate.rendered = function(){
       $node.css("transform", "translateY(-250px) translateX(80px) rotate(15deg) scale(1.4)");
 
       Meteor.setTimeout(function() {
-        $node.css("transition", "all .3s");
-        $node.css("transform", "none");
+        $node.attr("style", "");
       }, 300);
 
     },

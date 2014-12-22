@@ -72,7 +72,7 @@
 
 <template name="spells">
 	{{#each spells}}
-		<div class="spell {{playableClass}}">
+		<div class="spell {{playableClass}}" data-index="{{index}}">
 	    <img class="spell-art" src="{{art}}">
 	    <div class="spell-border"></div>
 	    <span class="cost">{{cost}}</span>
@@ -107,7 +107,7 @@
 <template name="boardCard">
 	{{#boardAnimate}}
 		<li class="card-container">
-			<div class="card {{championClass}} {{canAttackClass}}">
+			<div class="card {{championClass}} {{canAttackClass}}" data-index="{{boardIndex}}">
 		    <img class="card-art" src="{{ art }}">
 		    <div class="card-border"></div>
 				<span class="health">{{ health }}</span>
@@ -120,7 +120,7 @@
 <template name="handCard">
 	{{#cardAnimate}}
 		<li class="card-container">
-      <div class="card {{playableClass}}">
+      <div class="card {{playableClass}}" data-index="{{handIndex}}">
         <img class="card-art" src="{{ art }}">
         <span class="health">{{ health }}</span>
         <span class="attack">{{ attack }}</span>

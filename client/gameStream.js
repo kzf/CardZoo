@@ -7,8 +7,34 @@ GameStream.init = function(id) {
 
 	this.user = Meteor.userId();
 
-	this.stream.on('hover', function(name) {
-		//console.log("Hovered over " + name);
+	this.stream.on('opponentBoardOver', function(i) {
+		var $el = $($("#opponent_board .card")[i]);
+		$el.addClass('opponent-hover');
+	});
+
+	this.stream.on('opponentBoardOut', function(i) {
+		var $el = $($("#opponent_board .card")[i]);
+		$el.removeClass('opponent-hover');
+	});
+
+	this.stream.on('opponentSpellOver', function(i) {
+		var $el = $($("#opponent_spells .spell")[i]);
+		$el.addClass('opponent-hover');
+	});
+
+	this.stream.on('opponentSpellOut', function(i) {
+		var $el = $($("#opponent_spells .spell")[i]);
+		$el.removeClass('opponent-hover');
+	});
+
+	this.stream.on('opponentCardOver', function(i) {
+		var $el = $($("#opponent_hand .card")[i]);
+		$el.addClass('opponent-hover');
+	});
+
+	this.stream.on('opponentCardOut', function(i) {
+		var $el = $($("#opponent_hand .card")[i]);
+		$el.removeClass('opponent-hover');
 	});
 
 	this.stream.on('playCard', function(data) {
