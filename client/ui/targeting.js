@@ -55,7 +55,7 @@ Targeting.completeAttack = function(gameId, id, card, el) {
   el.removeClass("targeting");
   this.cleanup();
   this.duringAttack = false;
-  this.start.el.on('postAttack', function(e) {
+  this.start.el.on('doAttack', function(e) {
     Meteor.call('attackWithCard', gameId, id, start, end);
   });
 }
@@ -63,7 +63,7 @@ Targeting.completeAttack = function(gameId, id, card, el) {
 Targeting.failAttack = function() {
   this.duringAttack = false;
   this.cleanup();
-  
+
 }
 
 

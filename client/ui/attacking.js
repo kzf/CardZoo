@@ -9,7 +9,7 @@ AttackAnimation.start = function(startEl, endEl) {
   var sy = so.top + startEl.height()/2;
   var eo = endEl.offset();
   var ex = eo.left + endEl.width()/2;
-  var ey = eo.top + endEl.height()/2 + 50;
+  var ey = eo.top + endEl.height()/2 + 10;
   startEl.css("transform", "translate("+(ex-sx)+"px,"+(ey-sy)+"px)");
   startEl.on(animEvents, function(e) {
     startEl.css("transform", "none");

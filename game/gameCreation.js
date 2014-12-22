@@ -10,12 +10,12 @@ Game.createGame = function (playerIds) {
 	players[playerIds[1]].maxbananas = 0;
 	players[playerIds[1]].bananas = 0;
 
-	Turns.spawnChampions(players);
+	Game.spawnChampions(players);
 
 	players[playerIds[0]].spells = [_.extend({}, Spells[0]), _.extend({}, Spells[1])];
 	players[playerIds[1]].spells = [_.extend({}, Spells[0]), _.extend({}, Spells[1])];
 
-	Turns.updatePlayable(players, playerIds);
+	Game.postActionCheck(players, playerIds[0]);
 
 	return {
 		players: players,

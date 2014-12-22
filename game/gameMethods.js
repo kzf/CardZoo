@@ -12,7 +12,6 @@ Meteor.methods({
 		if (!card.playable) return;
 		
 		Turns.playCard(game, id, card, insertAt);
-		Turns.updatePlayable(game.players, game.currentTurn);
 
 		Games.update(gameId, game);
 	},
@@ -45,7 +44,6 @@ Meteor.methods({
     if (!spell.playable) return;
     
 		Turns.castTargetedSpell(game, id, otherId, spell, enemyCard, own);
-		Turns.updatePlayable(game.players, game.currentTurn);
 
 		Games.update(gameId, game);
 	},
@@ -61,7 +59,6 @@ Meteor.methods({
     if (!spell.playable) return;
     
 		Turns.castSpell(game, id, otherId, spell);
-		Turns.updatePlayable(game.players, game.currentTurn);
 
 		Games.update(gameId, game);
 	},
@@ -79,9 +76,9 @@ Meteor.methods({
 		}
 		game.players[otherId].bananas = game.players[otherId].maxbananas;
 
-		Turns.updatePlayable(game.players, game.currentTurn);
-		Turns.minionsCanAttack(game.players[otherId]);
-		Turns.minionsCanAttack(game.players[id], false);
+		Game.postActionCheck(game, otherId);
+		Game.minionsCanAttack(game.players[otherId]);
+		Game.minionsCanAttack(game.players[id], false);
     
     Games.update(gameId, game);
   }

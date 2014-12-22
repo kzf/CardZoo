@@ -1,21 +1,17 @@
 Turns = {};
 
 Turns.inHand = function (set, card) {
-	for (var i = 0; i < set.length; i++) {
-		if (set[i].id === card.id) {
-			return true;
-		}
-	}
-	return false;
+	var c = set[card.handIndex];
+	return (c.health === card.health &&
+					c.attack === card.attack &&
+					c.id === card.id);
 }
 
 Turns.onBoard = function (set, card) {
-	for (var i = 0; i < set.length; i++) {
-		if (set[i].id === card.id) {
-			return true;
-		}
-	}
-	return false;
+	var c = set[card.boardIndex];
+	return (c.health === card.health &&
+					c.attack === card.attack &&
+					c.id === card.id);
 }
 
 Turns.haveSpell = function (set, spell) {
@@ -27,6 +23,9 @@ Turns.haveSpell = function (set, spell) {
 	return false;
 }
 
+/***
+	Play Card
+	***/
 Turns.playCard = function (game, id, card, insertAt) {
 	var player = game.players[id];
 	card.canAttack = false;
@@ -35,30 +34,24 @@ Turns.playCard = function (game, id, card, insertAt) {
 	} else {
 		player.board.splice(insertAt, 0, card);
 	}
-	Game.updateBoardIndexes(player.board);
 	player.bananas -= card.cost;
 	/* Remove it from the hand */
 	player.hand.splice(card.handIndex, 1);
 	Game.updateHandIndexes(player.hand);
+	Game.postActionCheck(game, id);
 }
 
-Turns.removeFromBoard = function(game, id, card) {
-	game.players[id].board.splice(card.boardIndex, 1);
-	Game.updateBoardIndexes(game.players[id].board);
-}
+
 
 Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
   var card = game.players[id].board[myCard.boardIndex];
   var otherCard = game.players[otherId].board[enemyCard.boardIndex];
-  otherCard.health -= card.attack;
-  if (otherCard.health <= 0) {
-  	Turns.removeFromBoard(game, otherId, otherCard);
-  }
-  card.health -= otherCard.attack;
-  if (card.health <= 0) {
-		Turns.removeFromBoard(game, id, card);
-  }
+  Turns.dealDamage(otherCard, card.attack);
+  Turns.dealDamage(card, otherCard.attack);
   card.canAttack = false;
+  Meteor.setTimeout(function() {
+  Game.postActionCheck(game, id);
+}, 200);
 }
 
 Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {
@@ -66,60 +59,25 @@ Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {
   var cast = Spells[spell.id].cast;
   cast(card);
   game.players[id].bananas -= spell.cost;
-  if (card.health <= 0) {
-  	Turns.removeFromBoard(game, own ? id : otherId, card);
-  }
+  Game.postActionCheck(game, id);
 }
 
 Turns.castSpell = function (game, id, otherId, spell) {
   var cast = Spells[spell.id].cast;
   cast(game, id, otherId);
   game.players[id].bananas -= spell.cost;
+  Game.postActionCheck(game, id);
 }
 
-Turns.findCard = function (set, card) {
-  for (var i = 0; i < set.length; i++) {
-		if (set[i].id === card.id) {
-			return set[i];
-		}
-	}
-	return false;
+/****
+	Utility Actions
+	****/
+Turns.removeFromBoard = function(game, id, card) {
+	game.players[id].board.splice(card.boardIndex, 1);
+	Game.updateBoardIndexes(game.players[id].board);
 }
 
-Turns.updatePlayable = function (players, currentTurn) {
-	var turn = currentTurn[0];
-	for (var id in players) {
-		if (players.hasOwnProperty(id)) {
-			for (var i = 0; i < players[id].hand.length; i++) {
-				var card = players[id].hand[i];
-				card.playable = id === turn && players[id].board.length < Config.maxMinionsOnBoard && card.cost <= players[id].bananas;
-			}
-			for (var i = 0; i < players[id].spells.length; i++) {
-				var spell = players[id].spells[i];
-				spell.playable = id === turn && spell.cost <= players[id].bananas;
-			}
-		}
-	}
+Turns.dealDamage = function(card, amount) {
+	card.health -= amount;
 }
 
-Turns.minionsCanAttack = function (player, can) {
-	player.board.forEach(function (c) {
-		if (typeof can !== 'undefined') {
-			c.canAttack = can;
-		} else {
-			c.canAttack = c.attack != 0; // 0 attack creatures can not attack
-		}
-	});
-}
-
-Turns.spawnChampions = function (players) {
-	for (var id in players) {
-		if (players.hasOwnProperty(id)) {
-			var champ = Champions[0];
-			champ.champion = true;
-			players[id].board.push(champ);
-			Game.updateBoardIndexes(players[id].board);
-		}
-	}
-
-}
