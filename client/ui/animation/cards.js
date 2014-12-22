@@ -81,6 +81,7 @@ Template.boardAnimate.rendered = function(){
       var $card = $node.find(".card");
 
       var index = CardAnimator.playedOnBoardIndex;
+      console.log("Board animate index: ", index);
 
       var cards = $parent.find(".card");
 

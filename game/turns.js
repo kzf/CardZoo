@@ -28,12 +28,7 @@ Turns.haveSpell = function (set, spell) {
 	***/
 Turns.playCard = function (game, id, card, insertAt) {
 	var player = game.players[id];
-	card.canAttack = false;
-	if (typeof insertAt === 'undefined') {
-		player.board.push(card);
-	} else {
-		player.board.splice(insertAt, 0, card);
-	}
+	Turns.addToBoard(game, id, card, insertAt);
 	player.bananas -= card.cost;
 	/* Remove it from the hand */
 	player.hand.splice(card.handIndex, 1);
@@ -69,6 +64,26 @@ Turns.castSpell = function (game, id, otherId, spell) {
 /****
 	Utility Actions
 	****/
+Turns.addToBoard = function(game, id, card, insertAt) {
+	var player = game.players[id];
+	if (typeof card === 'number') {
+		card = Cards[card];
+	}
+	card.canAttack = false;
+	var index;
+	if (typeof insertAt === 'undefined') {
+		index = player.board.length;
+		player.board.push(card);
+	} else {
+		index = insertAt;
+		player.board.splice(insertAt, 0, card);
+	}
+	if (Meteor.isClient) {
+		CardAnimator.playedOnBoardIndex = index;
+	}
+	Game.updateBoardIndexes(player.board);
+}
+
 Turns.removeFromBoard = function(game, id, card) {
 	game.players[id].board.splice(card.boardIndex, 1);
 	Game.updateBoardIndexes(game.players[id].board);
