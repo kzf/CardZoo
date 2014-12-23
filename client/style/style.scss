@@ -12,6 +12,7 @@
 @import 'auras';
 @import 'colours';
 @import 'modifiers';
+@import 'chat';
 
 .game {
   -webkit-user-select: none;
@@ -73,4 +74,13 @@ ul {
   -o-transition: none !important;
   -ms-transition: none !important;
   transition: none !important;
+}
+
+.opponent-name {
+  text-align: center;
+  color: white;
+  & h3 {
+    padding: 14px;
+    margin: 0;
+  }
 }

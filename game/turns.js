@@ -79,6 +79,7 @@ Turns.addToBoard = function(game, id, card, insertAt) {
 		player.board.splice(insertAt, 0, card);
 	}
 	if (Meteor.isClient) {
+		GameStream.emit('playCard', {from: card.handIndex, to: index});
 		CardAnimator.playedOnBoardIndex = index;
 	}
 	Game.updateBoardIndexes(player.board);

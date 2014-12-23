@@ -11,32 +11,21 @@ Targeting.startAttack = function (game, id, card, el) {
     card: card
   };
   
-  el.addClass("start-attack");
-  
-  var offset = el.offset();
-  var w = el.width();
-  var sx = offset.left + w/2;
-  var sy = offset.top + el.height()/2 - 20;
-  var arrowBody = $("<div>").addClass("arrow-body").hide();
+  Arrow.start(el);
+  GameStream.emit('Arrow.start', card.boardIndex);
 
   var body = $("body");
-  body.append(arrowBody);
   
   var mousemove = function(e) {
     var mx = e.clientX;
     var my = e.clientY + body.scrollTop();
-    var length = Math.sqrt((mx-sx)*(mx-sx) + (my-sy)*(my-sy)) - 30;
-    var ang = Math.atan2(mx - sx, my - sy) - Math.PI/2;
-    var transform =  'translate(' + sx + 'px,' + sy + 'px) ' + 
-        'rotate(' + -ang + 'rad)';
-    arrowBody.show().css("transform", transform);
-    arrowBody.css("width", length);
+    Arrow.pointAt(mx, my);
   };
   
   this.cleanup = function() {
-    arrowBody.remove();
-    el.removeClass("start-attack");
+    Arrow.remove();
     removeEventListener("mousemove", mousemove);
+    GameStream.emit('Arrow.remove');
   }
   
   addEventListener("mousemove", mousemove);
@@ -52,8 +41,6 @@ Targeting.completeAttack = function(gameId, id, card, el) {
   var end = this.end.card;
 
   var self = this;
-
-  GameStream.emit('attack', {from: this.start.card.boardIndex, to: this.end.card.boardIndex});
 
   self.duringAttack = false;
   el.removeClass("targeting");

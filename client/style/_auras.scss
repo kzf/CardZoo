@@ -35,7 +35,8 @@
 }
 .board-side .card.targeting,
 #my_board .card.targeting,
-#my_board .card.start-attack { // Needed for specificity rules
+#my_board .card.start-attack,
+#opponent_board .card.start-attack { // Needed for specificity rules
   box-shadow:
     0px 9px 9px 5px $action-aura,
     0px -9px 9px 5px $action-aura;

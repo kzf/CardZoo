@@ -89,6 +89,7 @@ Template.play.events({
     var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
     if ((Targeting.isDuringAttack() && target_el === "opponent_board")
          || Targeting.isDuringSpell()) {
+      GameStream.emit('Arrow.pointAt', $(e.target.parentElement).data("index"));
       $(e.target.parentElement).addClass("targeting");
     }
   },
@@ -97,6 +98,7 @@ Template.play.events({
     var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
     if ((Targeting.isDuringAttack() && target_el === "opponent_board")
          || Targeting.isDuringSpell()) {
+      GameStream.emit('Arrow.dontPoint');
       $(e.target.parentElement).removeClass("targeting");
     }
   },

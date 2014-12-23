@@ -43,6 +43,37 @@ GameStream.init = function(id) {
 		self.attackHandler(data);
 	});
 
+	/****
+		Arrow
+		****/
+	this.stream.on('Arrow.start', function(i) {
+		var $el = $($("#opponent_board .card")[i]);
+		Arrow.start($el);
+	});
+
+	this.stream.on('Arrow.pointAt', function(i) {
+		var $el = $($("#my_board .card")[i]);
+		var offset = $el.offset();
+		var x = offset.left + $el.width()/2;
+		var y = offset.top + $el.height()/2;
+		Arrow.pointAt(x, y);
+	});
+
+	this.stream.on('Arrow.dontPoint', function() {
+		Arrow.dontPoint();
+	});
+
+	this.stream.on('Arrow.remove', function() {
+		Arrow.remove();
+	});
+
+	/****
+		Chat
+		****/
+	this.stream.on('chat', function(message) {
+		Chat.saveMessage(false, message);
+	});
+
 	this.stream.on('playCard', function(data) {
 		console.log("Got playCard data: " + data);
 		CardAnimator.playedFromHandIndex = data.from;

@@ -15,6 +15,9 @@
 	  
 	  <section class="board">
 	  	<section id="opponent_hand" class="hidden-hand">
+	  		<section class="opponent-name">
+					<h3>{{game.otherPlayer.username}}</h3>
+		  	</section>
 		    <ul class="cards">
 		    	{{#each game.otherPlayer.player.hand}}
 		      	<li class="card">
@@ -64,6 +67,9 @@
 
 	  
 		</div>
+	
+		{{> chat game.otherPlayer}}
+
 		{{else}}
 			Game is not in progress
 		{{/if}}
@@ -139,4 +145,29 @@
   	<div class="bananas-bar-glass"></div>
   </div>
   <div class="bananas-bar-bottom"><div>{{ bananas }}</div></div>
+</template>
+
+<template name="chat">
+	<section class="chat">
+	  <input type="checkbox" id="toggle-info">
+	  <div class="content">
+	    <div class="toggler">
+	      <label class="info-label" for="toggle-info">Chat</label>
+	    </div>
+	    <div class="messages">
+	      {{#each messages}}
+					<div class="message">
+						<strong>{{name}}: </strong>
+						{{message}}
+					</div>
+	      {{/each}}
+	    </div>
+	    <div class="chat-input">
+	    	<form id="chat_form">
+	      <input class="chat-input-box" type="text" id="chat-message"><!--
+	      --><input class="chat-submit" type="submit" value="Send">
+	    	</form>
+	    </div>
+	  </div>
+	</section>
 </template>

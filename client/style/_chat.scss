@@ -1,0 +1,80 @@
+.chat {
+  & * {
+    box-sizing: border-box;
+  }
+  & input[type="checkbox"] {
+    display: none;
+  }
+
+  & .content {
+    background-color: #e0dec9;
+    color: #333;
+    padding-top: 20px;
+    width: 300px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 90%;
+    border-radius: 6px;
+    border: 3px solid #a0835c;
+    transform: translateY(0);
+    transition: transform 0.3s ease-out;
+  }
+  
+  & .messages {
+    padding: 5px;
+    height: 100px;
+    overflow: auto;
+  }
+
+  & .info-label {
+    background-color: #b39c70;
+    border-bottom-width: 3px;
+    border-bottom-color: #a0835c;
+    border-bottom-style: solid;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    font-size: 80%;
+    color: white;
+    text-align: center;
+  }
+
+  & .info-label:after {
+    content: 'x';
+    font-size: 120%;
+    position: absolute;
+    right: 5px;
+    top: -3px;
+  }
+
+  & input:checked ~ .content {
+    transform: translateY(100%);
+  }
+
+  & input:checked ~ .content .info-label:after {
+    content: '^';
+  }
+
+  & .stuff {
+    height: 4000px;
+  }
+  
+  & .chat-submit {
+    width: 20%;
+  }
+  & .chat-input-box {
+    width: 80%;
+  }
+}
+
+
+
+
+
