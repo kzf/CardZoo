@@ -42,9 +42,7 @@ Template.chat.rendered = function(){
     insertElement: function (node, next) {
     	var $node = $(node);
       $node.insertBefore(next);
-      console.log($messages.height());
       $messages.scrollTop($messages[0].scrollHeight);
-      console.log($messages[0].scrollHeight);
     }
   };
 

@@ -5,7 +5,7 @@ Game.createGame = function (playerIds) {
 	var i;
 	for (i = 0; i < 3; i++) { this.dealPlayer(players[playerIds[0]]); }
 	for (i = 0; i < 4; i++) { this.dealPlayer(players[playerIds[1]]); }
-		console.log(playerIds);
+	
 	players[playerIds[0]].turn = true;
 	players[playerIds[1]].maxbananas = 0;
 	players[playerIds[1]].bananas = 0;
@@ -16,14 +16,11 @@ Game.createGame = function (playerIds) {
 	players[playerIds[1]].spells = [_.extend({index: 0}, Spells[0]), _.extend({index: 1}, Spells[1])];
 
 	Game.updatePlayable(players, playerIds);
-	console.log(players[playerIds[0]].hand[0].playable);
-	console.log(players[playerIds[0]].hand[1].playable);
-	console.log(players[playerIds[0]].hand[2].playable);
 
 	return {
 		players: players,
 		currentTurn: playerIds,
-		inProgress: true,
+		completed: false,
 		started: new Date()
 	};
 };

@@ -18,3 +18,13 @@ Game.spawnChampions = function (players) {
 		}
 	}
 }
+
+Game.declareWinner = function (game, id) {
+	Game.endGame(game);
+	game.winner = id;
+}
+
+Game.endGame = function (game) {
+	game.completed = true;
+	Game.updatePlayable(game.players, false);
+}

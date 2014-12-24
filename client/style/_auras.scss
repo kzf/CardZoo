@@ -52,12 +52,12 @@
 /***
 	End Turn Button
 	***/
-.end-turn-button {
+.bg-button {
 	background-color: $playable-aura;
 	box-shadow:
     0px 0px 9px 7px $playable-aura;
 }
-.end-turn-button:hover {
+.bg-button:hover {
   background-color: $playable-aura-highlight;
   box-shadow:
     0px 0px 9px 7px $playable-aura-highlight;

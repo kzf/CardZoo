@@ -90,5 +90,11 @@ Meteor.methods({
   	var game = Games.findOne(gameId);
   	Game.postActionCheck(game, id);
   	Games.update(gameId, game);
+  },
+  surrender: function(gameId, id) {
+  	console.log('surrendering');
+  	var game = Games.findOne(gameId);
+  	Game.declareWinner(game, id);
+  	Games.update(gameId, game);
   }
 });

@@ -4,7 +4,7 @@ function otherId(game) {
 
 Template.gameList.helpers({
 	games: function() {
-		return Games.find({ inProgress: true }).map(function (game) {
+		return Games.find({ completed: false }).map(function (game) {
 			game.otherPlayer = Meteor.users.findOne(otherId(game)).username;
 			return game;
 		});

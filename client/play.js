@@ -135,5 +135,12 @@ Template.play.events({
   /* Hovering out of a card */
   'mouseout #my_hand .card': function (e, template) {
     GameStream.emit('opponentCardOut', $(e.target).data("index"));
-  }
+  },
+  /*****
+    Menu Actions
+    *****/
+  'click .surrender-button': function(e, template) {
+    var id = Meteor.userId();
+    Meteor.call('surrender', template.data._id, id);
+  },
 });

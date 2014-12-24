@@ -10,8 +10,12 @@
   </header>
 
 	{{#if currentUser}}
-		{{#if game.inProgress}}
+		
 		<div class="game">
+
+		<section class="menu">
+			<button class="surrender-button bg-button">Surrender</button>
+		</section>
 	  
 	  <section class="board">
 	  	<section id="opponent_hand" class="hidden-hand">
@@ -26,7 +30,7 @@
 		    </ul>
 	      {{#if game.yourTurn}}
 	        <div class="end-turn">
-	          <button class="end-turn-button">END TURN</button>
+	          <button class="end-turn-button bg-button">END TURN</button>
 	        </div>
 	      {{/if}}
 		  </section>
@@ -57,6 +61,12 @@
 		  	{{> bananasBar game.player}}
 		  </section>
 		</section>
+
+		{{#if game.completed}}
+		<section class="endGameScreen">
+			Ended game
+		</section>
+		{{/if}}
 		  
 	  
 	  
@@ -70,9 +80,6 @@
 	
 		{{> chat game.otherPlayer}}
 
-		{{else}}
-			Game is not in progress
-		{{/if}}
 	{{/if}}
 </template>
 
