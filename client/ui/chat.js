@@ -1,6 +1,7 @@
 Chat = {};
 
 Chat.saveMessage = function(me, message) {
+	console.log("save message");
 	var messages = Session.get("chatMessages");
 	if (!messages) messages = [];
 	messages.push({me: me, message: message});

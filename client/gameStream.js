@@ -71,6 +71,7 @@ GameStream.init = function(id) {
 		Chat
 		****/
 	this.stream.on('chat', function(message) {
+		console.log(message);
 		Chat.saveMessage(false, message);
 	});
 
@@ -82,12 +83,12 @@ GameStream.init = function(id) {
 };
 
 GameStream.emit = function(event, message) {
-	//console.log("EMITTING");
+	console.log("EMITTING");
 	this.stream.emit(event, message);
 };
 
 GameStream.attackHandler = function(data) {
-	console.log("GOt attack message");
+	console.log("Got attack message");
 	var $from = $($("#opponent_board .card")[data.from]);
 	var $to = $($("#my_board .card")[data.to]);
 	Animation.Attack($from, $to);

@@ -20,14 +20,12 @@ Template.cardAnimate.rendered = function(){
 
     },
     removeElement: function (node, b) {
-      console.log(b);
       var $node = $(node);
       var $parent = $node.parent();
 
       // Find the one we actually removed
       var index = CardAnimator.justRemovedFromHand;
       var cards = $parent.find(".card");
-      console.log(cards.length);
 
       var next;
 

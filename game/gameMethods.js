@@ -92,9 +92,15 @@ Meteor.methods({
   	Games.update(gameId, game);
   },
   surrender: function(gameId, id) {
-  	console.log('surrendering');
   	var game = Games.findOne(gameId);
-  	Game.declareWinner(game, id);
+  	var otherId;
+  	if (game.currentTurn[0] === id) {
+  		otherId = game.currentTurn[1];
+  	} else {
+  		otherId = game.currentTurn[0];
+  	}
+  	game.players = undefined;
+  	Game.declareWinner(game, otherId);
   	Games.update(gameId, game);
   }
 });

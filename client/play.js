@@ -10,22 +10,25 @@ Template.play.helpers({
 	game: function() {
 		var game = Games.findOne(this._id);
 		if (!game) {
-      console.log("Sending back a dodgy temporary template");
       return { 
         otherPlayer: 
-        { username: 'not loaded yet' }
+        { username: 'loading...' }
       };
 		}
 
-		game.player = game.players[Meteor.userId()];
-		game.yourTurn = game.currentTurn[0] === Meteor.userId();
-		var otherId = game.currentTurn[game.yourTurn ? 1 : 0];
-		var otherUser = Meteor.users.findOne(otherId);
-		
-		game.otherPlayer = {
-			player: game.players[otherId],
-			username: otherUser.username
-		};
+    game.yourTurn = game.currentTurn[0] === Meteor.userId();
+    var otherId = game.currentTurn[game.yourTurn ? 1 : 0];
+    var otherUser = Meteor.users.findOne(otherId);
+    game.otherPlayer = {
+      username: otherUser.username
+    };
+
+    if (game.completed) {
+      game.won = game.winner === Meteor.userId();
+    } else {
+		  game.player = game.players[Meteor.userId()];
+      game.otherPlayer.player = game.players[otherId];
+    }
 		
 		return game;
 	}
@@ -141,6 +144,8 @@ Template.play.events({
     *****/
   'click .surrender-button': function(e, template) {
     var id = Meteor.userId();
+    Chat.saveMessage(true, 'I surrender.');
+    GameStream.emit('chat', 'I surrender.');
     Meteor.call('surrender', template.data._id, id);
   },
 });
