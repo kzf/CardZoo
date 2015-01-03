@@ -52,11 +52,11 @@
 		    	<div class="card"></div>
 		      <span>{{game.otherPlayer.player.deck.length}}</span>
 		    </div>
-		    <section id="opponent_spells" class="opponent-spells">
-		    	{{> spells game.otherPlayer.player}}
-		    </section>
 		    <section id="opponent_board" class="board-side">
 		      {{> table game.otherPlayer.player}}
+		    </section>
+		    <section id="opponent_spells" class="opponent-spells">
+		    	{{> spells game.otherPlayer.player}}
 		    </section>
 		    <section id="my_board" class="board-side">
 					{{> table game.player}}
@@ -96,7 +96,10 @@
 	    <span class="cost">{{cost}}</span>
 	    <div class="description-tooltip">
 				<span class="name">{{ name }}</span>
-      	<span class="description">Sample <span data-tooltip='A card. This is a test to make sure long descriptions work.'>card</span> description. {{ description }}</span>
+      	<span class="description">{{{ description }}}</span>
+      	<span class="artist-credit">
+        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+        </span>
 			</div>
 	  </div>
 	{{/each}}
@@ -137,6 +140,9 @@
 				<div class="description-tooltip">
 					<span class="name">{{ name }}</span>
         	<span class="description">Sample <span data-tooltip='A card. This is a test to make sure long descriptions work.'>card</span> description. {{ description }}</span>
+        	<span class="artist-credit">
+	        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+	        </span>
 				</div>
 		  </div>
 		</li>
@@ -153,6 +159,9 @@
         <span class="cost">{{ cost }}</span>
         <span class="name">{{ name }}</span>
         <span class="description">Sample <span data-tooltip='A card. This is a test to make sure long descriptions work.'>card</span> description. {{ description }}</span>
+        <span class="artist-credit">
+        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+        </span>
       </div>
 	  </li>
   {{/cardAnimate}}

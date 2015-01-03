@@ -105,3 +105,15 @@
   font-size: 80%;
   padding: 4px;
 }
+
+.visible-hand .artist-credit {
+  display: block;
+  text-align: right;
+  background: #e0dec9;
+  font-size: 70%;
+  color: #888;
+  padding: 2px;
+  & a {
+    color: #666;
+  }
+}
