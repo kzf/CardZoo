@@ -40,6 +40,7 @@
   /*border-color: rgb(93,93,160);
   background: rgb(93,93,160);*/
   cursor: pointer;
+  transform: translateY(-10px);
 }
 /*.visible-hand .card:hover .cost {
   border-color: rgb(93,93,160);
@@ -101,4 +102,6 @@
   display: block;
   height: 50px;
   background: #e0dec9;
+  font-size: 80%;
+  padding: 4px;
 }

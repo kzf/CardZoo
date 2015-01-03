@@ -1,0 +1,102 @@
+/* From @cbraco on codepen 
+http://codepen.io/cbracco/pen/qzukg
+*/
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip], .description span {
+	color: #0e2ea0;
+	text-decoration: underline;
+	position: relative;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  display: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+	position: absolute;
+	bottom: 150%;
+	left: 50%;
+	margin-bottom: 5px;
+	margin-left: -80px;
+	padding: 7px;
+	width: 160px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius:    3px;
+	border-radius:         3px;
+	background-color: #000;
+	background-color: hsla(0, 0%, 20%, 0.9);
+	color: #fff;
+	content: attr(data-tooltip);
+	text-align: center;
+	line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+	position: absolute;
+	bottom: 150%;
+	left: 50%;
+	margin-left: -5px;
+	width: 0;
+	border-top: 5px solid #000;
+	border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	content: " ";
+	font-size: 0;
+	line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+	display: block;
+}
+
+/*****
+	Description tooltip
+	*****/
+
+.description-tooltip {
+	position: absolute;
+	border: 2px solid #926f4d;
+	left: 98%;
+	top: -9999px;
+	background: white;
+	width: 120px;
+	z-index: 2;
+	opacity: 0;
+	padding: 0;
+}
+
+.card:hover .description-tooltip,
+.spell:hover .description-tooltip {
+	opacity: 1;
+	left: 98%;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: opacity .2s ease 0.5s, top 0s ease 0.5s;
+}
+
+.description-tooltip .name {
+	display: block;
+	height: 20px;
+  display: block;
+  width: 100%;
+  background: #926f4d;
+  padding: 2px 0px;
+  color: #eee;
+  font-size: 90%;
+  font-family: 'Lobster',cursive;
+}
+
+.description-tooltip .description {
+	display: block;
+  background: #e0dec9;
+  font-size: 80%;
+  padding: 4px;
+}

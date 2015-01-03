@@ -94,6 +94,10 @@
 	    <img class="spell-art" src="{{art}}">
 	    <div class="spell-border"></div>
 	    <span class="cost">{{cost}}</span>
+	    <div class="description-tooltip">
+				<span class="name">{{ name }}</span>
+      	<span class="description">Sample <span data-tooltip='A card. This is a test to make sure long descriptions work.'>card</span> description. {{ description }}</span>
+			</div>
 	  </div>
 	{{/each}}
 </template>
@@ -130,6 +134,10 @@
 		    <div class="card-border"></div>
 				<span class="health">{{ health }}</span>
 				<span class="attack">{{ attack }}</span>
+				<div class="description-tooltip">
+					<span class="name">{{ name }}</span>
+        	<span class="description">Sample <span data-tooltip='A card. This is a test to make sure long descriptions work.'>card</span> description. {{ description }}</span>
+				</div>
 		  </div>
 		</li>
 	{{/boardAnimate}}
@@ -142,9 +150,9 @@
         <img class="card-art" src="{{ art }}">
         <span class="health">{{ health }}</span>
         <span class="attack">{{ attack }}</span>
-        <span class="name">{{ name }}</span>
         <span class="cost">{{ cost }}</span>
-        <span class="description">{{ description }}</span>
+        <span class="name">{{ name }}</span>
+        <span class="description">Sample <span data-tooltip='A card. This is a test to make sure long descriptions work.'>card</span> description. {{ description }}</span>
       </div>
 	  </li>
   {{/cardAnimate}}
