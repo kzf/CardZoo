@@ -12,7 +12,12 @@ Template.chat.helpers({
 	messages: function() {
 		var namedMessages = [];
 		var other = this.username;
-		Session.get("chatMessages").forEach(function(m) {
+		var messages = Session.get("chatMessages");
+		if (!messages) {
+			Session.set("chatMessages", []);
+			messages = [];
+		}
+		messages.forEach(function(m) {
 			namedMessages.push({
 				name: m.me ? 'Me' : other,
 				message: m.message

@@ -1,8 +1,10 @@
 Game.postActionCheck = function (game, id) {
 	var players = game.players;
 	Game.checkForCasualties(game, players);
-	Game.updateIndexes(players);
-	Game.updatePlayable(players, game.currentTurn);
+	if (!Game.checkIfGameEnded(game, players)) {
+		Game.updateIndexes(players);
+		Game.updatePlayable(players, game.currentTurn);
+	}
 }
 
 
@@ -28,7 +30,7 @@ Game.checkForCasualties= function (game, players) {
 		if (players.hasOwnProperty(id)) {
 			board = players[id].board;
 			for (var i = 0; i < board.length; i++) {
-				if (board[i].health <= 0) {
+				if (!board[i].champion && board[i].health <= 0) {
 					Turns.removeFromBoard(game, id, board[i]);
 				}
 			}
@@ -43,4 +45,27 @@ Game.updateIndexes = function(players) {
 			Game.updateBoardIndexes(players[id].board);
 		}
 	}
+}
+
+Game.checkIfGameEnded = function(game, players) {
+	var board;
+	for (var id in players) {
+		if (players.hasOwnProperty(id)) {
+			board = players[id].board;
+			for (var i = 0; i < board.length; i++) {
+				if (board[i].champion && board[i].health <= 0) {
+					var otherId;
+					if (game.currentTurn[0] === id) {
+						otherId = game.currentTurn[1];
+					} else {
+						otherId = game.currentTurn[0];
+					}
+					Game.declareWinner(game, otherId);
+					return true;
+				}
+			}
+		}
+	}
+	// TODO: Game ended in a draw?
+	return false;
 }

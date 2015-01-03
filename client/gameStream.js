@@ -3,7 +3,6 @@ GameStream = {};
 GameStream.init = function(id) {
 	console.log("trying to connect to " + 'game' + id)
 	this.stream = new Meteor.Stream('game' + id);
-	console.log(id);
 
 	var self = this;
 
@@ -71,24 +70,20 @@ GameStream.init = function(id) {
 		Chat
 		****/
 	this.stream.on('chat', function(message) {
-		console.log(message);
 		Chat.saveMessage(false, message);
 	});
 
 	this.stream.on('playCard', function(data) {
-		console.log("Got playCard data: " + data);
 		CardAnimator.playedFromHandIndex = data.from;
 		CardAnimator.playedOnBoardIndex = data.to;
 	});
 };
 
 GameStream.emit = function(event, message) {
-	console.log("EMITTING");
 	this.stream.emit(event, message);
 };
 
 GameStream.attackHandler = function(data) {
-	console.log("Got attack message");
 	var $from = $($("#opponent_board .card")[data.from]);
 	var $to = $($("#my_board .card")[data.to]);
 	Animation.Attack($from, $to);
