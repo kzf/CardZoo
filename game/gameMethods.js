@@ -71,8 +71,34 @@ Meteor.methods({
     if (game.currentTurn[0] !== id) return;
     
     var otherId = game.currentTurn[1];
+
+    // END TURN
+    game.players[id].board.forEach(function(card) {
+    	var c;
+    	if (card.champion) {
+    		c = Champions[card.id];
+    	} else {
+    		c = Cards[card.id];
+    	}
+    	if (c.endTurn) {
+    		c.endTurn(game, id, otherId);
+    	}
+    });
     
     game.currentTurn.unshift(game.currentTurn.pop());
+
+    // START TURN
+    game.players[otherId].board.forEach(function(card) {
+    	var c;
+    	if (card.champion) {
+    		c = Champions[card.id];
+    	} else {
+    		c = Cards[card.id];
+    	}
+    	if (c.startTurn) {
+    		c.startTurn(game, otherId, id);
+    	}
+    });
 
 		Game.dealPlayer(game.players[otherId]);
 		if (game.players[otherId].maxbananas < Config.maxBananas) {

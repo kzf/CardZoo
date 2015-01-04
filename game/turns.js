@@ -29,8 +29,22 @@ Turns.haveSpell = function (set, spell) {
 Turns.playCard = function (game, id, card, insertAt) {
 	var player = game.players[id];
 	Turns.addToBoard(game, id, card, insertAt);
+
+	player.board.forEach(function (c) {
+		var a;
+  	if (c.champion) {
+  		a = Champions[c.id];
+  	} else {
+  		a = Cards[c.id];
+  	}
+  	if (a.playCard) {
+  		a.playCard(card);
+  	}
+	});
+
 	player.bananas -= card.cost;
 	/* Remove it from the hand */
+
 	player.hand.splice(card.handIndex, 1);
 	Game.updateHandIndexes(player.hand);
 	Game.postActionCheck(game, id);
