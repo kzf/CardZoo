@@ -12,8 +12,8 @@ Game.createGame = function (playerIds) {
 
 	Game.spawnChampions(players);
 
-	players[playerIds[0]].spells = [_.extend({index: 0}, Spells[0]), _.extend({index: 1}, Spells[1])];
-	players[playerIds[1]].spells = [_.extend({index: 0}, Spells[0]), _.extend({index: 1}, Spells[1])];
+	players[playerIds[0]].spells = [_.extend({index: 0}, Spells[2]), _.extend({index: 1}, Spells[1])];
+	players[playerIds[1]].spells = [_.extend({index: 0}, Spells[3]), _.extend({index: 1}, Spells[4])];
 
 	Game.updatePlayable(players, playerIds);
 
