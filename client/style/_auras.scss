@@ -50,6 +50,13 @@
   cursor: crosshair;
 }
 
+#opponent_board .card.defensive.targeting { // Needed for specificity rules
+  box-shadow:
+    0px 32px 9px 5px $action-aura,
+    0px -24px 9px 5px $action-aura;
+  cursor: crosshair;
+}
+
 /***
 	End Turn Button
 	***/
