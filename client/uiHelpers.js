@@ -32,6 +32,9 @@ Template.boardCard.helpers({
   defensiveClass: function() {
     return this.defensive ? "defensive" : "";
   },
+  asleepClass: function() {
+    return this.attackDelay > 0 ? "asleep" : "";
+  },
   Info: function() {
     return this.champion ? Champions[this.id] : Cards[this.id];
   }

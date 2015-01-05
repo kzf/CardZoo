@@ -156,6 +156,10 @@
 	        	Photo: <a href="{{Info.artistlink}}" target="_blank">{{Info.artistname}}</a>
 	        </span>
 				</div>
+				{{#if asleep}}
+				<div class="asleep">
+				</div>
+				{{/if}}
 				{{#each healthChanges}}
 					<div class="health-{{change}}">
 						<span class="amount">{{amount}}</span>

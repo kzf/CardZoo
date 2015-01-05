@@ -75,6 +75,9 @@ Game.startAttackingTurn = function (player) {
 		card.numAttacks = 0;
 		if (card.attackDelay > 0) {
 			card.attackDelay--;
+			if (card.attackDelay === 0 && card.asleep) {
+				card.asleep = false;
+			}
 		}
 	});
 }
