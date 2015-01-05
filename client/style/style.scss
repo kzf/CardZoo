@@ -23,6 +23,13 @@
   cursor: default;
 }
 
+.chat {
+  -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 body {
   background-color:#5dac5c;
   font-family: 'Ubuntu', sans-serif;
@@ -61,11 +68,6 @@ ul {
 
 .top-menu a:hover {
   text-decoration: none;
-}
-
-
-.start-attack {
-  transform: translateY(-20px);
 }
 
 

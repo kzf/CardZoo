@@ -28,6 +28,10 @@
   opacity: 0;
 }
 
+.board-side .card.start-attack {
+  transform: translateY(-20px);
+}
+
 .board-side .card::before {
   content: "";
   position: absolute;

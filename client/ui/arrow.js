@@ -1,12 +1,12 @@
 Arrow = {};
 
-Arrow.start = function(el) {
+Arrow.start = function(el, type) {
 	this.el = el.addClass("start-attack");
 
 	var offset = el.offset();
 	var w = el.width();
 	this.sx = offset.left + w/2;
-	this.sy = offset.top + el.height()/2 - 20;
+	this.sy = offset.top + el.height()/2 - (type === 'attack' ? 20 : 0);
 	
 	this.arrowBody = $("<div>").addClass("arrow-body").hide();
 

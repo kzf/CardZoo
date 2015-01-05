@@ -45,25 +45,34 @@ GameStream.init = function(id) {
 	/****
 		Arrow
 		****/
-	this.stream.on('Arrow.start', function(i) {
-		var $el = $($("#opponent_board .card")[i]);
+	this.stream.on('Arrow.start', function(data) {
+		var $el;
+		if (data.type === 'attack') {
+			$el = $($("#opponent_board .card")[data.index]);
+		} else {
+			$el = $($("#opponent_spells .spell")[data.index]);
+		}
 		Arrow.start($el);
 	});
 
-	this.stream.on('Arrow.pointAt', function(i) {
-		var $el = $($("#my_board .card")[i]);
+	this.stream.on('Arrow.pointAt', function(data) {
+		var board = data.mine ? "#opponent_board" : "#my_board";
+		var $el = $($(board + " .card")[data.index]);
 		var offset = $el.offset();
 		var x = offset.left + $el.width()/2;
 		var y = offset.top + $el.height()/2;
 		Arrow.pointAt(x, y);
+		$el.addClass("targeting");
 	});
 
 	this.stream.on('Arrow.dontPoint', function() {
 		Arrow.dontPoint();
+		$(".targeting").removeClass("targeting");
 	});
 
 	this.stream.on('Arrow.remove', function() {
 		Arrow.remove();
+		$(".targeting").removeClass("targeting");
 	});
 
 	/****

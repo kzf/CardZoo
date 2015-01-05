@@ -33,7 +33,14 @@
     0px 9px 9px 5px $playable-aura-highlight,
     0px -9px 9px 5px $playable-aura-highlight;
 }
-.board-side .card.targeting,
+
+#opponent_board .card.opponent-hover {
+  box-shadow:
+    0px 9px 9px 5px $playable-aura-highlight,
+    0px -9px 9px 5px $playable-aura-highlight;
+}
+
+#opponent_board .card.targeting,
 #my_board .card.targeting,
 #my_board .card.start-attack,
 #opponent_board .card.start-attack { // Needed for specificity rules
@@ -41,12 +48,6 @@
     0px 9px 9px 5px $action-aura,
     0px -9px 9px 5px $action-aura;
   cursor: crosshair;
-}
-
-#opponent_board .card.opponent-hover {
-  box-shadow:
-    0px 9px 9px 5px $playable-aura-highlight,
-    0px -9px 9px 5px $playable-aura-highlight;
 }
 
 /***
@@ -77,7 +78,8 @@
     8px 0px 9px 5px $playable-aura-highlight,
     -9px 0px 9px 5px $playable-aura-highlight;
 }
-#my_spells .spell.start-spell {
+#my_spells .spell.start-attack,
+#opponent_spells .spell.start-attack {
   box-shadow:
     8px 0px 9px 5px $action-aura,
     -9px 0px 9px 5px $action-aura;

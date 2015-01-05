@@ -11,8 +11,8 @@ Targeting.startAttack = function (game, id, card, el) {
     card: card
   };
   
-  Arrow.start(el);
-  GameStream.emit('Arrow.start', card.boardIndex);
+  Arrow.start(el, 'attack');
+  GameStream.emit('Arrow.start', {type: 'attack', index: card.boardIndex});
 
   var body = $("body");
   
@@ -72,32 +72,21 @@ Targeting.startSpell = function (game, id, card, el) {
     spell: card
   };
   
-  el.addClass("start-spell");
-  
-  var offset = el.offset();
-  var w = el.width();
-  var sx = offset.left + w/2;
-  var sy = offset.top + el.height()/2;
-  var arrowBody = $("<div>").addClass("arrow-body").hide();
+  Arrow.start(el, 'spell');
+  GameStream.emit('Arrow.start', {type: 'spell', index: card.index});
 
   var body = $("body");
-  body.append(arrowBody);
   
   var mousemove = function(e) {
     var mx = e.clientX;
     var my = e.clientY + body.scrollTop();
-    var length = Math.sqrt((mx-sx)*(mx-sx) + (my-sy)*(my-sy)) - 30;
-    var ang = Math.atan2(mx - sx, my - sy) - Math.PI/2;
-    var transform =  'translate(' + sx + 'px,' + sy + 'px) ' + 
-        'rotate(' + -ang + 'rad)';
-    arrowBody.show().css("transform", transform);
-    arrowBody.css("width", length);
+    Arrow.pointAt(mx, my);
   };
   
   this.cleanup = function() {
-    arrowBody.remove();
-    el.removeClass("start-spell");
+    Arrow.remove();
     removeEventListener("mousemove", mousemove);
+    GameStream.emit('Arrow.remove');
   }
   
   addEventListener("mousemove", mousemove);
@@ -108,9 +97,11 @@ Targeting.completeSpell = function(gameId, id, card, el, own) {
     el: el,
     card: card
   };
+
   el.removeClass("targeting");
   this.cleanup();
   this.duringSpell = false;
+
   Meteor.call('castTargetedSpell', gameId, id, this.start.spell, this.end.card, own);
   Meteor.setTimeout(function() {
     Meteor.call('postActionCheck', gameId, id);
