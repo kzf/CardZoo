@@ -106,8 +106,8 @@ Meteor.methods({
 		}
 		game.players[otherId].bananas = game.players[otherId].maxbananas;
 
-		Game.minionsCanAttack(game.players[otherId]);
-		Game.minionsCanAttack(game.players[id], false);
+    Game.startAttackingTurn(game.players[otherId]);
+		Game.updateCanAttack(otherId, game.players);
     
     Games.update(gameId, game);
   },

@@ -88,6 +88,9 @@ CardDrag.endDrag = function(e, gameId, id) {
       CardAnimator.justRemovedFromHand = handIndex;
       GameStream.emit('playCard', {from: handIndex, to: index});
       Meteor.call('playCard', gameId, id, card, index);
+      Meteor.setTimeout(function() {
+        Meteor.call('postActionCheck', gameId, id);
+      }, 400);
       // Animate in the element
       /*var cel = $($("#my_board .card-container")[handIndex]);
       cel.hide().fadeIn(3000);

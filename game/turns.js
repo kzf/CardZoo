@@ -28,7 +28,7 @@ Turns.haveSpell = function (set, spell) {
 	***/
 Turns.playCard = function (game, id, card, insertAt) {
 	var player = game.players[id];
-	Turns.addToBoard(game, id, card, insertAt);
+	var boardCard = Turns.addToBoard(game, id, card, insertAt);
 
 	player.board.forEach(function (c) {
 		var a;
@@ -38,7 +38,7 @@ Turns.playCard = function (game, id, card, insertAt) {
   		a = Cards[c.id];
   	}
   	if (a.playCard) {
-  		a.playCard(card);
+  		a.playCard(boardCard);
   	}
 	});
 
@@ -46,8 +46,7 @@ Turns.playCard = function (game, id, card, insertAt) {
 	/* Remove it from the hand */
 
 	player.hand.splice(card.handIndex, 1);
-	Game.updateHandIndexes(player.hand);
-	Game.postActionCheck(game, id);
+	Game.updateHandIndexes(player.hand)
 }
 
 
@@ -60,7 +59,7 @@ Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
   }
   Turns.dealDamage(otherCard, card.attack);
   Turns.dealDamage(card, otherCard.attack);
-  card.canAttack = false;
+  card.numAttacks++;
 }
 
 Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {
@@ -88,7 +87,9 @@ Turns.addToBoard = function(game, id, card, insertAt) {
 		id: card.id,
 		health: card.health,
 		attack: card.attack,
-		canAttack: false
+		canAttack: false,
+		attackDelay: 1,
+		maxAttacks: Cards[card.id].maxAttacks
 	}
 	var index;
 	if (typeof insertAt === 'undefined') {
@@ -103,6 +104,7 @@ Turns.addToBoard = function(game, id, card, insertAt) {
 		CardAnimator.playedOnBoardIndex = index;
 	}
 	Game.updateBoardIndexes(player.board);
+	return boardCard;
 }
 
 Turns.removeFromBoard = function(game, id, card) {
@@ -130,7 +132,7 @@ Turns.heal = function(card, amount) {
 
 Turns.weaken = function(card, amount) {
 	if (amount === 0) return;
-	card.attack -= amount;
+	card.attack = Math.max(0, card.attack - amount);
 	if (!card.attackChanges) {
 		card.attackChanges = [];
 	}

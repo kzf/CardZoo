@@ -4,6 +4,7 @@ Game.postActionCheck = function (game, id) {
 	if (!Game.checkIfGameEnded(game, players)) {
 		Game.updateIndexes(players);
 		Game.updatePlayable(players, game.currentTurn);
+		Game.updateCanAttack(game.currentTurn[0], players);
 	}
 }
 
@@ -31,6 +32,8 @@ Game.checkForCasualties= function (game, players) {
 			board = players[id].board;
 			for (var i = 0; i < board.length; i++) {
 				board[i].healthChanges = [];
+				board[i].attackChanges = [];
+				// Check for casualties
 				if (!board[i].champion && board[i].health <= 0) {
 					Turns.removeFromBoard(game, id, board[i]);
 					i--;
@@ -38,6 +41,32 @@ Game.checkForCasualties= function (game, players) {
 			}
 		}
 	}
+}
+
+Game.updateCanAttack = function (turn, players) {
+	var board;
+	for (var id in players) {
+		if (players.hasOwnProperty(id)) {
+			board = players[id].board;
+			for (var i = 0; i < board.length; i++) {
+				// Fix attacks
+				if (turn === id && board[i].attack > 0 && board[i].numAttacks < board[i].maxAttacks && board[i].attackDelay === 0) {
+					board[i].canAttack = true;
+				} else {
+					board[i].canAttack = false;
+				}
+			}
+		}
+	}
+}
+
+Game.startAttackingTurn = function (player) {
+	player.board.forEach(function (card) {
+		card.numAttacks = 0;
+		if (card.attackDelay > 0) {
+			card.attackDelay--;
+		}
+	});
 }
 
 Game.updateIndexes = function(players) {
