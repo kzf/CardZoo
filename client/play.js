@@ -53,17 +53,19 @@ Template.play.events({
   /* Starting to attack with a minion */
   'mousedown #my_board .card': function (e, template) {
     var id = Meteor.userId();
+    var $card = $(e.target).parents(".card");
 		var game = Games.findOne(template.data._id);
     if (game.currentTurn[0] === id && this.canAttack) {
-      Targeting.startAttack(game, id, this, $(e.target.parentElement));
+      Targeting.startAttack(game, id, this, $card);
     }
   },
   /* Starting to cast a spell */
   'mousedown #my_spells .spell': function (e, template) {
     var id = Meteor.userId();
+    var $spell = $(e.target).parents(".spell");
     var game = Games.findOne(template.data._id);
     if (this.targeted && game.currentTurn[0] === id && this.playable) {
-      Targeting.startSpell(game, id, this, $(e.target.parentElement));
+      Targeting.startSpell(game, id, this, $spell);
     }
   },
   /* Finishing an attack */
