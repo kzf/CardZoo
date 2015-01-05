@@ -55,6 +55,9 @@ Turns.playCard = function (game, id, card, insertAt) {
 Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
   var card = game.players[id].board[myCard.boardIndex];
   var otherCard = game.players[otherId].board[enemyCard.boardIndex];
+  if (Meteor.isClient) {
+  	GameStream.emit('attack', {from: myCard.boardIndex, to: enemyCard.boardIndex});
+  }
   Turns.dealDamage(false, otherCard, card.attack);
   Turns.dealDamage(true, card, otherCard.attack);
   card.canAttack = false;
@@ -65,14 +68,12 @@ Turns.castTargetedSpell = function (game, id, otherId, spell, enemyCard, own) {
   var cast = Spells[spell.id].cast;
   cast(card);
   game.players[id].bananas -= spell.cost;
-  Game.postActionCheck(game, id);
 }
 
 Turns.castSpell = function (game, id, otherId, spell) {
   var cast = Spells[spell.id].cast;
   cast(game, id, otherId);
   game.players[id].bananas -= spell.cost;
-  Game.postActionCheck(game, id);
 }
 
 /****
@@ -106,9 +107,10 @@ Turns.removeFromBoard = function(game, id, card) {
 
 Turns.dealDamage = function(me, card, amount) {
 	card.health -= amount;
-	if (Meteor.isClient && amount > 0) {
-		var board = me ? "#my_board" : "#opponent_board";
-		Animation.Damage($($(board + " .card")[card.boardIndex]), amount);
+	if (!card.healthChanges) {
+		card.healthChanges = [-amount];
+	} else {
+		card.healthChanges.push(-amount);
 	}
 }
 

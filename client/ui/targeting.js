@@ -48,9 +48,9 @@ Targeting.completeAttack = function(gameId, id, card, el) {
   Animation.Attack(this.start.el, this.end.el, function() {
     Meteor.call('attackWithCard', gameId, id, start, end);
   }, function() {
-    console.log("Doing post-attack check");
     Meteor.call('postActionCheck', gameId, id);
   });
+  GameStream.emit('attack', {from: start.boardIndex, to: end.boardIndex});
 
 }
 
@@ -112,6 +112,9 @@ Targeting.completeSpell = function(gameId, id, card, el, own) {
   this.cleanup();
   this.duringSpell = false;
   Meteor.call('castTargetedSpell', gameId, id, this.start.spell, this.end.card, own);
+  Meteor.setTimeout(function() {
+    Meteor.call('postActionCheck', gameId, id);
+  }, 400);
 }
 
 Targeting.failSpell = function() {

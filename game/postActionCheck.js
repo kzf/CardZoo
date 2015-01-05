@@ -30,8 +30,10 @@ Game.checkForCasualties= function (game, players) {
 		if (players.hasOwnProperty(id)) {
 			board = players[id].board;
 			for (var i = 0; i < board.length; i++) {
+				board[i].healthChanges = [];
 				if (!board[i].champion && board[i].health <= 0) {
 					Turns.removeFromBoard(game, id, board[i]);
+					i--;
 				}
 			}
 		}

@@ -144,6 +144,11 @@
 	        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
 	        </span>
 				</div>
+				{{#each healthChanges}}
+					<div class="damage-bg">
+						<span class="damage-amount">{{this}}</span>
+					</div>
+				{{/each}}
 		  </div>
 		</li>
 	{{/boardAnimate}}

@@ -110,6 +110,9 @@ Template.play.events({
 		var game = Games.findOne(template.data._id);
 		if (game.currentTurn[0] === id) {
 			Meteor.call('endTurn', template.data._id, id);
+      Meteor.setTimeout(function() {
+        Meteor.call('postActionCheck', template.data._id, id);
+      }, 400);
 		}
   },
   /*****

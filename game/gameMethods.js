@@ -106,7 +106,6 @@ Meteor.methods({
 		}
 		game.players[otherId].bananas = game.players[otherId].maxbananas;
 
-		Game.postActionCheck(game, otherId);
 		Game.minionsCanAttack(game.players[otherId]);
 		Game.minionsCanAttack(game.players[id], false);
     

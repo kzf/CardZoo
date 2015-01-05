@@ -74,6 +74,7 @@ GameStream.init = function(id) {
 	});
 
 	this.stream.on('playCard', function(data) {
+		console.log("they played a card");
 		CardAnimator.playedFromHandIndex = data.from;
 		CardAnimator.playedOnBoardIndex = data.to;
 	});
