@@ -108,13 +108,11 @@ Template.boardAnimate.rendered = function(){
         var $el = $(el);
         $el.removeClass("notransition");
         if (i === index) {
-          $el.css("transform", "none");
-          $el.css("opacity", "1");
+          $el.attr("style", "");
         }
       });
       if (index === cards.length) {
-        $card.css("transform", "none");
-        $card.css("opacity", "1");
+        $card.attr("style", "");;
       }
 
     }
