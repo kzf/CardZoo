@@ -47,15 +47,14 @@
 			  </section>
 		  	<section class="opponent-bananas-bar">
 		  		{{> bananasBar game.otherPlayer.player}}
-		  		<div class="description-tooltip">
-						<span class="name">Opponent's Bananas</span>
-	        	<span class="description">Your opponent has {{ game.otherPlayer.player.bananas }} bananas remaining to use this turn.</span>
-					</div>
 		  	</section>
 		  	<div class="deck opponent-deck">
 		    	<div class="card"></div>
 		      <span class="deck-count">{{game.otherPlayer.player.deck.length}}</span>
-		      
+		      <div class="description-tooltip">
+						<span class="name">Opponent's Deck</span>
+	        	<span class="description">Your opponent has {{game.player.deck.length}} cards left in their deck.</span>
+					</div>
 		    </div>
 		    <section id="opponent_board" class="board-side">
 		      {{> table game.otherPlayer.player}}
@@ -158,8 +157,13 @@
 	        </span>
 				</div>
 				{{#each healthChanges}}
-					<div class="damage-bg">
-						<span class="damage-amount">{{this}}</span>
+					<div class="health-{{change}}">
+						<span class="amount">{{amount}}</span>
+					</div>
+				{{/each}}
+				{{#each attackChanges}}
+					<div class="attack-{{change}}">
+						<span class="amount">{{amount}}</span>
 					</div>
 				{{/each}}
 		  </div>

@@ -58,8 +58,8 @@ Turns.makeAttack = function (game, id, otherId, myCard, enemyCard) {
   if (Meteor.isClient) {
   	GameStream.emit('attack', {from: myCard.boardIndex, to: enemyCard.boardIndex});
   }
-  Turns.dealDamage(false, otherCard, card.attack);
-  Turns.dealDamage(true, card, otherCard.attack);
+  Turns.dealDamage(otherCard, card.attack);
+  Turns.dealDamage(card, otherCard.attack);
   card.canAttack = false;
 }
 
@@ -110,12 +110,38 @@ Turns.removeFromBoard = function(game, id, card) {
 	Game.updateBoardIndexes(game.players[id].board);
 }
 
-Turns.dealDamage = function(me, card, amount) {
+Turns.dealDamage = function(card, amount) {
+	if (amount === 0) return;
 	card.health -= amount;
 	if (!card.healthChanges) {
-		card.healthChanges = [-amount];
-	} else {
-		card.healthChanges.push(-amount);
+		card.healthChanges = [];
 	}
+	card.healthChanges.push({amount: -amount, change: 'down'});
 }
 
+Turns.heal = function(card, amount) {
+	if (amount === 0) return;
+	card.health += amount;
+	if (!card.healthChanges) {
+		card.healthChanges = [];
+	}
+	card.healthChanges.push({amount: '+' + amount, change: 'up'});
+}
+
+Turns.weaken = function(card, amount) {
+	if (amount === 0) return;
+	card.attack -= amount;
+	if (!card.attackChanges) {
+		card.attackChanges = [];
+	}
+	card.attackChanges.push({amount: -amount, change: 'down'});
+}
+
+Turns.strengthen = function(card, amount) {
+	if (amount === 0) return;
+	card.attack += amount;
+	if (!card.attackChanges) {
+		card.attackChanges = [];
+	}
+	card.attackChanges.push({amount: '+' + amount, change: 'up'});
+}

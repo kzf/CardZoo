@@ -1,17 +1,46 @@
 @import 'colours';
 
-.damage-bg {
+.health-down,
+.attack-down {
 	position: absolute;
-	bottom: 1px;
-  right: -8px;
-  background-image: url('/images/damage_bg.png');
-  width: 69px;
-  height: 42px;
+  background-image: url('/images/number_down.png');
+  width: 51px;
+  height: 50px;
   animation: grow-fade-out 0.4s forwards;
   -webkit-animation: grow-fade-out 0.4s forwards;
 }
 
-.damage-amount {
+.health-down {
+	bottom: 30px;
+  right: -4px;
+}
+
+.attack-down {
+	bottom: 30px;
+  left: -4px;
+}
+
+.health-up,
+.attack-up {
+	position: absolute;
+  background-image: url('/images/number_up.png');
+  width: 42px;
+  height: 30px;
+  animation: grow-fade-out 0.4s forwards;
+  -webkit-animation: grow-fade-out 0.4s forwards;
+}
+
+.health-up {
+	bottom: 30px;
+  right: 4px;
+}
+
+.attack-up {
+	bottom: 30px;
+	left: 4px;
+}
+
+.amount {
 	display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: center;
@@ -19,15 +48,30 @@
   align-items: center;
   justify-content: center;
 	position: absolute;
-	width: 40px;
-	bottom: 32px;
-  right: 7px;
 	font-family: 'Luckiest Guy', cursive;
-  font-size: 160%;
+  font-size: 180%;
+  //animation: amount-fade-up .4 forwards;
+  //-webkit-animation: amount-fade-up .4s forwards;
+}
+
+.health-down .amount,
+.attack-down .amount {
+	top:0;
+	left:0;
+	width:85%;
+	height:90%;
   color: $damage-color;
   text-shadow: 1px 1px 0px rgb(121, 0, 0);
-  animation: amount-fade-up .4 forwards;
-  -webkit-animation: amount-fade-up .4s forwards;
+}
+
+.health-up .amount,
+.attack-up .amount {
+	top:0;
+	left:0;
+	width:97%;
+	height:95%;
+  color: $heal-color;
+  text-shadow: 1px 1px 0px #196F01;
 }
 
 @keyframes amount-fade-up {
@@ -53,23 +97,32 @@
 }
 
 @keyframes grow-fade-out {
-	from {
+	0% {
 		transform: none;
 		opacity: 1;
 	}
-	to {
-		transform: scale(1.2px);
-		opacity: 0;
+	10% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
 	}
 }
 
 @-webkit-keyframes grow-fade-out {
-	from {
+	0% {
 		transform: none;
 		opacity: 1;
 	}
-	to {
-		transform: scale(1.2px);
+	10% {
+		transform: scale(1.2);
+	}
+	80% {
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
 		opacity: 0;
 	}
 }
