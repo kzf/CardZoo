@@ -55,12 +55,8 @@ Template.cardAnimate.rendered = function(){
 
       // clean up
       next.removeClass("notransition");
-
-      if (index < cards.length - 1) {
-        next.css("margin-left", "-80px");
-      } else {
-        next.css("margin-right", "0px");
-      }
+      
+      next.attr("style", "");
 
     }
   };
