@@ -10,6 +10,9 @@ Template.bananasBar.helpers({
 Template.handCard.helpers({
   playableClass: function() {
     return this.playable ? "playable" : "";
+  },
+  Info: function() {
+    return this.champion ? Champions[this.id] : Cards[this.id];
   }
 });
 
@@ -25,6 +28,9 @@ Template.boardCard.helpers({
   },
   championClass: function() {
     return this.champion ? "champion" : "";
+  },
+  Info: function() {
+    return this.champion ? Champions[this.id] : Cards[this.id];
   }
 });
 

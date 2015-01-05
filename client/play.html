@@ -133,15 +133,15 @@
 	{{#boardAnimate}}
 		<li class="card-container">
 			<div class="card {{championClass}} {{canAttackClass}}" data-index="{{boardIndex}}">
-		    <img class="card-art" src="{{ art }}">
+		    <img class="card-art" src="{{ Info.art }}">
 		    <div class="card-border"></div>
 				<span class="health">{{ health }}</span>
 				<span class="attack">{{ attack }}</span>
 				<div class="description-tooltip">
-					<span class="name">{{ name }}</span>
-        	<span class="description">{{ description }}</span>
+					<span class="name">{{ Info.name }}</span>
+        	<span class="description">{{ Info.description }}</span>
         	<span class="artist-credit">
-	        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+	        	Photo: <a href="{{Info.artistlink}}" target="_blank">{{Info.artistname}}</a>
 	        </span>
 				</div>
 				{{#each healthChanges}}
@@ -158,14 +158,14 @@
 	{{#cardAnimate}}
 		<li class="card-container">
       <div class="card {{playableClass}}" data-index="{{handIndex}}">
-        <img class="card-art" src="{{ art }}">
+        <img class="card-art" src="{{ Info.art }}">
         <span class="health">{{ health }}</span>
         <span class="attack">{{ attack }}</span>
         <span class="cost">{{ cost }}</span>
-        <span class="name">{{ name }}</span>
-        <span class="description">{{ description }}</span>
+        <span class="name">{{ Info.name }}</span>
+        <span class="description">{{ Info.description }}</span>
         <span class="artist-credit">
-        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+        	Photo: <a href="{{Info.artistlink}}" target="_blank">{{Info.artistname}}</a>
         </span>
       </div>
 	  </li>

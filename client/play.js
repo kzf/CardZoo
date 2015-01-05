@@ -70,18 +70,17 @@ Template.play.events({
   },
   /* Finishing an attack */
   'mouseup': function (e, template) {
+    var board = $(e.target).parents(".board-side").attr("id");
+    var $target = $(e.target).parents(".card");
     if (Targeting.isDuringAttack()) {
-      if ($(e.target.parentElement.parentElement.parentElement.parentElement).attr("id") === "opponent_board") {
-        Targeting.completeAttack(template.data._id, Meteor.userId(), this, $(e.target.parentElement)); 
+      if ($target.length !== 0 && board === "opponent_board") {
+        Targeting.completeAttack(template.data._id, Meteor.userId(), this, $target); 
       } else {
         Targeting.failAttack();
       }
     } else if (Targeting.isDuringSpell()) {
-      var target_el = $(e.target.parentElement.parentElement.parentElement.parentElement).attr("id");
-      if (target_el === "opponent_board") {
-        Targeting.completeSpell(template.data._id, Meteor.userId(), this, $(e.target.parentElement), false);
-      } else if (target_el === "my_board") {
-        Targeting.completeSpell(template.data._id, Meteor.userId(), this, $(e.target.parentElement), true);
+      if ($target.length !== 0 && (board === "opponent_board" || board === "my_board")) {
+        Targeting.completeSpell(template.data._id, Meteor.userId(), this, $target, board === "my_board");
       } else {
         Targeting.failSpell();
       }

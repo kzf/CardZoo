@@ -19,6 +19,7 @@ GameStream.init = function(id) {
 	});
 
 	this.stream.on('opponentSpellOver', function(i) {
+		console.log("OPPONENT SPELL OVER", i);
 		var $el = $($("#opponent_spells .spell")[i]);
 		$el.addClass('opponent-hover');
 	});

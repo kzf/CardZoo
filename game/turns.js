@@ -84,16 +84,21 @@ Turns.addToBoard = function(game, id, card, insertAt) {
 	if (typeof card === 'number') {
 		card = Cards[card];
 	}
-	card.canAttack = false;
+	var boardCard = {
+		id: card.id,
+		health: card.health,
+		attack: card.attack,
+		canAttack: false
+	}
 	var index;
 	if (typeof insertAt === 'undefined') {
 		index = player.board.length;
-		player.board.push(card);
+		player.board.push(boardCard);
 	} else {
 		index = insertAt;
-		player.board.splice(insertAt, 0, card);
+		player.board.splice(insertAt, 0, boardCard);
 	}
-	if (Meteor.isClient) {
+	if (Meteor.isClient && typeof card !== 'number') {
 		GameStream.emit('playCard', {from: card.handIndex, to: index});
 		CardAnimator.playedOnBoardIndex = index;
 	}

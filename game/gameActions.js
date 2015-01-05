@@ -12,8 +12,12 @@ Game.spawnChampions = function (players) {
 	for (var id in players) {
 		if (players.hasOwnProperty(id)) {
 			var champ = Champions[4];
-			champ.champion = true;
-			players[id].board.push(champ);
+			players[id].board.push({
+				id: champ.id,
+				attack: champ.attack,
+				health: champ.health,
+				champion: true
+			});
 			Game.updateBoardIndexes(players[id].board);
 		}
 	}

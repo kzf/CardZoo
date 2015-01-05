@@ -1,7 +1,12 @@
 Game.dealPlayer = function(player) {
 	if (player.deck.length > 0 && player.hand.length < Config.maxCardsInHand) {
 		var newCard = Cards[player.deck.shift()];
-		player.hand.push(newCard);
+		player.hand.push({
+			id: newCard.id,
+			health: newCard.health,
+			attack: newCard.attack,
+			cost: newCard.cost
+		});
 		Game.updateHandIndexes(player.hand);
 	}
 }
