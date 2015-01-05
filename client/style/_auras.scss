@@ -39,6 +39,11 @@
     0px 9px 9px 5px $playable-aura-highlight,
     0px -9px 9px 5px $playable-aura-highlight;
 }
+#opponent_board .card.defensive.opponent-hover {
+  box-shadow:
+    0px 32px 9px 5px $playable-aura-highlight,
+    0px -30px 9px 5px $playable-aura-highlight;
+}
 
 #opponent_board .card.targeting,
 #my_board .card.targeting,
@@ -50,10 +55,11 @@
   cursor: crosshair;
 }
 
+#my_board .card.defensive.targeting,
 #opponent_board .card.defensive.targeting { // Needed for specificity rules
   box-shadow:
     0px 32px 9px 5px $action-aura,
-    0px -24px 9px 5px $action-aura;
+    0px -30px 9px 5px $action-aura;
   cursor: crosshair;
 }
 
