@@ -8,7 +8,8 @@ Game.spawnChampions = function (players) {
 				health: champ.health,
 				champion: true,
 				attackDelay: 0,
-				maxAttacks: champ.maxAttacks
+				maxAttacks: champ.maxAttacks,
+				defensive: false
 			});
 			Game.updateBoardIndexes(players[id].board);
 		}

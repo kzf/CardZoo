@@ -48,13 +48,23 @@ Game.updateCanAttack = function (turn, players) {
 	for (var id in players) {
 		if (players.hasOwnProperty(id)) {
 			board = players[id].board;
+			var hasDefensive = false;
 			for (var i = 0; i < board.length; i++) {
 				// Fix attacks
-				if (turn === id && board[i].attack > 0 && board[i].numAttacks < board[i].maxAttacks && board[i].attackDelay === 0) {
+				if (turn === id && !board[i].defensive && board[i].attack > 0 
+						&& board[i].numAttacks < board[i].maxAttacks && board[i].attackDelay === 0) {
 					board[i].canAttack = true;
 				} else {
 					board[i].canAttack = false;
 				}
+				if (board[i].defensive) {
+					hasDefensive = true;
+				}
+			}
+			if (id !== turn) {
+				board.forEach(function (card) {
+					card.attackable = hasDefensive ? card.defensive : true;
+				});
 			}
 		}
 	}

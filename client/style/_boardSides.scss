@@ -32,6 +32,10 @@
   transform: translateY(-20px);
 }
 
+.board-side .card.unattackable {
+  opacity: 0.5;
+}
+
 .board-side .card::before {
   content: "";
   position: absolute;
@@ -70,5 +74,15 @@
   width: 133px;
   height: 128px;
   background-image: url('/images/champ_border.png');
+  background-size: 133px 128px;
+}
+
+.board-side .defensive .card-border {
+  position: absolute;
+  top: -4px;
+  left: -7px;
+  width: 133px;
+  height: 128px;
+  background-image: url('/images/defensive2.png');
   background-size: 133px 128px;
 }

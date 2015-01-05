@@ -29,6 +29,9 @@ Template.boardCard.helpers({
   championClass: function() {
     return this.champion ? "champion" : "";
   },
+  defensiveClass: function() {
+    return this.defensive ? "defensive" : "";
+  },
   Info: function() {
     return this.champion ? Champions[this.id] : Cards[this.id];
   }

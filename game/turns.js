@@ -89,6 +89,7 @@ Turns.addToBoard = function(game, id, card, insertAt) {
 		attack: card.attack,
 		canAttack: false,
 		attackDelay: 1,
+		defensive: Cards[card.id].defensive,
 		maxAttacks: Cards[card.id].maxAttacks
 	}
 	var index;

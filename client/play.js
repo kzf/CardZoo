@@ -73,10 +73,11 @@ Template.play.events({
     var board = $(e.target).parents(".board-side").attr("id");
     var $target = $(e.target).parents(".card");
     if (Targeting.isDuringAttack()) {
-      if ($target.length !== 0 && board === "opponent_board") {
+      if ($target.length !== 0 && board === "opponent_board" && this.attackable) {
         Targeting.completeAttack(template.data._id, Meteor.userId(), this, $target); 
       } else {
         Targeting.failAttack();
+        $(".unattackable").removeClass("unattackable");
       }
     } else if (Targeting.isDuringSpell()) {
       if ($target.length !== 0 && (board === "opponent_board" || board === "my_board")) {
@@ -92,22 +93,30 @@ Template.play.events({
   'mouseover .board-side .card': function (e, template) {
     var target;
     var ownMinion = $(e.target).parents(".board-side").attr("id") === "my_board";
-    if ((Targeting.isDuringAttack() && !ownMinion)
+    if ((Targeting.isDuringAttack() && !ownMinion && this.attackable)
          || Targeting.isDuringSpell()) {
       target = $(e.target).parents(".card");
       GameStream.emit('Arrow.pointAt', {index: target.data("index"), mine: ownMinion});
       target.addClass("targeting");
+    }
+    if ((Targeting.isDuringAttack() && !ownMinion && !this.attackable)) {
+      target = $(e.target).parents(".card");
+      target.addClass("unattackable");
     }
   },
   /* Hovering out of a card while attacking */
   'mouseout .board-side .card': function (e, template) {
     var target;
     var ownMinion = $(e.target).parents(".board-side").attr("id") === "my_board";
-    if ((Targeting.isDuringAttack() && !ownMinion)
+    if ((Targeting.isDuringAttack() && !ownMinion && this.attackable)
          || Targeting.isDuringSpell()) {
       target = $(e.target).parents(".card");
       GameStream.emit('Arrow.dontPoint');
       target.removeClass("targeting");
+    }
+    if ((Targeting.isDuringAttack() && !ownMinion && !this.attackable)) {
+      target = $(e.target).parents(".card");
+      target.removeClass("unattackable");
     }
   },
   'click .end-turn-button': function(e, template) {
