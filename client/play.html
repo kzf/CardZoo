@@ -47,10 +47,15 @@
 			  </section>
 		  	<section class="opponent-bananas-bar">
 		  		{{> bananasBar game.otherPlayer.player}}
+		  		<div class="description-tooltip">
+						<span class="name">Opponent's Bananas</span>
+	        	<span class="description">Your opponent has {{ game.otherPlayer.player.bananas }} bananas remaining to use this turn.</span>
+					</div>
 		  	</section>
 		  	<div class="deck opponent-deck">
 		    	<div class="card"></div>
-		      <span>{{game.otherPlayer.player.deck.length}}</span>
+		      <span class="deck-count">{{game.otherPlayer.player.deck.length}}</span>
+		      
 		    </div>
 		    <section id="opponent_board" class="board-side">
 		      {{> table game.otherPlayer.player}}
@@ -66,10 +71,18 @@
 			  </section>
 			  <div class="deck my-deck">
 		      <div class="card"></div>
-		      <span>{{game.player.deck.length}}</span>
+		      <span class="deck-count">{{game.player.deck.length}}</span>
+		      <div class="description-tooltip">
+						<span class="name">My Deck</span>
+	        	<span class="description">You have {{game.player.deck.length}} cards left in your deck.</span>
+					</div>
 		    </div>
 			  <section class="my-bananas-bar">
 			  	{{> bananasBar game.player}}
+			  	<div class="description-tooltip">
+						<span class="name">My Bananas</span>
+	        	<span class="description">You have {{ game.player.bananas }} bananas remaining to use this turn.</span>
+					</div>
 			  </section>
 			{{/if}}
 		</section>

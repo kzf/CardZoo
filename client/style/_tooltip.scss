@@ -3,7 +3,8 @@ http://codepen.io/cbracco/pen/qzukg
 */
 
 /* Add this attribute to the element that needs a tooltip */
-[data-tooltip], .description span {
+[data-tooltip], 
+.description span {
 	color: #0e2ea0;
 	text-decoration: underline;
 	position: relative;
@@ -74,14 +75,19 @@ http://codepen.io/cbracco/pen/qzukg
 }
 
 .card:hover .description-tooltip,
-.spell:hover .description-tooltip {
+.spell:hover .description-tooltip,
+.deck:hover .description-tooltip,
+.opponent-bananas-bar:hover .description-tooltip,
+.my-bananas-bar:hover .description-tooltip {
 	opacity: 1;
 	top: 50%;
 	transform: translateY(-50%);
 	transition: opacity .2s ease 0.5s, top 0s ease 0.5s;
 }
 
-.opponent-spells .description-tooltip {
+.opponent-spells .description-tooltip,
+.my-deck .description-tooltip,
+.my-bananas-bar .description-tooltip {
 	left: -125%;
 }
 
