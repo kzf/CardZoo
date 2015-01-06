@@ -40,6 +40,16 @@ Template.boardCard.helpers({
   }
 });
 
+Template.lobby.helpers({
+  champions: function() {
+    var self = this;
+    return _.map(Champions, function(o) {
+      o.selected = o.id === self.player.whichChampion;
+      return o;
+    });
+  }
+});
+
 var cardHelper = {
   card: function() {
     return Cards[this];

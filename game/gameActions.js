@@ -1,7 +1,7 @@
 Game.spawnChampions = function (players) {
 	for (var id in players) {
 		if (players.hasOwnProperty(id)) {
-			var champ = Champions[3];
+			var champ = Champions[players[id].whichChampion];
 			players[id].board.push({
 				id: champ.id,
 				attack: champ.attack,

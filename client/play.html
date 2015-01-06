@@ -2,8 +2,10 @@
 
 	{{#if currentUser}}
 		
+	{{#if game.started}}
+
 		<div class="game">
-	  
+
 	  <section class="board">
 	  	{{#if game.completed}}
 	  		{{> endGame game}}
@@ -105,6 +107,12 @@
 			<button class="toggle-menu-button bg-menubtn"></button>
 	  </section>
 	  {{/if}}
+
+	{{else}}
+
+		{{> lobby game}}
+
+	{{/if}}
 
 	{{/if}}
 </template>
@@ -249,4 +257,21 @@
 			<button class="home-button bg-button">Home</button>
 		</div>
 	</section>
+</template>
+
+<template name="lobby">
+	Players:
+	<ul>
+		<li>{{currentUser.username}}: {{#if player.ready}}READY{{else}}NOT READY{{/if}}</li>
+		<li>{{otherPlayer.username}}: {{#if otherPlayer.player.ready}}READY{{else}}NOT READY{{/if}}</li>
+	</ul>
+	<br>
+	Select a champion:
+	<ul>
+		{{#each champions}}
+			<li><a href="#" class="select-champion">{{name}}</a>{{#if selected}} SELECTED {{/if}}</li>
+		{{/each}}
+	</ul>
+	<br>
+	<button id="ready_button">Ready</button>
 </template>

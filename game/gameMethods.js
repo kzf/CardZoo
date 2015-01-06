@@ -127,5 +127,24 @@ Meteor.methods({
   	game.players = undefined;
   	Game.declareWinner(game, otherId);
   	Games.update(gameId, game);
+  },
+  toggleReady: function(gameId, id) {
+    var game = Games.findOne(gameId);
+    var otherId;
+    if (game.currentTurn[0] === id) {
+      otherId = game.currentTurn[1];
+    } else {
+      otherId = game.currentTurn[0];
+    }
+    game.players[id].ready = !game.players[id].ready;
+    if (game.players[otherId].ready && game.players[id].ready) {
+      Game.startGame(game);
+    }
+    Games.update(gameId, game);
+  },
+  selectChampion: function(gameId, id, champId) {
+    var game = Games.findOne(gameId);
+    game.players[id].whichChampion = champId;
+    Games.update(gameId, game);
   }
 });

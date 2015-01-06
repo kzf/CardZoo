@@ -1,6 +1,18 @@
 Game.createGame = function (playerIds) {
 	var players = createPlayers(playerIds);
 
+	return {
+		players: players,
+		currentTurn: playerIds,
+		completed: false,
+		started: false
+	};
+}
+
+Game.startGame = function (game) {
+	var players = game.players;
+	var playerIds = game.currentTurn;
+
 	//First player gets 4 cards, other player gets 3
 	var i;
 	for (i = 0; i < 3; i++) { this.dealPlayer(players[playerIds[0]]); }
@@ -19,13 +31,8 @@ Game.createGame = function (playerIds) {
 
 	Game.startAttackingTurn(players[playerIds[0]]);
 	Game.updateCanAttack(playerIds[0], players);
-
-	return {
-		players: players,
-		currentTurn: playerIds,
-		completed: false,
-		started: new Date()
-	};
+	
+	game.started = true;
 };
 
 function createPlayers(ids) {
@@ -40,7 +47,9 @@ function createPlayers(ids) {
 			maxbananas: 1,
 			bananas: 1,
 			turn: false,
-			spells: []
+			spells: [],
+			whichChampion: 0,
+			ready: false
 		}
 	});
 

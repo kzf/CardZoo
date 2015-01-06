@@ -174,5 +174,14 @@ Template.play.events({
   },
   'click .toggle-menu-button': function(e) {
     Menu.toggle();
+  },
+  /******
+    Lobby Actions
+    *******/
+  'click #ready_button': function (e, template) {
+    Meteor.call('toggleReady', template.data._id, Meteor.userId());
+  },
+  'click .select-champion': function (e, template) {
+    Meteor.call('selectChampion', template.data._id, Meteor.userId(), this.id);
   }
 });
