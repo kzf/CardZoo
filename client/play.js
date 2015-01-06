@@ -164,5 +164,15 @@ Template.play.events({
     Chat.saveMessage(true, 'I surrender.');
     GameStream.emit('chat', 'I surrender.');
     Meteor.call('surrender', template.data._id, id);
+    Menu.hide();
   },
+  'click .home-button': function(e) {
+    Router.go('/');
+  },
+  'click .resume-button': function(e) {
+    Menu.hide();
+  },
+  'click .toggle-menu-button': function(e) {
+    Menu.toggle();
+  }
 });

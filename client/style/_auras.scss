@@ -64,7 +64,7 @@
 }
 
 /***
-	End Turn Button
+	Menu Buttons
 	***/
 .bg-button {
 	background-color: $playable-aura;
@@ -72,6 +72,18 @@
     0px 0px 9px 7px $playable-aura;
 }
 .bg-button:hover {
+  background-color: $playable-aura-highlight;
+  box-shadow:
+    0px 0px 9px 7px $playable-aura-highlight;
+  cursor: pointer;
+}
+
+.bg-menubtn {
+  background-color: $playable-aura;
+  box-shadow:
+    0px 0px 9px 7px $playable-aura;
+}
+.bg-menubtn:hover {
   background-color: $playable-aura-highlight;
   box-shadow:
     0px 0px 9px 7px $playable-aura-highlight;

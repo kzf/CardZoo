@@ -1,0 +1,33 @@
+.end-message {
+	font-size: 150px;
+	line-height: 300px;
+	text-align: center;
+	font-family: 'Luckiest Guy', cursive;
+	height: 300px;
+	margin: 0;
+}
+
+.end-message.won {
+	text-shadow: 0 0 40px rgb(26, 81, 25);
+	color: rgb(89, 207, 49);
+}
+.end-message.lost {
+	text-shadow: 0 0 40px rgb(26, 81, 25);
+	color: #FC5A3D;
+}
+
+.endGameScreen .menu-row {
+}
+
+.endGameScreen {
+	position: absolute;
+	top: 40px;
+	padding-top: 45px;
+	width: 918px;
+	height: 425px;
+	background: url('/images/endgame_bg.png');
+	background-size: 629px 425px;
+	background-repeat: no-repeat;
+	background-position: 160px 0px;
+
+}

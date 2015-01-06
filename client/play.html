@@ -1,33 +1,12 @@
 <template name='play'>
-	<header class="top-menu">
-    Play a Game
-    {{#if currentUser}}
-			{{> status game}}
-		{{/if}}
-    <span class="user-info">
-      {{> signupLogin}}
-    </span>
-  </header>
 
 	{{#if currentUser}}
 		
 		<div class="game">
-
-		<section class="menu">
-			<button class="surrender-button bg-button">Surrender</button>
-		</section>
 	  
 	  <section class="board">
 	  	{{#if game.completed}}
-				<section class="endGameScreen">
-					<h2>
-						{{#if game.won}}
-						You won!
-						{{else}}
-						You lost.
-						{{/if}}
-					</h2>
-				</section>
+	  		{{> endGame game}}
 	  	{{else}}
 		  	<section id="opponent_hand" class="hidden-hand">
 		  		<section class="opponent-name">
@@ -87,15 +66,45 @@
 		</section>
 		  
 	  
-	  
+	  {{#if game.completed}}
+  	{{else}}
 	  <section id="my_hand" class="visible-hand">
 	    {{> hand game.player}}  
 	  </section>
+	  {{/if}}
 
 	  
 		</div>
 	
 		{{> chat game.otherPlayer}}
+
+		{{#if game.completed}}
+  	{{else}}
+		<section class="menu-container">
+			<div class="menu">
+		    <!--Play a Game
+		    {{#if currentUser}}
+					{{> status game}}
+				{{/if}}
+		    <span class="user-info">
+		      {{> signupLogin}}
+		    </span>-->
+		    <div class="menu-row">
+		    	<button class="resume-button bg-button">Resume</button>
+		    </div>
+		    <div class="menu-row">
+		    	<button class="home-button bg-button">Home</button>
+		    </div>
+		    <div class="menu-row">
+		    	<button class="surrender-button bg-button">Surrender</button>
+		    </div>
+	    </div>
+	  </section>
+
+	  <section class="menu-toggle">
+			<button class="toggle-menu-button bg-menubtn"></button>
+	  </section>
+	  {{/if}}
 
 	{{/if}}
 </template>
@@ -224,5 +233,20 @@
 	    	</form>
 	    </div>
 	  </div>
+	</section>
+</template>
+
+<template name="endGame">
+	<section class="endGameScreen">
+		<h2 class="end-message {{#if won}}won{{else}}lost{{/if}}">
+			{{#if won}}
+				You won!
+			{{else}}
+				You lost.
+			{{/if}}
+		</h2>
+		<div class="menu-row">
+			<button class="home-button bg-button">Home</button>
+		</div>
 	</section>
 </template>
