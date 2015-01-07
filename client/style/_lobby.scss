@@ -118,6 +118,9 @@ body, #main, html {
 	border-width: 0px 2px 2px 2px;
 	margin-bottom: 20px;
 	background: #cfb990;
+	&.isolated {
+		border-width: 2px;
+	}
 }
 
 .fixed-footer {
@@ -211,6 +214,7 @@ body, #main, html {
 	Champions
 	******/
 .champion-face {
+	position: relative;
   display: inline-block;
   padding: 2px;
   & .face-art {
@@ -233,12 +237,21 @@ body, #main, html {
   	border-color: #fedc3a;
   	box-shadow: none;
   }
+  & .health, & .attack {
+  	position: relative;
+  	padding: 0;
+  }
+  & .stat {
+  	width: 45px;
+  	display: inline-block;
+  }
 }
 
 /*****
 	Spells
 	******/
 .spell-circle {
+	position: relative;
   display: inline-block;
   padding: 2px;
   & .circle-art {

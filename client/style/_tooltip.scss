@@ -78,7 +78,9 @@ http://codepen.io/cbracco/pen/qzukg
 .spell:hover .description-tooltip,
 .deck:hover .description-tooltip,
 .opponent-bananas-bar:hover .description-tooltip,
-.my-bananas-bar:hover .description-tooltip {
+.my-bananas-bar:hover .description-tooltip,
+.spell-circle:hover .description-tooltip,
+.champion-face:hover .description-tooltip {
 	opacity: 1;
 	top: 50%;
 	transform: translateY(-50%);

@@ -15,6 +15,19 @@
 			{{#each champions}}
 				<div class="champion-face {{#if selected}}selected{{/if}}">
 					<img class="face-art" src="{{art}}">
+					<div class="description-tooltip">
+						<span class="name">{{ name }}</span>
+		      	<span class="description">{{{ description }}}</span>
+		      	<span class="stat">
+		      		<span class="attack">{{attack}}</span>
+		      	</span>
+		      	<span class="stat">
+							<span class="health">{{health}}</span>
+		      	</span>
+		      	<span class="artist-credit">
+		        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+		        </span>
+					</div>
 				</div>
 			{{/each}}
 		</section>
@@ -25,6 +38,13 @@
 			{{#each spells}}
 				<div class="spell-circle {{#if selected}}selected{{/if}}">
 					<img class="circle-art" src="{{art}}">
+					<div class="description-tooltip">
+						<span class="name">{{ name }}</span>
+		      	<span class="description">{{{ description }}}</span>
+		      	<span class="artist-credit">
+		        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+		        </span>
+					</div>
 				</div>
 			{{/each}}
 		</section>

@@ -1,13 +1,39 @@
+<template name="mainHeader">
+	<header class="img-header">
+		<div class="header-links">
+			<a class="header-link home" href="/">Home</a>
+			<a class="header-link deck-editor" href="/decks">Deck Editor</a>
+		</div>
+		<img class="header-logo" src="/images/cardzoo.png">
+	</header>
+</template>
+
 <template name="home">
-	{{> signupLogin}}
-	{{#if currentUser}}
-		{{> gameList}}
-		{{> userList}}
-	{{/if}}
+	<div class="page-container">
+		{{> mainHeader}}
+		<section class="category-container isolated">
+			{{> signupLogin}}
+		</section>
+		{{#if currentUser}}
+			<h2 class="category-header">
+				Games:
+			</h2>
+			<section class="category-container">
+				{{> gameList}}
+			</section>
+			<h2 class="category-header">
+				Users:
+			</h2>
+			<section class="category-container">
+				{{> userList}}
+			</section>
+		{{/if}}
+	</div>
+	
+	
 </template>
 
 <template name='gameList'>
-	<h1> Games </h1>
 	<ul>
 		{{#each games}}
 			{{> gameItem}}
@@ -28,15 +54,12 @@
 </template>
 
 <template name='userList'>
-	<div class="column">
-		<h1> Users </h1>
-		<p> Choose another user to start a game: </p>
-		<ul>
-			{{#each users}}
-				{{> userItem}}
-			{{/each}}
-		</ul>
-	</div>
+	<p> Choose another user to start a game: </p>
+	<ul>
+		{{#each users}}
+			{{> userItem}}
+		{{/each}}
+	</ul>
 </template>
 
 <template name='userItem'>
