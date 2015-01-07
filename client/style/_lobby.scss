@@ -238,7 +238,7 @@ body, #main, html {
   	box-shadow: none;
   }
   & .health, & .attack {
-  	position: relative;
+  	position: static;
   	padding: 0;
   }
   & .stat {
@@ -272,5 +272,13 @@ body, #main, html {
   &.selected .circle-art {
   	border-color: #fedc3a;
   	box-shadow: none;
+  }
+  & .cost {
+  	position: static;
+  	padding: 0;
+  }
+  & .stat {
+  	width: 45px;
+  	display: inline-block;
   }
 }
