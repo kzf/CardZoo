@@ -259,19 +259,3 @@
 	</section>
 </template>
 
-<template name="lobby">
-	Players:
-	<ul>
-		<li>{{currentUser.username}}: {{#if player.ready}}READY{{else}}NOT READY{{/if}}</li>
-		<li>{{otherPlayer.username}}: {{#if otherPlayer.player.ready}}READY{{else}}NOT READY{{/if}}</li>
-	</ul>
-	<br>
-	Select a champion:
-	<ul>
-		{{#each champions}}
-			<li><a href="#" class="select-champion">{{name}}</a>{{#if selected}} SELECTED {{/if}}</li>
-		{{/each}}
-	</ul>
-	<br>
-	<button id="ready_button">Ready</button>
-</template>

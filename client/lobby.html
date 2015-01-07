@@ -1,0 +1,52 @@
+<template name="lobby">
+	<div class="page-container">
+		<header class="img-header">
+			<img src="/images/cardzoo.png">
+		</header>
+		<br>
+		<h2 class="category-header">
+			Select a champion:
+		</h2>
+		<section class="category-container">
+			{{#each champions}}
+				<a href="#" class="select-champion">{{name}}</a>{{#if selected}} SELECTED {{/if}} <br>
+			{{/each}}
+		</section>
+		<h2 class="category-header">
+			Select two spells:
+		</h2>
+		<section class="category-container">
+		</section>
+		<h2 class="category-header">
+			Select a deck:
+		</h2>
+		<section class="category-container">
+		</section>
+
+		<button id="ready_button" class="bg-button">{{#if player.ready}}Not Ready{{else}}Ready{{/if}}</button>
+		
+
+		<footer class="fixed-footer">
+			<div class="ready-status my-ready-status">
+				<span class="name">
+					{{currentUser.username}}
+				</span>
+				<span class="is-ready {{#if player.ready}}ready{{/if}}">
+					{{#if player.ready}}READY{{else}}NOT READY{{/if}}
+				</span>
+				<span class="ready-light {{#if player.ready}}ready{{/if}}">
+				</span>
+			</div><!--
+			--><div class="ready-status opponent-ready-status">
+				<span class="name">
+					{{otherPlayer.username}}
+				</span>
+				<span class="is-ready {{#if otherPlayer.player.ready}}ready{{/if}}">
+					{{#if otherPlayer.player.ready}}READY{{else}}NOT READY{{/if}}
+				</span>
+				<span class="ready-light {{#if otherPlayer.player.ready}}ready{{/if}}">
+				</span>
+			</div>
+		</footer>
+	</div>
+</template>
