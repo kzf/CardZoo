@@ -47,6 +47,13 @@ Template.lobby.helpers({
       o.selected = o.id === self.player.whichChampion;
       return o;
     });
+  },
+  spells: function() {
+    var self = this;
+    return _.map(Spells, function(o) {
+      o.selected = o.id === self.player.whichSpells[0] || o.id === self.player.whichSpells[1];
+      return o;
+    });
   }
 });
 

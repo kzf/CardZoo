@@ -9,13 +9,20 @@
 		</h2>
 		<section class="category-container">
 			{{#each champions}}
-				<a href="#" class="select-champion">{{name}}</a>{{#if selected}} SELECTED {{/if}} <br>
+				<div class="champion-face {{#if selected}}selected{{/if}}">
+					<img class="face-art" src="{{art}}">
+				</div>
 			{{/each}}
 		</section>
 		<h2 class="category-header">
 			Select two spells:
 		</h2>
 		<section class="category-container">
+			{{#each spells}}
+				<div class="spell-circle {{#if selected}}selected{{/if}}">
+					<img class="circle-art" src="{{art}}">
+				</div>
+			{{/each}}
 		</section>
 		<h2 class="category-header">
 			Select a deck:

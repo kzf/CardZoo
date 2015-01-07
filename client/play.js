@@ -181,7 +181,10 @@ Template.play.events({
   'click #ready_button': function (e, template) {
     Meteor.call('toggleReady', template.data._id, Meteor.userId());
   },
-  'click .select-champion': function (e, template) {
+  'click .champion-face': function (e, template) {
     Meteor.call('selectChampion', template.data._id, Meteor.userId(), this.id);
+  },
+  'click .spell-circle': function (e, template) {
+    Meteor.call('selectSpell', template.data._id, Meteor.userId(), this.id);
   }
 });

@@ -6,7 +6,7 @@ body, #main, html {
 	width: 90%;
 	max-width: 960px;
 	margin: 0 auto;
-	background: #e0dec9;
+	background: url('/images/page-bg.png');
 	border: solid #926f4d;
 	border-width: 0px 15px 0px 15px;
 	min-height: 100%;
@@ -131,4 +131,59 @@ body, #main, html {
 	& .ready-light {
 		left: 10px;
 	}
+}
+
+/*****
+	Champions
+	******/
+.champion-face {
+  display: inline-block;
+  padding: 2px;
+  & .face-art {
+  	width: 80px;
+  	height: 80px;
+  	border-top-left-radius: 30px 30px;
+  	border-top-right-radius: 30px 30px;
+	  border: 5px solid #67aa74;
+	  box-shadow: 0 0 0 2px #509553;
+	  transition: border-color .2s ease;
+  }
+  &:hover {
+  	cursor: pointer;
+  }
+  &:hover .face-art {
+  	border-color: #ffae3a;
+  	box-shadow: none;
+  }
+  &.selected .face-art {
+  	border-color: #fedc3a;
+  	box-shadow: none;
+  }
+}
+
+/*****
+	Spells
+	******/
+.spell-circle {
+  display: inline-block;
+  padding: 2px;
+  & .circle-art {
+  	width: 80px;
+  	height: 80px;
+  	border-radius: 50%;
+	  border: 5px solid #806a4b;
+	  box-shadow: 0 0 0 2px #6a4b34;
+	  transition: border-color .2s ease;
+  }
+  &:hover {
+  	cursor: pointer;
+  }
+  &:hover .circle-art {
+  	border-color: #ffae3a;
+  	box-shadow: none;
+  }
+  &.selected .circle-art {
+  	border-color: #fedc3a;
+  	box-shadow: none;
+  }
 }

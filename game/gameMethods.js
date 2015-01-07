@@ -146,5 +146,13 @@ Meteor.methods({
     var game = Games.findOne(gameId);
     game.players[id].whichChampion = champId;
     Games.update(gameId, game);
+  },
+  selectSpell: function(gameId, id, spellId) {
+    var game = Games.findOne(gameId);
+    if (spellId === game.players[id].whichSpells[0] || spellId === game.players[id].whichSpells[1]) {
+      return;
+    }
+    game.players[id].whichSpells = [game.players[id].whichSpells[1], spellId];
+    Games.update(gameId, game);
   }
 });
