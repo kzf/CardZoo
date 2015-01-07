@@ -17,12 +17,86 @@ body, #main, html {
 	box-sizing: border-box;
 }
 
+
+/****
+	Header
+	****/
 .img-header {
 	background: #926f4d; // progressive enhancement
 	background: linear-gradient(to bottom, #926f4d, #926f4d 80%, #b39c70 80%, #b39c70 85%, transparent 85%, transparent);
-	text-align: center;
 	margin-bottom: 10px;
+	text-align: left;
 }
+
+.header-logo {
+	margin-left: 30px;
+}
+
+.header-links {
+	float: right;
+	
+}
+
+.header-link {
+	width: 240px;
+	display: inline-block;
+	border: 2px solid #ffdc3a;
+	height: 50px;
+	border-radius: 20px;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: right;
+	padding-right: 20px;
+	margin-right: 20px;
+	text-decoration: none;
+	color: white;
+	transition: all .3s ease;
+	position: relative;
+	margin-top: 50px;
+}
+
+.header-link:hover {
+	background-color: #ffdc3a;
+	color: #926f4d;
+}
+
+.header-link.deck-editor::before {
+	content: "";
+	display: block;
+	width: 129px;
+	height: 140px;
+	background: url('/images/deck_builder.png');
+	position: absolute;
+	left: -4px;
+	bottom: -44px;
+}
+
+.header-link.home::before {
+	content: "";
+	display: block;
+	width: 172px;
+	height: 125px;
+	background: url('/images/home_cave.png');
+	position: absolute;
+	left: 10px;
+	bottom: -34px;
+}
+
+@media only screen and (max-width:959px) {
+	.header-links {
+		width: 270px;
+	}
+	.img-header .header-logo {
+		margin-top: 100px;
+	}
+}
+
+@media only screen and (max-width:631px) {
+	.img-header .header-logo {
+		margin-top: 10px;
+	}
+}
+
 
 .category-header {
 	color: #e0dec9;
