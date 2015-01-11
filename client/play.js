@@ -47,6 +47,9 @@ Template.play.events({
     var game = Games.findOne(template.data._id);
     if (!this.targeted && game.currentTurn[0] === id && this.playable) {
       Meteor.call('castSpell', template.data._id, id, this);
+      Meteor.setTimeout(function() {
+        Meteor.call('postActionCheck', gameId, id);
+      }, 400);
     }
   },
   /* Starting to attack with a minion */
