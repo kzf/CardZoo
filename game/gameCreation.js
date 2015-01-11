@@ -6,7 +6,8 @@ Game.createGame = function (playerIds) {
 		currentTurn: playerIds,
 		completed: false,
 		started: false,
-		timerStart: Date.now()
+		timerStart: Date.now(),
+		timerDuration: Config.lobbyDuration
 	};
 }
 
@@ -40,7 +41,7 @@ Game.startGame = function (game) {
 	Game.updateCanAttack(playerIds[0], players);
 
 	if (Meteor.isServer) {
-    GameTimers.startTurnTimer(game._id, playerIds[0]);
+    GameTimers.startTurnTimer(game, game._id, playerIds[0]);
 	}
 	
 	game.started = true;

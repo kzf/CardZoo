@@ -56,11 +56,15 @@ Template.lobby.helpers({
     });
   },
   timer: function() {
-    Timer.setStartTime(this.timerStart);
-    var timer = Session.get('timer');
-    var minutes = Math.floor(timer/60);
-    var seconds = timer - minutes * 60;
-    return "" + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    Timer.setStartTime(this.timerStart, this.timerDuration);
+    return Session.get('timer');
+  }
+});
+
+Template.turnIndicator.helpers({
+  timer: function() {
+    Timer.setStartTime(this.timerStart, this.timerDuration);
+    return Session.get('timer');
   }
 });
 

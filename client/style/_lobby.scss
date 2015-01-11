@@ -282,3 +282,21 @@ body, #main, html {
   	display: inline-block;
   }
 }
+
+
+/****
+	Lobby timer
+	****/
+.timer {
+	display: inline-block;
+	&.lobby-timer {
+		margin-left: 20px;
+	}
+	& .time {
+		color: #FC5A3D;
+		font-family: 'Luckiest Guy', cursive;
+  	font-size: 160%;
+	}
+}
+
+

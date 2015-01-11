@@ -1,7 +1,7 @@
 <template name='play'>
 
 	{{#if currentUser}}
-		
+	
 	{{#if game.started}}
 
 		<div class="game">
@@ -25,6 +25,9 @@
 		          <button class="end-turn-button bg-button">END TURN</button>
 		        </div>
 		      {{/if}}
+			  </section>
+			  <section class="turn-indicator timer">
+					{{> turnIndicator game}}
 			  </section>
 		  	<section class="opponent-bananas-bar">
 		  		{{> bananasBar game.otherPlayer.player}}
@@ -110,7 +113,20 @@
 
 	{{else}}
 
-		{{> lobby game}}
+		{{#if game.doesNotExist}}
+
+			<div class="page-container">
+				{{> mainHeader}}
+				<section class="category-container isolated">
+					No such game was found. Your lobby may have expired, please try to start a new game.
+				</section>
+			</div>
+
+		{{else}}
+
+			{{> lobby game}}
+
+		{{/if}}
 
 	{{/if}}
 
@@ -259,3 +275,15 @@
 	</section>
 </template>
 
+<template name="turnIndicator">
+	<div class="tagline">
+		{{#if yourTurn}}
+			Your Turn:
+		{{else}}
+			Opponent's Turn:
+		{{/if}}
+	</div>
+	<div class="time">
+		{{timer}}
+	</div>
+</template>

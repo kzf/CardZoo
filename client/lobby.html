@@ -1,12 +1,6 @@
 <template name="lobby">
 	<div class="page-container">
-		<header class="img-header">
-			<div class="header-links">
-				<a class="header-link home" href="/">Home</a>
-				<a class="header-link deck-editor" href="/decks">Deck Editor</a>
-			</div>
-			<img class="header-logo" src="/images/cardzoo.png">
-		</header>
+		{{> mainHeader}}
 		<br>
 		<h2 class="category-header">
 			Select a champion:
@@ -58,9 +52,12 @@
 		</section>
 
 		<button id="ready_button" class="bg-button">{{#if player.ready}}Not Ready{{else}}Ready{{/if}}</button>
-		
-		<section class="category-container">
-				Time left: {{timer}}s
+
+		<section class="timer lobby-timer">
+				<div class="tagline">Time until lobby expires:</div>
+				<div class="time">
+					{{timer}}
+				</div>
 		</section>
 
 		<footer class="fixed-footer">

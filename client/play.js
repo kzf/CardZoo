@@ -11,8 +11,7 @@ Template.play.helpers({
 		var game = Games.findOne(this._id);
 		if (!game) {
       return { 
-        otherPlayer: 
-        { username: 'loading...' }
+        doesNotExist: true
       };
 		}
 
