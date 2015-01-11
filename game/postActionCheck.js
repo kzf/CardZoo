@@ -19,7 +19,13 @@ Game.updatePlayable = function (players, currentTurn) {
 			}
 			for (var i = 0; i < players[id].spells.length; i++) {
 				var spell = players[id].spells[i];
-				spell.playable = id === turn && spell.cost <= players[id].bananas;
+				var castable;
+				if (Spells[spell.id].castable) {
+					castable = Spells[spell.id].castable(players, id);
+				} else {
+					castable = true;
+				}
+				spell.playable = id === turn && spell.cost <= players[id].bananas && castable;
 			}
 		}
 	}

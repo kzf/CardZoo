@@ -48,7 +48,7 @@ Template.play.events({
     if (!this.targeted && game.currentTurn[0] === id && this.playable) {
       Meteor.call('castSpell', template.data._id, id, this);
       Meteor.setTimeout(function() {
-        Meteor.call('postActionCheck', gameId, id);
+        Meteor.call('postActionCheck', template.data._id, id);
       }, 400);
     }
   },
