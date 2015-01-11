@@ -4,6 +4,7 @@ Meteor.methods({
 		Games.insert(game, function(err, id) {
 			if (Meteor.isServer) {
 				GameStreams.start(id);
+        GameTimers.startLobbyExpire(id);
 			}
 		});
 	},
@@ -154,5 +155,8 @@ Meteor.methods({
     }
     game.players[id].whichSpells = [game.players[id].whichSpells[1], spellId];
     Games.update(gameId, game);
+  },
+  deleteGame: function(gameId) {
+    Games.remove(gameId);
   }
 });

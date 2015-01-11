@@ -5,7 +5,8 @@ Game.createGame = function (playerIds) {
 		players: players,
 		currentTurn: playerIds,
 		completed: false,
-		started: false
+		started: false,
+		timerStart: Date.now()
 	};
 }
 

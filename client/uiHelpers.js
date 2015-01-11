@@ -54,6 +54,13 @@ Template.lobby.helpers({
       o.selected = o.id === self.player.whichSpells[0] || o.id === self.player.whichSpells[1];
       return o;
     });
+  },
+  timer: function() {
+    Timer.setStartTime(this.timerStart);
+    var timer = Session.get('timer');
+    var minutes = Math.floor(timer/60);
+    var seconds = timer - minutes * 60;
+    return "" + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
 });
 
