@@ -8,6 +8,10 @@ Game.dealPlayer = function(player) {
 			cost: newCard.cost
 		});
 		Game.updateHandIndexes(player.hand);
+	} else {
+		player.board.forEach(function(c) {
+			Turns.dealDamage(c, 1);
+		});
 	}
 }
 

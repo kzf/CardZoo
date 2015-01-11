@@ -38,6 +38,10 @@ Game.startGame = function (game) {
 
 	Game.startAttackingTurn(players[playerIds[0]]);
 	Game.updateCanAttack(playerIds[0], players);
+
+	if (Meteor.isServer) {
+    GameTimers.startTurnTimer(game._id, playerIds[0]);
+	}
 	
 	game.started = true;
 };

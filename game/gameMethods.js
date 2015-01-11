@@ -109,6 +109,10 @@ Meteor.methods({
 
     Game.startAttackingTurn(game.players[otherId]);
 		Game.updateCanAttack(otherId, game.players);
+
+    if (Meteor.isServer) {
+      GameTimers.startTurnTimer(gameId, otherId);
+    }
     
     Games.update(gameId, game);
   },
