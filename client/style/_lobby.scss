@@ -218,6 +218,7 @@ body, #main, html {
   display: inline-block;
   padding: 2px;
   & .face-art {
+  	opacity: 0.5;
   	width: 80px;
   	height: 80px;
   	border-top-left-radius: 30px 30px;
@@ -226,16 +227,10 @@ body, #main, html {
 	  box-shadow: 0 0 0 2px #509553;
 	  transition: border-color .2s ease;
   }
-  &:hover {
-  	cursor: pointer;
-  }
-  &:hover .face-art {
-  	border-color: #ffae3a;
-  	box-shadow: none;
-  }
   &.selected .face-art {
   	border-color: #fedc3a;
   	box-shadow: none;
+  	opacity: 1;
   }
   & .health, & .attack {
   	position: static;
@@ -247,6 +242,19 @@ body, #main, html {
   }
 }
 
+.not-ready .champion-face {
+	& .face-art {
+		opacity: 1;
+	}
+	&:hover {
+  	cursor: pointer;
+  }
+  &:hover .face-art {
+  	border-color: #ffae3a;
+  	box-shadow: none;
+  }
+}
+
 /*****
 	Spells
 	******/
@@ -255,6 +263,7 @@ body, #main, html {
   display: inline-block;
   padding: 2px;
   & .circle-art {
+  	opacity: 0.5;
   	width: 80px;
   	height: 80px;
   	border-radius: 50%;
@@ -262,14 +271,9 @@ body, #main, html {
 	  box-shadow: 0 0 0 2px #6a4b34;
 	  transition: border-color .2s ease;
   }
-  &:hover {
-  	cursor: pointer;
-  }
-  &:hover .circle-art {
-  	border-color: #ffae3a;
-  	box-shadow: none;
-  }
+  
   &.selected .circle-art {
+  	opacity: 1;
   	border-color: #fedc3a;
   	box-shadow: none;
   }
@@ -283,6 +287,18 @@ body, #main, html {
   }
 }
 
+.not-ready .spell-circle {
+	& .circle-art {
+		opacity: 1;
+	}
+	&:hover {
+  	cursor: pointer;
+  }
+  &:hover .circle-art {
+  	border-color: #ffae3a;
+  	box-shadow: none;
+  }
+}
 
 /****
 	Lobby timer

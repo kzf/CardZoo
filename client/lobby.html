@@ -1,7 +1,6 @@
 <template name="lobby">
-	<div class="page-container">
+	<div class="page-container {{#if player.ready}}{{else}}not-ready{{/if}}">
 		{{> mainHeader}}
-		<br>
 		<h2 class="category-header">
 			Select a champion:
 		</h2>

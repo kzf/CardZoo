@@ -149,11 +149,13 @@ Meteor.methods({
   },
   selectChampion: function(gameId, id, champId) {
     var game = Games.findOne(gameId);
+    if (game.players[id].ready) return;
     game.players[id].whichChampion = champId;
     Games.update(gameId, game);
   },
   selectSpell: function(gameId, id, spellId) {
     var game = Games.findOne(gameId);
+    if (game.players[id].ready) return;
     if (spellId === game.players[id].whichSpells[0] || spellId === game.players[id].whichSpells[1]) {
       return;
     }
