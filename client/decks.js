@@ -31,12 +31,23 @@ Template.deck.helpers({
 				}, Cards[k]));
 			}
 		}
+    deck.cards.sort(function(a, b) {
+      var dCost = a.cost - b.cost;
+      if (dCost) return dCost;
+      return a.name > b.name;
+    });
     deck.usable = deck.total >= Config.minCardsInDeck && deck.total <= Config.maxCardsInDeck;
     deck.noCards = deck.cards.length === 0;
 		return deck;
 	},
 	cards: function() {
-    return Cards;
+    var cards = Cards.slice(0);
+    cards.sort(function(a, b) {
+      var dCost = a.cost - b.cost;
+      if (dCost) return dCost;
+      return a.name > b.name;
+    });
+    return cards;
   },
   minCards: function() {
     return Config.minCardsInDeck;

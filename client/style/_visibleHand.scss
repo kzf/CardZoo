@@ -18,7 +18,8 @@
   transition: transform 0.3s cubic-bezier(1,0,.71,.24);
 }
 
-.visible-hand .card {
+.visible-hand .card,
+.card-tooltip .card {
   position: relative;
   list-style-type: none;
   width: 140px;
@@ -31,6 +32,12 @@
   pointer-events: auto;
   box-shadow:
     -2px 2px 1px rgba(0,0,0,0.3);
+}
+
+.card.micro-card {
+  width: 110px;
+  border-top-left-radius: 40px 40px;
+  border-top-right-radius: 40px 40px;
 }
 
 .visible-hand .card-container:hover + .card-container .card {
@@ -46,7 +53,8 @@
   border-color: rgb(93,93,160);
 }*/
 
-.visible-hand .card::before {
+.visible-hand .card::before,
+.card-tooltip .card::before {
   content: "";
   position: absolute;
   left: 0;
@@ -57,7 +65,8 @@
   transition: all .3s ease;
 }
 
-.visible-hand .card-art {
+.visible-hand .card-art,
+.card-tooltip .card-art {
   width: 130px;
   height: 130px;
   border-radius: 52px 52px 0 0;
@@ -66,7 +75,14 @@
   margin-top: 5px;
 }
 
-.visible-hand .card .attack {
+.micro-card .card-art {
+  width: 100px;
+  height: 100px;
+  border-radius: 32px 32px 0 0;
+}
+
+.visible-hand .card .attack,
+.card-tooltip .card .attack {
   top: 101px;
   left: 4px;
   background: #a48962;
@@ -76,7 +92,8 @@
   border-radius: 4px;
 }
 
-.visible-hand .health {
+.visible-hand .health,
+.card-tooltip .health {
   top: 101px;
   right: 4px;
   background: #c1634b;
@@ -85,7 +102,8 @@
   border-radius: 4px;
 }
 
-.visible-hand .name {
+.visible-hand .name,
+.card-tooltip .name {
   height: 20px;
   display: block;
   width: 100%;
@@ -98,7 +116,8 @@
   text-align: center;
 }
 
-.visible-hand .description {
+.visible-hand .description,
+.card-tooltip .description {
   display: block;
   height: 50px;
   background: #e0dec9;
@@ -106,7 +125,12 @@
   padding: 4px;
 }
 
-.visible-hand .artist-credit {
+.micro-card .description {
+  height: 35px;
+}
+
+.visible-hand .artist-credit,
+.card-tooltip .artist-credit {
   display: block;
   text-align: right;
   background: #e0dec9;

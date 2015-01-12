@@ -27,12 +27,24 @@
 		text-align: left;
 		border-bottom: 1px solid #926f4d;
 		border-right: 1px solid #926f4d;
-		text-decoration: underline;
 		font-weight: bold;
 		font-size: 110%;
 		color: #5e452e;
 		&:hover {
 			background: #ffae3a;
+		}
+		& .cost-inline {
+			display: inline-block;
+			width: 25px;
+			text-align: center;
+			border: 1px solid #5e452e;
+			text-decoration: none;
+			border-radius: 5px;
+			background: #fff;
+		}
+		& .card-name {
+			padding-left: 4px;
+			text-decoration: underline;
 		}
 	}
 	& .info-row {
@@ -44,10 +56,14 @@
 		background: #cfb990;
 		color: #5e452e;
 	}
+	& .card-list-row {
+		position: relative;
+	}
 }
 
 .right-section {
 	& .btn-row {
+		position: relative;
 		display: block;
 		padding: 6px;
 		cursor: pointer;
@@ -62,6 +78,16 @@
 			& .count {
 				background: #e0dec9;
 			}
+		}
+		& .cost-inline {
+			display: inline-block;
+			float: right;
+			width: 25px;
+			text-align: center;
+			border: 1px solid #5e452e;
+			text-decoration: none;
+			border-radius: 5px;
+			background: #fff;
 		}
 		& .count {
 			display: inline-block;

@@ -48,7 +48,23 @@
 			</section>
 			<div id="cards_list">
 			{{#each cards}}
-				<div class="card-list-row btn-row">{{name}}</div>
+				<div class="card-list-row btn-row">
+					<span class="cost-inline">{{cost}}</span>
+					<span class="card-name">{{name}}</span>
+					<div class="card-tooltip">
+			      <div class="card">
+			        <img class="card-art" src="{{ art }}">
+			        <span class="health">{{ health }}</span>
+			        <span class="attack">{{ attack }}</span>
+			        <span class="cost">{{ cost }}</span>
+			        <span class="name">{{ name }}</span>
+			        <span class="description">{{{ description }}}</span>
+			        <span class="artist-credit">
+			        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+			        </span>
+			      </div>
+					</div>
+				</div>
 			{{/each}}
 			</div>
 		</section>
@@ -62,6 +78,20 @@
 				<div class="deck-list-row btn-row">
 					<span class="count">{{copies}}</span>
 					<span class="card-name">{{name}}</span>
+					<span class="cost-inline">{{cost}}</span>
+					<div class="card-tooltip">
+			      <div class="card">
+			        <img class="card-art" src="{{ art }}">
+			        <span class="health">{{ health }}</span>
+			        <span class="attack">{{ attack }}</span>
+			        <span class="cost">{{ cost }}</span>
+			        <span class="name">{{ name }}</span>
+			        <span class="description">{{{ description }}}</span>
+			        <span class="artist-credit">
+			        	Photo: <a href="{{artistlink}}" target="_blank">{{artistname}}</a>
+			        </span>
+			      </div>
+					</div>
 				</div>
 			{{/each}}
 			{{/if}}

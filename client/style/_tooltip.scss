@@ -74,6 +74,14 @@ http://codepen.io/cbracco/pen/qzukg
 	padding: 0;
 }
 
+.card-tooltip {
+	position: absolute;
+	left: 70%;
+	top: -9999px;
+	z-index: 2;
+	opacity: 0;
+}
+
 .card:hover .description-tooltip,
 .spell:hover .description-tooltip,
 .deck:hover .description-tooltip,
@@ -85,6 +93,23 @@ http://codepen.io/cbracco/pen/qzukg
 	top: 50%;
 	transform: translateY(-50%);
 	transition: opacity .2s ease 0.5s, top 0s ease 0.5s;
+}
+
+.card-list-row:hover .card-tooltip,
+.btn-row:hover .card-tooltip {
+	opacity: 1;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: opacity .2s ease, top 0s ease;
+}
+
+.champion-face:hover .card-tooltip,
+.spell-circle:hover .card-tooltip {
+	opacity: 1;
+	left: 50%;
+	top: 100%;
+	transform: translateX(-50%);
+	transition: opacity .2s ease, top 0s ease;
 }
 
 .opponent-spells .description-tooltip,
