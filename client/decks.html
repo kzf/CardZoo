@@ -42,14 +42,28 @@
 			{{deck.name}}
 		</section>
 		<section class="left-section">
+			<section class="info-row">
+				<input id="cards_filter" type="text">
+			</section>
+			<section id="no_cards_found" class="info-row">
+				No matching cards found.
+			</section>
+			<div id="cards_list">
 			{{#each cards}}
 				<div class="card-list-row btn-row">{{name}}</div>
 			{{/each}}
+			</div>
 		</section>
 		<section class="right-section">
+			{{#if deck.noCards}}
+				<div class="info-row">
+					No cards in deck. Select cards to the left to add them to your deck.
+				</div>
+			{{else}}
 			{{#each deck.cards}}
 				<div class="deck-list-row btn-row">{{copies}} x {{name}}</div>
 			{{/each}}
+			{{/if}}
 		</section>
 		<section class="plain-section">
 			<button id="decks" class="bg-button">Decks</button>

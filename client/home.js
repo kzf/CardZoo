@@ -3,11 +3,16 @@ function otherId(game) {
 }
 
 Template.gameList.helpers({
+
 	games: function() {
-		return Games.find({ completed: false }).map(function (game) {
+		var games = Games.find({ completed: false }).map(function (game) {
 			game.otherPlayer = Meteor.users.findOne(otherId(game)).username;
 			return game;
 		});
+		return {
+			games: games,
+			noneFound: games.length === 0
+		}
 	}
 });
 
@@ -16,18 +21,36 @@ Template.userList.helpers({
 		var myid = Meteor.userId(),
 				cantPlayAgainst = [myid];
 
-		Games.find({inProgress: true}).forEach(function (game) {
+		Games.find({completed: false}).forEach(function (game) {
 			cantPlayAgainst.push(otherId(game));
 		});
 
-		return Meteor.users.find({ _id: { $not: { $in: cantPlayAgainst }}});
+		var users = Meteor.users.find({ "status.online" : true,  _id: { $not: { $in: cantPlayAgainst }}});
+
+		console.log("SENDING USERS");
+		return {
+			users: users,
+			noneFound: users.length === 0
+		};
 	},
 
 });
 
-Template.userItem.events({
-	'click button': function (e, template) {
-		Meteor.call('createGame', template.data._id);
+Template.userList.events({
+	'click a': function (e, template) {
+		Meteor.call('createGame', this._id);
 	}
-})
+});
 
+Template.userList.rendered = function() {
+	var noUsersMessage = $("#no_users_found").hide();
+  $('#user_filter').fastLiveFilter('#user_list', {
+  	callback: function(i) {
+  		if (i === 0) {
+  			noUsersMessage.show();
+  		} else {
+  			noUsersMessage.hide();
+  		}
+  	}
+  });
+};

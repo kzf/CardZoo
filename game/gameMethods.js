@@ -187,14 +187,11 @@ Meteor.methods({
     }
   },
   removeFromDeck: function(id, deckId, cardId) {
-    console.log("REMOVING", cardId, "from", deckId, "for user", id);
     var user = Meteor.users.findOne(id);
     var deck = user.decks[deckId].deck;
-    console.log(deck[cardId]);
     if (typeof deck[cardId] !== 'undefined' && deck[cardId] > 0) {
       user.decks[deckId].deck[cardId]--;
     }
-    console.log("A");
     Meteor.users.update(id, user);
   },
   addToDeck: function(id, deckId, cardId) {

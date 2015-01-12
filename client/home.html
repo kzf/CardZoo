@@ -18,50 +18,49 @@
 			<h2 class="category-header">
 				Games:
 			</h2>
-			<section class="category-container">
-				{{> gameList}}
-			</section>
+			{{> gameList}}
 			<h2 class="category-header">
-				Users:
+				Online Users: <span class="header-aside">(click a user to start a game)</span>
 			</h2>
-			<section class="category-container">
-				{{> userList}}
-			</section>
+			{{> userList}}
 		{{/if}}
 	</div>
-	
-	
 </template>
 
 <template name='gameList'>
-	<ul>
-		{{#each games}}
-			{{> gameItem}}
+	{{#if games.noneFound}}
+	<section class="category-container">
+		You have no currently active games.
+	</section>
+	{{else}}
+	<section class="category-container btn-container">
+		{{#each games.games}}
+			<a class="btn-row" href="/game/{{_id}}">
+				{{otherPlayer}}
+				{{#if started}}
+					(game started)
+				{{else}}
+					(in lobby)
+				{{/if}}
+			</a>
 		{{/each}}
-	</ul>
+	</section>
+	{{/if}}
 </template>
 
-<template name='gameItem'>
-	<li>
-	<a href="/game/{{_id}}">Game with {{otherPlayer}} 
-		<span>
-			{{#if inProgress}}
-				{{started}}
-			{{/if}}
-		</span>
-	</a>
-	</li>
-</template>
 
 <template name='userList'>
-	<p> Choose another user to start a game: </p>
-	<ul>
-		{{#each users}}
-			{{> userItem}}
+	<section class="category-container {{#if users.noneFound}}{{else}}btn-container{{/if}}">
+		<section class="info-row">
+			<input id="user_filter" type="text">
+		</section>
+		<section id="no_users_found" class="info-row">
+			No matching users found.
+		</section>
+		<div id="user_list">
+		{{#each users.users}}
+			<a class="btn-row" href="#">{{username}}</a>
 		{{/each}}
-	</ul>
-</template>
-
-<template name='userItem'>
-	<li><button>{{username}}</button></li>
+		</div>
+	</section>
 </template>

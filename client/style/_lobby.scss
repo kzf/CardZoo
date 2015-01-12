@@ -107,6 +107,9 @@ body, #main, html {
 	margin: 0 auto;
 	box-sizing: border-box;
 	text-align: left;
+	& .header-aside {
+		font-size: 80%;
+	}
 }
 
 .category-container {
@@ -117,8 +120,10 @@ body, #main, html {
 	box-sizing: border-box;
 	border: 2px solid #b39c70;
 	border-width: 0px 2px 2px 2px;
+	border-bottom-color: #926f4d;
 	margin-bottom: 20px;
 	background: #cfb990;
+	color: #5e452e;
 	&.isolated {
 		border-width: 2px;
 	}
@@ -138,9 +143,13 @@ body, #main, html {
 		&:hover {
 			background: #ffae3a;
 		}
-		&:last-child {
-			border-bottom-width: 0;
-		}
+	}
+	& .info-row {
+		display: block;
+		padding: 6px 25px;
+		text-align: left;
+		border-bottom: 1px solid #926f4d;
+		color: #5e452e;
 	}
 }
 

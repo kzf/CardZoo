@@ -30,6 +30,7 @@ Template.deck.helpers({
 				}, Cards[k]));
 			}
 		}
+    deck.noCards = deck.cards.length === 0;
 		return deck;
 	},
 	cards: function() {
@@ -39,7 +40,6 @@ Template.deck.helpers({
 
 Template.deck.events({
 	'click .card-list-row': function(e, template) {
-		console.log("CLICKED");
 		Meteor.call('addToDeck', Meteor.userId(), template.data._id, this.id);
 	},
 	'click .deck-list-row': function(e, template) {
@@ -56,3 +56,16 @@ Template.deck.events({
   	Router.go('/decks/');
   }
 })
+
+Template.deck.rendered = function() {
+	var noCardsMessage = $("#no_cards_found").hide();
+  $('#cards_filter').fastLiveFilter('#cards_list', {
+  	callback: function(i) {
+  		if (i === 0) {
+  			noCardsMessage.show();
+  		} else {
+  			noCardsMessage.hide();
+  		}
+  	}
+  });
+};

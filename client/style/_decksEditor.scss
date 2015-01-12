@@ -35,6 +35,15 @@
 			background: #ffae3a;
 		}
 	}
+	& .info-row {
+		display: block;
+		padding: 6px 25px;
+		border-bottom: 1px solid #926f4d;
+		border-right: 1px solid #926f4d;
+		text-align: left;
+		background: #cfb990;
+		color: #5e452e;
+	}
 }
 
 .right-section {
@@ -52,6 +61,15 @@
 		&:hover {
 			background: #ffae3a;
 		}
+	}
+	& .info-row {
+		display: block;
+		padding: 6px 25px;
+		border-bottom: 1px solid #926f4d;
+		border-left: 1px solid #926f4d;
+		text-align: left;
+		background: #cfb990;
+		color: #5e452e;
 	}
 }
 
