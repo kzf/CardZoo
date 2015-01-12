@@ -80,8 +80,6 @@
 
 	  
 		</div>
-	
-		{{> chat game.otherPlayer}}
 
 		{{#if game.completed}}
   	{{else}}
@@ -128,6 +126,11 @@
 
 		{{/if}}
 
+	{{/if}}
+
+	{{#if game.doesNotExist}}
+	{{else}}
+	{{> chat game.otherPlayer}}
 	{{/if}}
 
 	{{/if}}
