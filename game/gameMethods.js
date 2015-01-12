@@ -164,5 +164,59 @@ Meteor.methods({
   },
   deleteGame: function(gameId) {
     Games.remove(gameId);
+  },
+  /*******
+    Deck editing
+    ********/
+  createNewDeck: function(id) {
+    var user = Meteor.users.findOne(id);
+    if (typeof user.decks === 'undefined') {
+      user.decks = [];
+    }
+    user.decks.push({
+      name: "Deck " + (user.decks.length + 1),
+      deck: {
+        0: 2,
+        1: 1,
+        2: 1
+      }
+    })
+    Meteor.users.update(id, user);
+    if (Meteor.isClient) {
+      Router.go('/decks/' + (user.decks.length - 1));
+    }
+  },
+  removeFromDeck: function(id, deckId, cardId) {
+    console.log("REMOVING", cardId, "from", deckId, "for user", id);
+    var user = Meteor.users.findOne(id);
+    var deck = user.decks[deckId].deck;
+    console.log(deck[cardId]);
+    if (typeof deck[cardId] !== 'undefined' && deck[cardId] > 0) {
+      user.decks[deckId].deck[cardId]--;
+    }
+    console.log("A");
+    Meteor.users.update(id, user);
+  },
+  addToDeck: function(id, deckId, cardId) {
+    var user = Meteor.users.findOne(id);
+    var deck = user.decks[deckId].deck;
+    if (typeof deck[cardId] !== 'undefined') {
+      if (deck[cardId] < Config.maxCopiesPerCard) {
+        user.decks[deckId].deck[cardId]++;
+      }
+    } else {
+      user.decks[deckId].deck[cardId] = 1;
+    }
+    Meteor.users.update(id, user);
+  },
+  changeDeckName: function(id, deckId, name) {
+    var user = Meteor.users.findOne(id);
+    user.decks[deckId].name = name;
+    Meteor.users.update(id, user);
+  },
+  deleteDeck: function(id, deckId) {
+    var user = Meteor.users.findOne(id);
+    user.decks.splice(deckId, 1);
+    Meteor.users.update(id, user);
   }
 });

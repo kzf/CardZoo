@@ -1,0 +1,58 @@
+<template name="decks">
+	<div class="page-container">
+		{{> mainHeader}}
+		<section class="category-container isolated">
+			{{> signupLogin}}
+		</section>
+		{{#if currentUser}}
+			<h2 class="category-header">
+				Decks (click to edit):
+			</h2>
+			{{> deckList currentUser}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="deckList">
+	{{#if noDecks}}
+	<section class="category-container">
+		You do not currently have any saved decks.
+	</section>
+	{{else}}
+	<section class="category-container btn-container">
+		{{#each decks}}
+			<a class="btn-row" href="/decks/{{index}}">{{name}}</a>
+		{{/each}}
+	</section>
+	{{/if}}
+	<button id="new_deck" class="bg-button">New Deck</button>
+</template>
+
+<template name="deck">
+	<div class="page-container">
+		{{> mainHeader}}
+		<section class="plain-section">
+			Deck name: <input type="text" id="deck_name" placeholder="{{deck.name}}"> <button id="save_name">Save</button>
+			<button id="delete_deck">Delete Deck</button>
+		</section>
+		<section class="left-section section-header">
+			Card List
+		</section>
+		<section class="right-section section-header">
+			{{deck.name}}
+		</section>
+		<section class="left-section">
+			{{#each cards}}
+				<div class="card-list-row btn-row">{{name}}</div>
+			{{/each}}
+		</section>
+		<section class="right-section">
+			{{#each deck.cards}}
+				<div class="deck-list-row btn-row">{{copies}} x {{name}}</div>
+			{{/each}}
+		</section>
+		<section class="plain-section">
+			<button id="decks" class="bg-button">Decks</button>
+		</section>
+	</div>
+</template>

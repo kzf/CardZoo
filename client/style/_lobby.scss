@@ -3,6 +3,7 @@ body, #main, html {
 }
 
 .page-container {
+	vertical-align:top;
 	width: 90%;
 	max-width: 960px;
 	margin: 0 auto;
@@ -120,6 +121,26 @@ body, #main, html {
 	background: #cfb990;
 	&.isolated {
 		border-width: 2px;
+	}
+	&.btn-container {
+		padding: 0;
+	}
+	& .btn-row {
+		display: block;
+		padding: 6px 25px;
+		cursor: pointer;
+		text-align: left;
+		border-bottom: 1px solid #926f4d;
+		text-decoration: underline;
+		font-weight: bold;
+		font-size: 110%;
+		color: #5e452e;
+		&:hover {
+			background: #ffae3a;
+		}
+		&:last-child {
+			border-bottom-width: 0;
+		}
 	}
 }
 
