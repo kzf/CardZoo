@@ -1,9 +1,11 @@
 <template name="mainHeader">
 	<header class="img-header">
+		{{#if currentUser}}
 		<div class="header-links">
 			<a class="header-link home" href="/">Home</a>
 			<a class="header-link deck-editor" href="/decks">Deck Editor</a>
 		</div>
+		{{/if}}
 		<img class="header-logo" src="/images/cardzoo.png">
 	</header>
 </template>
@@ -11,9 +13,7 @@
 <template name="home">
 	<div class="page-container not-ready">
 		{{> mainHeader}}
-		<section class="category-container isolated">
-			{{> signupLogin}}
-		</section>
+		{{> signupLogin}}
 		{{#if currentUser}}
 			<h2 class="category-header">
 				Games:

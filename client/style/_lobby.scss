@@ -162,6 +162,27 @@ body, #main, html {
 	& .header-row {
 		font-size: 110%;
 	}
+	&.block-left, &.block-right {
+		vertical-align: middle;
+		width: 60%;
+		display: inline-block;
+	}
+	& h1 {
+		margin-top: 0px;
+		margin-bottom: 8px;
+	}
+}
+
+.aside-container {
+	vertical-align: middle;
+	&.block-right {
+		width: 35%;
+		display: inline-block;
+	}
+	&.block-left {
+		width: 35%;
+		display: inline-block;
+	}
 }
 
 .not-ready .category-container {

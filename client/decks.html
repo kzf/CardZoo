@@ -1,9 +1,7 @@
 <template name="decks">
 	<div class="page-container not-ready">
 		{{> mainHeader}}
-		<section class="category-container isolated">
-			{{> signupLogin}}
-		</section>
+		{{> signupLogin}}
 		{{#if currentUser}}
 			<h2 class="category-header">
 				Decks (click to edit):

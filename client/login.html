@@ -1,27 +1,39 @@
 <template name="signup">
-	<form>
-		<h1>Sign up</h1>
-		<input type="text" id="su-email" placeholder="Email Address" />
-		<input type="text" id="su-username" placeholder="Username" />
-		<input type="password" id="su-password" placeholder="Password" />
-		<button> Sign Up </button>
-	</form>
+	<section class="category-container isolated block-left">
+		<form>
+			<h1>Sign up</h1>
+			<div class="email-box"><input type="text" id="su-email" placeholder="Email Address" /></div>
+			<div class="username-box"><input type="text" id="su-username" placeholder="Username" /></div>
+			<div class="password-box"><input type="password" id="su-password" placeholder="Password" /></div>
+			<button class="highlight"> Sign Up </button>
+		</form>
+	</section>
+	<aside class="aside-container block-right">
+		<img src="/images/deck_builder.png">
+	</aside>
 </template>
 
 <template name="login">
-	<form>
-		<h1>Log In</h1>
-		<input type="text" id="li-username" placeholder="Username" />
-		<input type="password" id="li-password" placeholder="Password" />
-		<button> Log In </button>
-	</form>
+	<aside class="aside-container block-right">
+		<img src="/images/home_cave.png">
+	</aside>
+	<section class="category-container isolated block-right">
+		<form>
+			<h1>Log In</h1>
+			<div class="username-box"><input type="text" id="li-username" placeholder="Username" /></div>
+			<div class="password-box"><input type="password" id="li-password" placeholder="Password" /></div>
+			<button class="highlight"> Log In </button>
+		</form>
+	</section>
 </template>
 
 <template name="logout">
-	<form>
-		({{currentUser.username}})
-		<button> Log out </button>
-	</form>
+	<section class="plain-section right-aligned">
+		<form>
+			Logged in as {{currentUser.username}}
+			<button class="danger repel-left"> Log out </button>
+		</form>
+	</section>
 </template>
 
 <template name="signupLogin">

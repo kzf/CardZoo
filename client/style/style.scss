@@ -105,6 +105,11 @@ button {
     background: #F25F5F;
     color: #5E452E;
   }
+  &.highlight {
+    background: #4C894B;
+    color: white;
+    border-color: #333;
+  }
 }
 
 input {
@@ -135,4 +140,69 @@ input {
     width: 19px;
     height: 17px;
   }
+}
+
+.email-box {
+  position: relative;
+  margin-bottom: 4px;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 9px;
+    top: 9px;
+    background: url('/images/email.png');
+    width: 21px;
+    height: 12px;
+  }
+  & input {
+    width:100%;
+    padding-left: 34px;
+  }
+}
+
+.username-box {
+  position: relative;
+  margin-bottom: 4px;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    background: url('/images/username.png');
+    width: 15px;
+    height: 15px;
+  }
+  & input {
+    width:100%;
+    padding-left: 34px;
+  }
+}
+
+.password-box {
+  position: relative;
+  margin-bottom: 4px;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    background: url('/images/password.png');
+    width: 23px;
+    height: 12px;
+  }
+  & input {
+    width:100%;
+    padding-left: 34px;
+  }
+}
+
+.repel-left {
+  margin-left: 20px;
+}
+
+.right-aligned {
+  text-align: right;
 }

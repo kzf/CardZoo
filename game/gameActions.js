@@ -24,4 +24,7 @@ Game.declareWinner = function (game, id) {
 Game.endGame = function (game) {
 	game.completed = true;
 	Game.updatePlayable(game.players, false);
+	if (Meteor.isServer) {
+		GameTimers.clear(game._id);
+	}
 }
