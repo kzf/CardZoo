@@ -143,6 +143,9 @@ body, #main, html {
 		&:hover {
 			background: #ffae3a;
 		}
+		&.selected {
+			background: #fedc3a;
+		}
 	}
 	& .info-row {
 		display: block;

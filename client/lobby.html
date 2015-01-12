@@ -47,7 +47,22 @@
 		<h2 class="category-header">
 			Select a deck:
 		</h2>
-		<section class="category-container">
+		<section class="category-container btn-container">
+			<div class="info-row">
+				Standard decks:
+			</div>
+			<div class="info-row">
+				My decks:
+			</div>
+			{{#if decks.noneFound}}
+			<div class="info-row">
+				No usable decks found.
+			</div>
+			{{else}}
+			{{#each decks.decks}}
+				<a class="btn-row deck-selector {{#if selected}}selected{{/if}}" href="#">{{name}}</a>
+			{{/each}}
+			{{/if}}
 		</section>
 
 		<button id="ready_button" class="bg-button">{{#if player.ready}}Not Ready{{else}}Ready{{/if}}</button>

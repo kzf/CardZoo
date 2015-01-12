@@ -27,7 +27,6 @@ Template.userList.helpers({
 
 		var users = Meteor.users.find({ "status.online" : true,  _id: { $not: { $in: cantPlayAgainst }}});
 
-		console.log("SENDING USERS");
 		return {
 			users: users,
 			noneFound: users.length === 0

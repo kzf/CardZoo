@@ -162,6 +162,12 @@ Meteor.methods({
     game.players[id].whichSpells = [game.players[id].whichSpells[1], spellId];
     Games.update(gameId, game);
   },
+  selectDeck: function(gameId, id, deckId) {
+    var game = Games.findOne(gameId);
+    if (game.players[id].ready) return;
+    game.players[id].whichDeck = deckId;
+    Games.update(gameId, game);
+  },
   deleteGame: function(gameId) {
     Games.remove(gameId);
   },

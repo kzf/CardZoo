@@ -58,6 +58,36 @@ Template.lobby.helpers({
   timer: function() {
     Timer.setStartTime(this.timerStart, this.timerDuration);
     return Session.get('timer');
+  },
+  decks: function() {
+    var decks = Meteor.users.findOne(Meteor.userId()).decks;
+    var self = this;
+    var filtered = [];
+    decks.forEach(function(d, i) {
+      // TODO: Check for usable
+      d.id = i;
+      d.selected = self.player.whichDeck === d.id;
+      filtered.push(d);
+    });
+    return {
+      decks: filtered,
+      noneFound: filtered.length === 0
+    };
+  },
+  standardDecks: function() {
+    var decks = Meteor.users.findOne(Meteor.userId()).decks;
+    var self = this;
+    var filtered = [];
+    decks.forEach(function(d, i) {
+      // TODO: Check for usable
+      d.id = i;
+      d.selected = self.player.whichDeck === d.id;
+      filtered.push(d);
+    });
+    return {
+      decks: filtered,
+      noneFound: filtered.length === 0
+    };
   }
 });
 

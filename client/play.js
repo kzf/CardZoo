@@ -188,5 +188,8 @@ Template.play.events({
   },
   'click .spell-circle': function (e, template) {
     Meteor.call('selectSpell', template.data._id, Meteor.userId(), this.id);
+  },
+  'click .deck-selector': function (e, template) {
+    Meteor.call('selectDeck', template.data._id, Meteor.userId(), this.id);
   }
 });

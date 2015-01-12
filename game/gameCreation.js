@@ -62,6 +62,7 @@ function createPlayers(ids) {
 			spells: [],
 			whichChampion: 0,
 			whichSpells: [0, 1],
+			whichDeck: -1,
 			ready: false
 		}
 	});
