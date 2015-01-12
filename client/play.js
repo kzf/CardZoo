@@ -191,5 +191,8 @@ Template.play.events({
   },
   'click .deck-selector': function (e, template) {
     Meteor.call('selectDeck', template.data._id, Meteor.userId(), this.id);
+  },
+  'click .turn-duration-selector': function (e, template) {
+    Meteor.call('selectTurnDuration', template.data._id, Meteor.userId(), this.seconds);
   }
 });

@@ -9,7 +9,7 @@
 </template>
 
 <template name="home">
-	<div class="page-container">
+	<div class="page-container not-ready">
 		{{> mainHeader}}
 		<section class="category-container isolated">
 			{{> signupLogin}}
@@ -38,7 +38,7 @@
 			<a class="btn-row" href="/game/{{_id}}">
 				{{otherPlayer}}
 				{{#if started}}
-					(game started)
+					(game in progress)
 				{{else}}
 					(in lobby)
 				{{/if}}
@@ -52,7 +52,7 @@
 <template name='userList'>
 	<section class="category-container {{#if users.noneFound}}{{else}}btn-container{{/if}}">
 		<section class="info-row">
-			<input id="user_filter" type="text">
+			<div class="search-box"><input class="search" id="user_filter" type="text"></div>
 		</section>
 		<section id="no_users_found" class="info-row">
 			No matching users found.

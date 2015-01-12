@@ -10,14 +10,14 @@ GameTimers.startLobbyExpire = function(gameId) {
 
 GameTimers.startTurnTimer = function(game, gameId, playerId) {
 	game.timerStart = Date.now();
-	game.timerDuration = Config.turnDuration;
+	game.timerDuration = game.turnDuration;
 	this.clear(gameId);
 	this.timers[gameId] = Meteor.setTimeout(function() {
 		Meteor.call('endTurn', gameId, playerId);
     Meteor.setTimeout(function() {
       Meteor.call('postActionCheck', gameId, playerId);
     }, 400);
-	}, Config.turnDuration * 1000);
+	}, game.turnDuration * 1000);
 }
 
 GameTimers.clear = function(gameId) {

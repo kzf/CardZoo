@@ -31,6 +31,8 @@ body, #main, html {
 
 .header-logo {
 	margin-left: 30px;
+	width: 223px;
+	height: 182px;
 }
 
 .header-links {
@@ -131,20 +133,23 @@ body, #main, html {
 		padding: 0;
 	}
 	& .btn-row {
+		opacity: 0.5;
 		display: block;
 		padding: 6px 25px;
-		cursor: pointer;
 		text-align: left;
 		border-bottom: 1px solid #926f4d;
 		text-decoration: underline;
 		font-weight: bold;
 		font-size: 110%;
+		cursor: default;
 		color: #5e452e;
-		&:hover {
-			background: #ffae3a;
-		}
 		&.selected {
+			opacity: 1;
 			background: #fedc3a;
+		}
+		&.danger {
+			background: #F25F5F;
+			color: #5e452e;
 		}
 	}
 	& .info-row {
@@ -153,6 +158,19 @@ body, #main, html {
 		text-align: left;
 		border-bottom: 1px solid #926f4d;
 		color: #5e452e;
+	}
+	& .header-row {
+		font-size: 110%;
+	}
+}
+
+.not-ready .category-container {
+	& .btn-row {
+		cursor: pointer;
+		opacity: 1;
+		&:hover {
+			background: #ffae3a;
+		}
 	}
 }
 

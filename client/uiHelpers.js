@@ -61,13 +61,15 @@ Template.lobby.helpers({
   },
   decks: function() {
     var decks = Meteor.users.findOne(Meteor.userId()).decks;
+    if (!decks) decks = [];
     var self = this;
     var filtered = [];
     decks.forEach(function(d, i) {
-      // TODO: Check for usable
-      d.id = i;
-      d.selected = self.player.whichDeck === d.id;
-      filtered.push(d);
+      if (d.total >= Config.minCardsInDeck && d.total <= Config.maxCardsInDeck) {
+        d.id = i;
+        d.selected = self.player.whichDeck === d.id;
+        filtered.push(d);
+      }
     });
     return {
       decks: filtered,
@@ -75,19 +77,26 @@ Template.lobby.helpers({
     };
   },
   standardDecks: function() {
-    var decks = Meteor.users.findOne(Meteor.userId()).decks;
+    var decks = [
+      {
+        name: 'Random Deck',
+        id: -1
+      }
+    ];
     var self = this;
     var filtered = [];
-    decks.forEach(function(d, i) {
-      // TODO: Check for usable
-      d.id = i;
+    decks.forEach(function(d) {
       d.selected = self.player.whichDeck === d.id;
       filtered.push(d);
     });
-    return {
-      decks: filtered,
-      noneFound: filtered.length === 0
-    };
+    return filtered;
+  },
+  turnDurations: function() {
+    var self = this;
+    Config.turnDurations.forEach(function(d) {
+      d.selected = self.turnDuration === d.seconds;
+    });
+    return Config.turnDurations;
   }
 });
 

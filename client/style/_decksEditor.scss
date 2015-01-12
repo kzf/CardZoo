@@ -49,27 +49,46 @@
 .right-section {
 	& .btn-row {
 		display: block;
-		padding: 6px 25px;
+		padding: 6px;
 		cursor: pointer;
 		text-align: left;
 		border-bottom: 1px solid #926f4d;
 		border-left: 1px solid #926f4d;
-		text-decoration: underline;
 		font-weight: bold;
 		font-size: 110%;
 		color: #5e452e;
 		&:hover {
 			background: #ffae3a;
+			& .count {
+				background: #e0dec9;
+			}
+		}
+		& .count {
+			display: inline-block;
+			width: 25px;
+			text-align: center;
+			border: 1px solid #5e452e;
+			text-decoration: none;
+			border-radius: 2px;
+			background: #ffae3a;
+		}
+		& .card-name {
+			padding-left: 4px;
+			text-decoration: underline;
 		}
 	}
 	& .info-row {
 		display: block;
-		padding: 6px 25px;
+		padding: 6px 13px;
 		border-bottom: 1px solid #926f4d;
 		border-left: 1px solid #926f4d;
 		text-align: left;
 		background: #cfb990;
 		color: #5e452e;
+		&.danger {
+			background: #F25F5F;
+			color: #5e452e;
+		}
 	}
 }
 

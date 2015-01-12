@@ -168,6 +168,12 @@ Meteor.methods({
     game.players[id].whichDeck = deckId;
     Games.update(gameId, game);
   },
+  selectTurnDuration: function(gameId, id, seconds) {
+    var game = Games.findOne(gameId);
+    if (game.players[id].ready) return;
+    game.turnDuration = seconds;
+    Games.update(gameId, game);
+  },
   deleteGame: function(gameId) {
     Games.remove(gameId);
   },
@@ -181,11 +187,8 @@ Meteor.methods({
     }
     user.decks.push({
       name: "Deck " + (user.decks.length + 1),
-      deck: {
-        0: 2,
-        1: 1,
-        2: 1
-      }
+      total: 0,
+      deck: {}
     })
     Meteor.users.update(id, user);
     if (Meteor.isClient) {
@@ -197,6 +200,7 @@ Meteor.methods({
     var deck = user.decks[deckId].deck;
     if (typeof deck[cardId] !== 'undefined' && deck[cardId] > 0) {
       user.decks[deckId].deck[cardId]--;
+      user.decks[deckId].total--;
     }
     Meteor.users.update(id, user);
   },
@@ -206,14 +210,17 @@ Meteor.methods({
     if (typeof deck[cardId] !== 'undefined') {
       if (deck[cardId] < Config.maxCopiesPerCard) {
         user.decks[deckId].deck[cardId]++;
+        user.decks[deckId].total++;
       }
     } else {
       user.decks[deckId].deck[cardId] = 1;
+      user.decks[deckId].total++;
     }
     Meteor.users.update(id, user);
   },
   changeDeckName: function(id, deckId, name) {
     var user = Meteor.users.findOne(id);
+    if (name === "") return;
     user.decks[deckId].name = name;
     Meteor.users.update(id, user);
   },

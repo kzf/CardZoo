@@ -7,6 +7,7 @@ Template.deckList.helpers({
     if (typeof this.decks === 'undefined') return;
     decks.forEach(function (d, i) {
       d.index = i;
+      d.usable = d.total >= Config.minCardsInDeck && d.total <= Config.maxCardsInDeck;
     });
     return decks;
   }
@@ -30,12 +31,19 @@ Template.deck.helpers({
 				}, Cards[k]));
 			}
 		}
+    deck.usable = deck.total >= Config.minCardsInDeck && deck.total <= Config.maxCardsInDeck;
     deck.noCards = deck.cards.length === 0;
 		return deck;
 	},
 	cards: function() {
     return Cards;
   },
+  minCards: function() {
+    return Config.minCardsInDeck;
+  },
+  maxCards: function() {
+    return Config.maxCardsInDeck;
+  }
 })
 
 Template.deck.events({

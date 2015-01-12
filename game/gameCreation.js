@@ -5,6 +5,7 @@ Game.createGame = function (playerIds) {
 		players: players,
 		currentTurn: playerIds,
 		completed: false,
+		turnDuration: 30,
 		started: false,
 		timerStart: Date.now(),
 		timerDuration: Config.lobbyDuration

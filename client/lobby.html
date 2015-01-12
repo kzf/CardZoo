@@ -48,10 +48,13 @@
 			Select a deck:
 		</h2>
 		<section class="category-container btn-container">
-			<div class="info-row">
+			<div class="info-row header-row">
 				Standard decks:
 			</div>
-			<div class="info-row">
+			{{#each standardDecks}}
+				<a class="btn-row deck-selector {{#if selected}}selected{{/if}}" href="#">{{name}}</a>
+			{{/each}}
+			<div class="info-row header-row">
 				My decks:
 			</div>
 			{{#if decks.noneFound}}
@@ -63,6 +66,15 @@
 				<a class="btn-row deck-selector {{#if selected}}selected{{/if}}" href="#">{{name}}</a>
 			{{/each}}
 			{{/if}}
+		</section>
+
+		<h2 class="category-header">
+			Choose the time allowed for each turn:
+		</h2>
+		<section class="category-container btn-container">
+			{{#each turnDurations}}
+				<a class="btn-row turn-duration-selector {{#if selected}}selected{{/if}}" href="#">{{name}}</a>
+			{{/each}}
 		</section>
 
 		<button id="ready_button" class="bg-button">{{#if player.ready}}Not Ready{{else}}Ready{{/if}}</button>

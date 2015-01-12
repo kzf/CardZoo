@@ -1,5 +1,5 @@
 <template name="decks">
-	<div class="page-container">
+	<div class="page-container not-ready">
 		{{> mainHeader}}
 		<section class="category-container isolated">
 			{{> signupLogin}}
@@ -21,7 +21,7 @@
 	{{else}}
 	<section class="category-container btn-container">
 		{{#each decks}}
-			<a class="btn-row" href="/decks/{{index}}">{{name}}</a>
+			<a class="btn-row {{#if usable}}{{else}}danger{{/if}}" href="/decks/{{index}}">{{name}}</a>
 		{{/each}}
 	</section>
 	{{/if}}
@@ -29,11 +29,11 @@
 </template>
 
 <template name="deck">
-	<div class="page-container">
+	<div class="page-container not-ready">
 		{{> mainHeader}}
 		<section class="plain-section">
 			Deck name: <input type="text" id="deck_name" placeholder="{{deck.name}}"> <button id="save_name">Save</button>
-			<button id="delete_deck">Delete Deck</button>
+			<button class="danger" id="delete_deck">Delete Deck</button>
 		</section>
 		<section class="left-section section-header">
 			Card List
@@ -43,7 +43,7 @@
 		</section>
 		<section class="left-section">
 			<section class="info-row">
-				<input id="cards_filter" type="text">
+				<div class="search-box"><input class="search" id="cards_filter" type="text"></div>
 			</section>
 			<section id="no_cards_found" class="info-row">
 				No matching cards found.
@@ -61,8 +61,20 @@
 				</div>
 			{{else}}
 			{{#each deck.cards}}
-				<div class="deck-list-row btn-row">{{copies}} x {{name}}</div>
+				<div class="deck-list-row btn-row">
+					<span class="count">{{copies}}</span>
+					<span class="card-name">{{name}}</span>
+				</div>
 			{{/each}}
+			{{/if}}
+			<div class="info-row">
+				Total cards: {{deck.total}}
+			</div>
+			{{#if deck.usable}}
+			{{else}}
+			<div class="info-row danger">
+				You will not be able to use this deck in-game. Decks must contain between {{minCards}} and {{maxCards}} cards to be used in matches.
+			</div>
 			{{/if}}
 		</section>
 		<section class="plain-section">
