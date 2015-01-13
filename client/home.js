@@ -25,7 +25,10 @@ Template.userList.helpers({
 			cantPlayAgainst.push(otherId(game));
 		});
 
-		var users = Meteor.users.find({ "status.online" : true,  _id: { $not: { $in: cantPlayAgainst }}});
+		var users = Meteor.users.find({
+			"status.online" : true,
+			 _id: { $not: { $in: cantPlayAgainst }}
+			}, {sort: {username: 1}});
 
 		return {
 			users: users,
@@ -42,14 +45,22 @@ Template.userList.events({
 });
 
 Template.userList.rendered = function() {
-	var noUsersMessage = $("#no_users_found").hide();
-  $('#user_filter').fastLiveFilter('#user_list', {
-  	callback: function(i) {
-  		if (i === 0) {
-  			noUsersMessage.show();
-  		} else {
-  			noUsersMessage.hide();
-  		}
-  	}
-  });
+	console.log("userList.rendered runs");
+	this.autorun(function () {
+		console.log("autorun runs");
+		var users = Meteor.users.find({ "status.online" : true,  _id: { $not: { $in: [Meteor.userId()] }}});
+		users.forEach(function(i){});
+		Tracker.afterFlush(function() {
+			var noUsersMessage = $("#no_users_found").hide();
+		  $('#user_filter').fastLiveFilter('#user_list', {
+		  	callback: function(i) {
+		  		if (i === 0) {
+		  			noUsersMessage.show();
+		  		} else {
+		  			noUsersMessage.hide();
+		  		}
+		  	}
+		  });
+		}.bind(this));
+	}.bind(this));
 };
