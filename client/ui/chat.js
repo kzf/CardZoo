@@ -1,28 +1,26 @@
-Chat = {};
+Chat = {
+	messages: new Meteor.Collection(null)
+};
 
-Chat.saveMessage = function(me, message) {
-	console.log("save message");
-	var messages = Session.get("chatMessages");
-	if (!messages) messages = [];
-	messages.push({me: me, message: message});
-	Session.set("chatMessages", messages);
+Chat.saveMessage = function(me, message, gameId) {
+	this.messages.insert({
+		gameId: gameId,
+		me: me,
+		message: message
+	});
 }
 
 Template.chat.helpers({
 	messages: function() {
 		var namedMessages = [];
-		var other = this.username;
-		var messages = Session.get("chatMessages");
-		if (!messages) {
-			Session.set("chatMessages", []);
-			messages = [];
-		}
+		var other = this.otherPlayer.username;
+		var messages = Chat.messages.find({gameId: this._id});
 		messages.forEach(function(m) {
 			namedMessages.push({
 				name: m.me ? 'Me' : other,
 				message: m.message
 			})
-		})
+		});
 		return namedMessages;
 	}
 });
@@ -32,8 +30,8 @@ Template.chat.events({
 		var $msg = $(template.find('#chat-message'));
 		var message = $msg.val();
 		if (message !== '') {
-			Chat.saveMessage(true, message);
-			GameStream.emit('chat', message);
+			Chat.saveMessage(true, message, template.data._id);
+			GameStream.emit('chat', {message: message, gameId: template.data._id});
 			$msg.val("");
 		}
 		e.preventDefault();
@@ -43,6 +41,7 @@ Template.chat.events({
 
 Template.chat.rendered = function(){
   var $messages = $(this.firstNode).find(".messages");
+  $messages.scrollTop($messages[0].scrollHeight);
 
   $messages[0]._uihooks = {
     insertElement: function (node, next) {
@@ -51,5 +50,4 @@ Template.chat.rendered = function(){
       $messages.scrollTop($messages[0].scrollHeight);
     }
   };
-
 };

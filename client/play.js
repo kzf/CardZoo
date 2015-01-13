@@ -163,8 +163,8 @@ Template.play.events({
     *****/
   'click .surrender-button': function(e, template) {
     var id = Meteor.userId();
-    Chat.saveMessage(true, 'I surrender.');
-    GameStream.emit('chat', 'I surrender.');
+    Chat.saveMessage(true, 'I surrender.', template.data._id);
+    GameStream.emit('chat', {message: 'I surrender.', gameId: template.data._id});
     Meteor.call('surrender', template.data._id, id);
     Menu.hide();
   },

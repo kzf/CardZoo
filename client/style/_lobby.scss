@@ -14,7 +14,7 @@ body, #main, html {
 	box-shadow: 0px 0px 40px 0px #367b36;
 	text-align: center;
 	position: relative;
-	padding-bottom: 60px;
+	padding-bottom: 80px;
 	box-sizing: border-box;
 }
 
@@ -199,6 +199,7 @@ body, #main, html {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	border-bottom: 20px solid #926F4D;
 }
 
 .ready-status {

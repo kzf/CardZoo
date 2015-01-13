@@ -23,6 +23,7 @@ Template.deck.helpers({
 	deck: function() {
 		var user = Meteor.users.findOne(Meteor.userId());
 		var deck = user.decks[this._id];
+    if (!deck) deck = { doesNotExist: true };
 		deck.cards = [];
 		for (var k in deck.deck) {
 			if (deck.deck.hasOwnProperty(k) && deck.deck[k] > 0) {

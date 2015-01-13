@@ -1,8 +1,23 @@
-GameStream = {};
+GameStream = {
+	streams: {}
+};
 
 GameStream.init = function(id) {
-	console.log("trying to connect to " + 'game' + id)
-	this.stream = new Meteor.Stream('game' + id);
+	console.log("trying to connect to " + 'game' + id);
+	
+	if (typeof this.stream !== 'undefined') {
+		if (this.stream === this.streams[id]) return;
+		this.stream.removeAllListeners();
+	}
+
+	if (this.streams.hasOwnProperty(id)) {
+		console.log("LOADING already created stream");
+		this.stream = this.streams[id];
+	} else {
+		console.log("CREATING stream");
+		this.stream = new Meteor.Stream('game' + id);
+		this.streams[id] = this.stream;
+	}
 
 	var self = this;
 
@@ -78,8 +93,8 @@ GameStream.init = function(id) {
 	/****
 		Chat
 		****/
-	this.stream.on('chat', function(message) {
-		Chat.saveMessage(false, message);
+	this.stream.on('chat', function(data) {
+		Chat.saveMessage(false, data.message, data.gameId);
 	});
 
 	this.stream.on('playCard', function(data) {

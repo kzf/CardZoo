@@ -29,6 +29,11 @@
 <template name="deck">
 	<div class="page-container not-ready">
 		{{> mainHeader}}
+		{{#if deck.doesNotExist}}
+		<section class="category-container isolated">
+			No such deck found. Please return to your deck list.
+		</section>
+		{{else}}
 		<section class="plain-section">
 			Deck name: <input type="text" id="deck_name" placeholder="{{deck.name}}"> <button id="save_name">Save</button>
 			<button class="danger" id="delete_deck">Delete Deck</button>
@@ -108,5 +113,6 @@
 		<section class="plain-section">
 			<button id="decks" class="bg-button">Decks</button>
 		</section>
+		{{/if}}
 	</div>
 </template>

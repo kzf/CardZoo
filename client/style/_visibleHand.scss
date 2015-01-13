@@ -32,6 +32,8 @@
   pointer-events: auto;
   box-shadow:
     -2px 2px 1px rgba(0,0,0,0.3);
+  font-size: initial;
+  font-weight: initial;
 }
 
 .card.micro-card {
@@ -123,6 +125,8 @@
   background: #e0dec9;
   font-size: 80%;
   padding: 4px;
+  text-align: center;
+  padding-bottom: 8px;
 }
 
 .micro-card .description {
