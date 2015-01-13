@@ -8,7 +8,7 @@ Config.maxCardsInHand = 9;
 
 Config.lobbyDuration = 5 * 60;
 
-Config.maxCopiesPerCard = 4;
+Config.maxCopiesPerCard = 20;
 
 Config.turnDurations = [
 	{
@@ -29,5 +29,5 @@ Config.turnDurations = [
 	}
 ]
 
-Config.minCardsInDeck = 10;
+Config.minCardsInDeck = 20;
 Config.maxCardsInDeck = 50;

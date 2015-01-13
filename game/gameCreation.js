@@ -16,6 +16,9 @@ Game.startGame = function (game) {
 	var players = game.players;
 	var playerIds = game.currentTurn;
 
+	Game.addDeck(playerIds[0], players[playerIds[0]]);
+	Game.addDeck(playerIds[1], players[playerIds[1]]);
+
 	//First player gets 4 cards, other player gets 3
 	var i;
 	for (i = 0; i < 3; i++) { this.dealPlayer(players[playerIds[0]]); }
@@ -53,7 +56,6 @@ function createPlayers(ids) {
 
 	ids.forEach(function (id) {
 		o[id] = {
-			deck: createDeck(),
 			board: [],
 			hand: [],
 			health: 30,
@@ -71,11 +73,30 @@ function createPlayers(ids) {
 	return o;
 }
 
-function createDeck () {
+function createRandomDeck () {
 	var cards = [];
 	for (var i = 0; i < 30; i++) {
 		cards.push(Math.floor(Math.random()*Cards.length));
 	}
 
 	return cards;
+}
+
+Game.addDeck = function(id, player) {
+	if (player.whichDeck === -1) {
+		player.deck = createRandomDeck();
+	} else {
+		var decks = Meteor.users.findOne(id).decks;
+		var deck = decks[player.whichDeck].deck;
+		var instantiatedDeck = [];
+		for (var k in deck) {
+			if (deck.hasOwnProperty(k)) {
+				for (var i = 0; i < deck[k]; i++) {
+					instantiatedDeck.push(k);
+				}
+			}
+		}
+		player.deck = _.shuffle(instantiatedDeck);
+		console.log(player.deck);
+	}
 }

@@ -45,9 +45,7 @@ Template.userList.events({
 });
 
 Template.userList.rendered = function() {
-	console.log("userList.rendered runs");
 	this.autorun(function () {
-		console.log("autorun runs");
 		var users = Meteor.users.find({ "status.online" : true,  _id: { $not: { $in: [Meteor.userId()] }}});
 		users.forEach(function(i){});
 		Tracker.afterFlush(function() {
