@@ -19,10 +19,10 @@ Game.startGame = function (game) {
 	Game.addDeck(playerIds[0], players[playerIds[0]]);
 	Game.addDeck(playerIds[1], players[playerIds[1]]);
 
-	//First player gets 4 cards, other player gets 3
+	// Second player gets an extra starting card
 	var i;
-	for (i = 0; i < 3; i++) { this.dealPlayer(players[playerIds[0]]); }
-	for (i = 0; i < 4; i++) { this.dealPlayer(players[playerIds[1]]); }
+	for (i = 0; i < 5; i++) { this.dealPlayer(players[playerIds[0]]); }
+	for (i = 0; i < 6; i++) { this.dealPlayer(players[playerIds[1]]); }
 	
 	players[playerIds[0]].turn = true;
 	players[playerIds[1]].maxbananas = 0;
