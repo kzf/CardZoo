@@ -1,5 +1,13 @@
+/***
+  Arrow
+  -------------
+  Handles the targeting arrow rendering. Can have one arrow active at once.
+  ****/
+
 Arrow = {};
 
+// Create an arrow pointing from the jQuery wrapped element el
+// type: 'attack' | 'spell'
 Arrow.start = function(el, type) {
 	this.el = el.addClass("start-attack");
 
@@ -14,6 +22,7 @@ Arrow.start = function(el, type) {
 	body.append(this.arrowBody);
 }
 
+// Point the currently active arrow at the point (x,y)
 Arrow.pointAt = function(x, y) {
 	var sx = this.sx, sy = this.sy;
 
@@ -25,10 +34,12 @@ Arrow.pointAt = function(x, y) {
   this.arrowBody.css("width", length);
 }
 
+// Hide the arrow without destroying it
 Arrow.dontPoint = function() {
 	this.arrowBody.hide();
 }
 
+// Destroy the currently active arrow.
 Arrow.remove = function() {
 	this.arrowBody.remove();
   this.el.removeClass("start-attack");

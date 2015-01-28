@@ -1,4 +1,6 @@
-
+/*** 
+  Game play events and helpers
+  ***/
 Template.play.rendered = function() {
   if (!this._rendered) {
     this._rendered = true;

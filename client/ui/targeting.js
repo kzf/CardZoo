@@ -3,6 +3,7 @@ Targeting = {
   duringSpell: false
 };
 
+// Targeting an attack from one minion to another
 Targeting.startAttack = function (game, id, card, el) {
   this.duringAttack = true;
   
@@ -30,7 +31,6 @@ Targeting.startAttack = function (game, id, card, el) {
   
   addEventListener("mousemove", mousemove);
 }
-
 
 Targeting.completeAttack = function(gameId, id, card, el) {
   this.end = {
@@ -61,9 +61,7 @@ Targeting.failAttack = function() {
 }
 
 
-/*** 
-SPELLS
-***/
+// Targeting a spell to a minion
 Targeting.startSpell = function (game, id, card, el) {
   this.duringSpell = true;
   

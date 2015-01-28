@@ -1,5 +1,6 @@
 CardAnimator = {};
 
+// Use Meteor's UI hooks to handle animation when a card is drawn
 Template.cardAnimate.rendered = function(){
   var template = this;
 
@@ -19,6 +20,15 @@ Template.cardAnimate.rendered = function(){
       }, 300);
 
     },
+    // Since we are using each() over an array in the view, when a card is
+    // played from the hand the DOM element that is destroyed is the last
+    // child regardless of which array element was spliced, and the DOM
+    // elements contents are just changed to reflect the new array.
+    // Hence, we need to somehow find out the index of the card that was removed
+    // to actually perform the animation, which we do using a variable on 
+    // the global CardAnimator object.
+    // We then have to carefully manipulate each of the card DOM elements
+    // to get a smooth animation.
     removeElement: function (node, b) {
       var $node = $(node);
       var $parent = $node.parent();
@@ -62,6 +72,7 @@ Template.cardAnimate.rendered = function(){
   };
 };
 
+// Use Meteor's UI hooks to handle animation when a card is played to the board
 Template.boardAnimate.rendered = function(){
   var template = this;
 

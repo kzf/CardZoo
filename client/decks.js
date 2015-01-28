@@ -1,3 +1,8 @@
+/****
+  Deck Editor Helpers and Events
+  ****/
+
+// Deck List
 Template.deckList.helpers({
   noDecks: function() {
     return typeof this.decks === 'undefined' || this.decks.length === 0;
@@ -11,14 +16,15 @@ Template.deckList.helpers({
     });
     return decks;
   }
-})
+});
 
 Template.deckList.events({
 	'click #new_deck': function (e, template) {
 		Meteor.call('createNewDeck', template.data._id);
 	}
-})
+});
 
+// Individual Deck Editor
 Template.deck.helpers({
 	deck: function() {
 		var user = Meteor.users.findOne(Meteor.userId());
@@ -32,6 +38,7 @@ Template.deck.helpers({
 				}, Cards[k]));
 			}
 		}
+    // Sort cards in deck by cost first then alphabetically
     deck.cards.sort(function(a, b) {
       var dCost = a.cost - b.cost;
       if (dCost) return dCost;
@@ -43,6 +50,7 @@ Template.deck.helpers({
 	},
 	cards: function() {
     var cards = Cards.slice(0);
+    // Sort cards by cost first then alphabetically
     cards.sort(function(a, b) {
       var dCost = a.cost - b.cost;
       if (dCost) return dCost;
@@ -56,7 +64,7 @@ Template.deck.helpers({
   maxCards: function() {
     return Config.maxCardsInDeck;
   }
-})
+});
 
 Template.deck.events({
 	'click .card-list-row': function(e, template) {

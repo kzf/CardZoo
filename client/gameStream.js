@@ -1,20 +1,26 @@
+/***
+	GameStream
+	Handles the client side of the game stream, listening for events and
+	performing the corresponding DOM manipulation
+	***/
+
 GameStream = {
 	streams: {}
 };
 
 GameStream.init = function(id) {
-	console.log("trying to connect to " + 'game' + id);
 	
+	// We only have one stream listening at once. If there are multiple
+	// game streams this session we keep the references to the streams
+	// but stop listening when we switch to a different stream.
 	if (typeof this.stream !== 'undefined') {
 		if (this.stream === this.streams[id]) return;
 		this.stream.removeAllListeners();
 	}
 
 	if (this.streams.hasOwnProperty(id)) {
-		console.log("LOADING already created stream");
 		this.stream = this.streams[id];
 	} else {
-		console.log("CREATING stream");
 		this.stream = new Meteor.Stream('game' + id);
 		this.streams[id] = this.stream;
 	}
@@ -98,7 +104,6 @@ GameStream.init = function(id) {
 	});
 
 	this.stream.on('playCard', function(data) {
-		console.log("they played a card");
 		CardAnimator.playedFromHandIndex = data.from;
 		CardAnimator.playedOnBoardIndex = data.to;
 	});

@@ -1,3 +1,9 @@
+/***
+	 Timer
+	 ----
+	 Handles setting up a timer. One timer can be active at a time.
+	 ***/
+
 Timer = {};
 
 Timer.setStartTime = function(time, duration) {

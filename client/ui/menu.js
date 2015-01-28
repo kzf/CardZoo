@@ -1,3 +1,5 @@
+// Handles the main menu
+
 Menu = {};
 
 Menu.show = function() {

@@ -1,3 +1,8 @@
+/***
+		Chat
+		Handles the chat UI
+	***/
+
 Chat = {
 	messages: new Meteor.Collection(null)
 };
@@ -11,6 +16,8 @@ Chat.saveMessage = function(me, message, gameId) {
 }
 
 Template.chat.helpers({
+	// Helper that fetches an array of messages with names 
+	// attached
 	messages: function() {
 		var namedMessages = [];
 		var other = this.otherPlayer.username;
@@ -26,6 +33,7 @@ Template.chat.helpers({
 });
 
 Template.chat.events({
+	// Submitting a chat message
 	'submit #chat_form': function(e, template) {
 		var $msg = $(template.find('#chat-message'));
 		var message = $msg.val();
@@ -40,6 +48,7 @@ Template.chat.events({
 
 
 Template.chat.rendered = function(){
+	// Scroll to bottom of chat each time a new message is shown
   var $messages = $(this.firstNode).find(".messages");
   $messages.scrollTop($messages[0].scrollHeight);
 

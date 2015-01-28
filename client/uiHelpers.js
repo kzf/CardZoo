@@ -1,3 +1,7 @@
+/***
+  Helpers for miscellaneous UI elements
+  ***/
+
 Template.bananasBar.helpers({
   maxBarHeight: function() {
     return Math.max(this.maxbananas*28, 0);
@@ -11,6 +15,8 @@ Template.handCard.helpers({
   playableClass: function() {
     return this.playable ? "playable" : "";
   },
+  // Info points to the canonical copy of the card in the Champions/Cards
+  // arrays (as opposed to the copy in hand)
   Info: function() {
     return this.champion ? Champions[this.id] : Cards[this.id];
   }
@@ -35,6 +41,8 @@ Template.boardCard.helpers({
   asleepClass: function() {
     return this.attackDelay > 0 ? "asleep" : "";
   },
+  // Info points to the canonical copy of the card in the Champions/Cards
+  // arrays (as opposed to the copy on the board)
   Info: function() {
     return this.champion ? Champions[this.id] : Cards[this.id];
   }
