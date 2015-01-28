@@ -25,7 +25,7 @@
       -ms-user-select: none;
           user-select: none;
   cursor: default;
-  margin-top: 120px;
+  padding-top: 100px;
 }
 
 .chat, .menu, .left-section, .right-section {
@@ -58,9 +58,6 @@ ul {
 
 .notransition {
   -webkit-transition: none !important;
-  -moz-transition: none !important;
-  -o-transition: none !important;
-  -ms-transition: none !important;
   transition: none !important;
 }
 

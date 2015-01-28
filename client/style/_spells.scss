@@ -16,7 +16,8 @@
   text-align:center;
   position:relative;
   margin-top: 11px;
-  transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+          transition: all .3s ease;
 }
 
 .spell::before {
@@ -29,7 +30,8 @@
   border-radius: 50%;
   box-shadow:
         inset 0px -2px 45px rgba(255,255,255,0.6);
-  transition: transform .3s ease;
+  -webkit-transition: -webkit-transform .3s ease;
+          transition: transform .3s ease;
 }
 
 .spell .cost {

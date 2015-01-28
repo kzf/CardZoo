@@ -13,10 +13,13 @@
 }
 
 .hidden-hand .card {
-  transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+          transition: all .3s ease;
 }
 .hidden-hand .card.opponent-hover {
-  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
+          transform: translateY(-10px);
 }
 
 .hidden-hand .card,

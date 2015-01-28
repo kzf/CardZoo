@@ -57,11 +57,11 @@ CardDrag.startDrag = function(game, id, card, el) {
 
   this.boardstops.push(boardoffset.left + $(".board").width());
   
-  var body = $("body");
+  var $window = $(window);
 
   var mousemove = function (e) {
   	var mx = e.clientX;
-  	var my = e.clientY + body.scrollTop();
+  	var my = e.clientY + $window.scrollTop();
     var dx = mx - cx;
     var dy = my - cy;
     // Move card to current cursor position
@@ -103,7 +103,7 @@ CardDrag.endDrag = function(e, gameId, id) {
   var startEl = this.startEl;
   var $el = startEl.find(".card");
   var mx = e.clientX;
-  var my = e.clientY + $("body").scrollTop();
+  var my = e.clientY + $(window).scrollTop();
 
   // Play the card if we are within the board bounds
   if (mx > this.boardstops[0] && mx < this.boardstops[this.boardstops.length-1] &&

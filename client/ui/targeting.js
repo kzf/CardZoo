@@ -15,11 +15,11 @@ Targeting.startAttack = function (game, id, card, el) {
   Arrow.start(el, 'attack');
   GameStream.emit('Arrow.start', {type: 'attack', index: card.boardIndex});
 
-  var body = $("body");
+  var $window = $(window);
   
   var mousemove = function(e) {
     var mx = e.clientX;
-    var my = e.clientY + body.scrollTop();
+    var my = e.clientY + $window.scrollTop();
     Arrow.pointAt(mx, my);
   };
   
@@ -73,11 +73,11 @@ Targeting.startSpell = function (game, id, card, el) {
   Arrow.start(el, 'spell');
   GameStream.emit('Arrow.start', {type: 'spell', index: card.index});
 
-  var body = $("body");
+  var $window = $(window);
   
   var mousemove = function(e) {
     var mx = e.clientX;
-    var my = e.clientY + body.scrollTop();
+    var my = e.clientY + $window.scrollTop();
     Arrow.pointAt(mx, my);
   };
   

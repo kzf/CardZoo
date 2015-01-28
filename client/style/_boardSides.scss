@@ -20,16 +20,21 @@
   position:relative;
   display:inline-block;
   margin: 45px 4px 29px 4px;
-  transition: all .2s ease, transform .4s ease;
+  -webkit-transition: all .2s ease, -webkit-transform .4s ease;
+          transition: all .2s ease, transform .4s ease;
 }
 
 .board-side .card.animate {
-  transform: translateY(-40px) scale(1.2);
+  -webkit-transform: translateY(-40px) scale(1.2);
+      -ms-transform: translateY(-40px) scale(1.2);
+          transform: translateY(-40px) scale(1.2);
   opacity: 0;
 }
 
 .board-side .card.start-attack {
-  transform: translateY(-20px);
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
 }
 
 .board-side .card.unattackable {
@@ -50,24 +55,30 @@
 
 @keyframes easyBob {
   0% {
-    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
   }
   50% {
-    transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+            transform: translateY(4px);
   }
   100% {
-    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
   }
 }
 @-webkit-keyframes easyBob {
   0% {
-    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
   }
   50% {
-    transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+            transform: translateY(4px);
   }
   100% {
-    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
   }
 }
 
@@ -81,7 +92,8 @@
   border-radius: 50%;
   box-shadow:
         inset 0px -2px 45px rgba(0,0,0,0.6);
-  transition: transform .3s ease;
+  -webkit-transition: -webkit-transform .3s ease;
+          transition: transform .3s ease;
 }
 
 .board-side .card.champion {

@@ -3,6 +3,8 @@
 .arrow-body {
   z-index: 9999;
   background: 
+    -webkit-linear-gradient(left, transparent, $action-aura 50%), -webkit-linear-gradient(left, transparent, transparent 40%, $action-aura 40%, $action-aura);
+  background: 
     linear-gradient(to right, transparent, $action-aura 50%),
     linear-gradient(to right, transparent, transparent 40%, $action-aura 40%, $action-aura);
   background-size: 20px 100%, 50px 100%;
@@ -15,6 +17,8 @@
   top: 0;
   left: 0;
   -webkit-transform-origin: 0% 50%;
+      -ms-transform-origin: 0% 50%;
+          transform-origin: 0% 50%;
 }
 
 .arrow-body:after {
